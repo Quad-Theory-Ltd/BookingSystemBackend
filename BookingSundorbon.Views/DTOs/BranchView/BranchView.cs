@@ -4,21 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingSundorbon.Core.Models
+namespace BookingSundorbon.Views.DTOs.BranchView
 {
-    public class CompanyModel
+    public class BranchView
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string CompanyWebsite { get; set; }
-        public string BIN { get; set; }
-        public string TIN { get; set; }
-        public string VATRegNo { get; set; }
+        public int CompanyId { get; set; }
+        public string BranchName { get; set; }
+        public string AddressLine { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }
         public string ModifierId { get; set; }
         public DateTime ModificationDate { get; set; }
-
     }
 }
