@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookingSundorbon.Features.Services.EmailService;
+using BookingSundorbon.Features.Repositories.CompanyRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -18,6 +19,7 @@ namespace BookingSundorbon.Features
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<ILoginRepository,LoginRepository>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
         }
