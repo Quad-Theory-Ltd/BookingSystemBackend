@@ -1,5 +1,4 @@
-﻿using BookingSundorbon.Views.DTOs.CompanyView;
-using BookingSundorbon.Views.DTOs.SenderView;
+﻿using BookingSundorbon.Views.DTOs.SenderView;
 using System;
 using System.Collections.Generic;
 using System.Linq;

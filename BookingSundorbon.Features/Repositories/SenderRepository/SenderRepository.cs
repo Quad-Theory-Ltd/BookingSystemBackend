@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookingSundorbon.Views.DTOs.SenderView;
-using BookingSundorbon.Views.DTOs.CompanyView;
 
 namespace BookingSundorbon.Features.Repositories.SenderRepository
 {
