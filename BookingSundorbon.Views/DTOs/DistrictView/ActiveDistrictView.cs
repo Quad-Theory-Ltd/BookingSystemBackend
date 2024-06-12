@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingSundorbon.Views.DTOs.DistrictView
+namespace BookingSundorbon.Views.DTOs.ActiveDistrictView
 {
     public class ActiveDistrictView
     {

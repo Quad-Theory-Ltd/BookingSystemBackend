@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookingSundorbon.Views.DTOs.SenderView;
+using BookingSundorbon.Views.DTOs.CompanyView;
 
 namespace BookingSundorbon.Features.Repositories.SenderRepository
 {
@@ -20,7 +21,7 @@ namespace BookingSundorbon.Features.Repositories.SenderRepository
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<int> CreateSenderAsync(SenderView sender)
+        public async Task<long> CreateSenderAsync(SenderView sender)
         {
             try
             {
@@ -49,7 +50,26 @@ namespace BookingSundorbon.Features.Repositories.SenderRepository
                 throw;
             }
         }
+        public async Task<SenderView> GetSenderAsync(long id)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", id, DbType.Int64);
 
-        
+                    var sender = await dbConnection.QueryFirstOrDefaultAsync<SenderView>(
+                        "[dbo].[SP_GetSenderDetailsById]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return sender;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }
