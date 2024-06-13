@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BookingSundorbon.Features.Services.EmailService;
 using BookingSundorbon.Features.Repositories.CompanyRepository;
+using BookingSundorbon.Features.Repositories.DistrictRepository;
+using BookingSundorbon.Features.Repositories.CityRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -21,6 +23,8 @@ namespace BookingSundorbon.Features
             services.AddScoped<ILoginRepository,LoginRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IDistrictRepository, DistrictRepository>();
+            services.AddScoped<ICityRepository, CityRepository>();
             return services;
         }
         public static IServiceCollection AddServices(this IServiceCollection services)
