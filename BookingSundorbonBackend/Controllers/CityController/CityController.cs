@@ -18,7 +18,7 @@ namespace BookingSundorbonBackend.Controllers.CityController
         [HttpGet]
         public async Task<IActionResult> GetAllCities()
         {
-            var result = await _cityRepository.GetAllCitiesAsync();
+            var result = await _cityRepository.GetAllActiveCitiesAsync();
             if (result == null)
             {
                 return NotFound("Cities not found.");
@@ -26,15 +26,15 @@ namespace BookingSundorbonBackend.Controllers.CityController
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetSingleCity(int id, bool isActive)
-        {
-            var result = await _cityRepository.GetCityByIdAsync(id, isActive);
-            if (result == null)
-            {
-                return NotFound("City not found.");
-            }
-            return Ok(result);
-        }
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> GetSingleCity(int id, bool isActive)
+        //{
+        //    var result = await _cityRepository.GetCityByIdAsync(id, isActive);
+        //    if (result == null)
+        //    {
+        //        return NotFound("City not found.");
+        //    }
+        //    return Ok(result);
+        //}
     }
 }

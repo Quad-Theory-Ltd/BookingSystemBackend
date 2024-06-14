@@ -1,5 +1,4 @@
 ﻿using BookingSundorbon.Views.DTOs.BranchView;
-using BookingSundorbon.Views.DTOs.DistrictView;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -21,7 +20,7 @@ namespace BookingSundorbon.Features.Repositories.DistrictRepository
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
-        public async Task<List<ActiveDistrictView>> GetAllDistrictsAsync()
+        public async Task<IEnumerable<ActiveDistrictView>> GetAllDistrictsAsync()
         {
             try
             {
@@ -38,22 +37,5 @@ namespace BookingSundorbon.Features.Repositories.DistrictRepository
             }
         }
 
-        public async Task<IEnumerable<ActiveDistrictView>> GetAllActiveDistrictsAsync()
-        {
-            try
-            {
-                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
-                {
-                    var districts = await dbConnection.QueryAsync<ActiveDistrictView>(
-                        "[dbo].[SP_GetAllActiveDistricts]", commandType: CommandType.StoredProcedure);
-
-                    return districts;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
     }
 }

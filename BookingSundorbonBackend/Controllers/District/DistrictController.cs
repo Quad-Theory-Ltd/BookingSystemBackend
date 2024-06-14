@@ -18,7 +18,7 @@ namespace BookingSundorbonBackend.Controllers.District
         [HttpGet]
         public async Task<IActionResult> GetAllActiveDistricts()
         {
-            var districts = await _districtRepository.GetAllActiveDistrictsAsync();
+            var districts = await _districtRepository.GetAllDistrictsAsync();
             return Ok(districts);
         }
     }

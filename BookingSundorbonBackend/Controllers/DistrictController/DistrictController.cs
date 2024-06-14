@@ -27,15 +27,15 @@ namespace BookingSundorbonBackend.Controllers.DistrictController
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetSingleDistrict(int id, bool isActive)
-        {
-            var result = await _districtRepository.GetDistrictByIdAsync(id, isActive);
-            if (result == null)
-            {
-                return NotFound("District not found.");
-            }
-            return Ok(result);
-        }
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> GetSingleDistrict(int id, bool isActive)
+        //{
+        //    var result = await _districtRepository.GetDistrictByIdAsync(id, isActive);
+        //    if (result == null)
+        //    {
+        //        return NotFound("District not found.");
+        //    }
+        //    return Ok(result);
+        //}
     }
 }

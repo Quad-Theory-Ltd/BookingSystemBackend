@@ -9,6 +9,6 @@ namespace BookingSundorbon.Features.Repositories.DistrictRepository
 {
     public interface IDistrictRepository
     {
-        Task<IEnumerable<ActiveDistrictView>> GetAllActiveDistrictsAsync();
+        Task<IEnumerable<ActiveDistrictView>> GetAllDistrictsAsync();
     }
 }
