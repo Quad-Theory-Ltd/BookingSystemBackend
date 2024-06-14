@@ -19,7 +19,22 @@ namespace BookingSundorbon.Features.Repositories.CityRepository
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
+        public async Task<List<ActiveCityView>> GetAllCitiesAsync()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var result = await dbConnection.QueryAsync<ActiveCityView>("SP_GetAllActiveCities");
 
+                    return result.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         public async Task<IEnumerable<ActiveCityView>> GetAllActiveCitiesAsync()
         {
