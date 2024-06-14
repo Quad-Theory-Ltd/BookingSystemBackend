@@ -18,6 +18,7 @@ using BookingSundorbon.Features.Repositories.ReceiverRepository;
 using BookingSundorbon.Features.Repositories.SenderRepository;
 using BookingSundorbon.Features.Repositories.ProductTypeRepository;
 using BookingSundorbon.Features.Repositories.ParcelContentRepository;
+using BookingSundorbon.Features.Repositories.ParcelRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -45,6 +46,7 @@ namespace BookingSundorbon.Features
             #region "P"
             services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
             services.AddScoped<IParcelContentRepository, ParcelContentRepository>();
+            services.AddScoped<IParcelRepository, ParcelRepository>();
             #endregion
 
             #region "R"
