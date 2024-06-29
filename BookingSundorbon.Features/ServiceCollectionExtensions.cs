@@ -19,6 +19,7 @@ using BookingSundorbon.Features.Repositories.SenderRepository;
 using BookingSundorbon.Features.Repositories.ProductTypeRepository;
 using BookingSundorbon.Features.Repositories.ParcelContentRepository;
 using BookingSundorbon.Features.Repositories.ProhibitedItemRepository;
+using BookingSundorbon.Features.Repositories.GetTransitionCostRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -37,6 +38,10 @@ namespace BookingSundorbon.Features
 
             #region "D"
             services.AddScoped<IDistrictRepository, DistrictRepository>();
+            #endregion
+
+            #region "G"
+            services.AddScoped<IGetTransitionCostRepository, GetTransitionCostRepository>();
             #endregion
 
             #region "L"
