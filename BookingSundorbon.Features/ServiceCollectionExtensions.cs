@@ -23,6 +23,7 @@ using BookingSundorbon.Features.Repositories.GetTransitionCostRepository;
 using BookingSundorbon.Features.Repositories.RouteRepository;
 using BookingSundorbon.Features.Repositories.ItemTypeRepository;
 using BookingSundorbon.Features.Repositories.CargoTypeRepository;
+using BookingSundorbon.Features.Repositories.CountryRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -38,6 +39,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<ICargoTypeRepository, CargoTypeRepository>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
             #endregion
 
             #region "D"
