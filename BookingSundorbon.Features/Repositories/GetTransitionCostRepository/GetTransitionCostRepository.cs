@@ -36,7 +36,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     parameters.Add("@CargoType", transitionCostView.CargoType, DbType.String);
                     parameters.Add("@IsExtraPackaging", transitionCostView.IsExtraPackaging, DbType.Boolean);
                     parameters.Add("@IsFragileItem", transitionCostView.IsFragileItem, DbType.Boolean);
-                    parameters.Add("@RoutingTypeId", transitionCostView.RoutingTypeId, DbType.Int32);
+                   // parameters.Add("@RoutingTypeId", transitionCostView.RoutingTypeId, DbType.Int32);
 
 
                     decimal cost = await dbConnection.ExecuteScalarAsync<decimal>(

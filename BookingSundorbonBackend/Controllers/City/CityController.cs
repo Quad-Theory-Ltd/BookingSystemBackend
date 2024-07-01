@@ -1,5 +1,4 @@
 ﻿using BookingSundorbon.Features.Repositories.CityRepository;
-using BookingSundorbon.Views.DTOs.ActiveCityView;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

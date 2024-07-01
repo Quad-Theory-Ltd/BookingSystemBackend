@@ -8,7 +8,6 @@ namespace BookingSundorbon.Views.DTOs.GetTransitionCostView
 {
     public class GetTransitionCostView
     {
-
         public decimal ParcelLength { get; set; }
         public decimal ParcelWidth { get; set; }
         public decimal ParcelHeight { get; set; }
@@ -16,6 +15,6 @@ namespace BookingSundorbon.Views.DTOs.GetTransitionCostView
         public string CargoType { get; set; }
         public bool IsExtraPackaging { get; set; }
         public bool IsFragileItem { get; set; }
-        public int RoutingTypeId { get; set; }
+        //public int RoutingTypeId { get; set; }
     }
 }

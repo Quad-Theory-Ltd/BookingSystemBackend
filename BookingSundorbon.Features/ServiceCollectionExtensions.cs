@@ -20,6 +20,9 @@ using BookingSundorbon.Features.Repositories.ProductTypeRepository;
 using BookingSundorbon.Features.Repositories.ParcelContentRepository;
 using BookingSundorbon.Features.Repositories.ProhibitedItemRepository;
 using BookingSundorbon.Features.Repositories.GetTransitionCostRepository;
+using BookingSundorbon.Features.Repositories.RouteRepository;
+using BookingSundorbon.Features.Repositories.ItemTypeRepository;
+using BookingSundorbon.Features.Repositories.CargoTypeRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -34,6 +37,7 @@ namespace BookingSundorbon.Features
             #region "C"
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
+            services.AddScoped<ICargoTypeRepository, CargoTypeRepository>();
             #endregion
 
             #region "D"
@@ -42,6 +46,10 @@ namespace BookingSundorbon.Features
 
             #region "G"
             services.AddScoped<IGetTransitionCostRepository, GetTransitionCostRepository>();
+            #endregion
+
+            #region "I"
+            services.AddScoped<IItemTypeRepository, ItemTypeRepository>();
             #endregion
 
             #region "L"
@@ -56,6 +64,7 @@ namespace BookingSundorbon.Features
 
             #region "R"
             services.AddScoped<IReceiverRepository, ReceiverRepository>();
+            services.AddScoped<IRouteRepository, RouteRepository>();
             #endregion
 
             #region "S"
