@@ -29,14 +29,19 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
+                    parameters.Add("@RoutingTypeId", transitionCostView.RoutingTypeId, DbType.Int32);
                     parameters.Add("@ParcelLength", transitionCostView.ParcelLength, DbType.Decimal);
                     parameters.Add("@ParcelWidth", transitionCostView.ParcelWidth, DbType.Decimal);
                     parameters.Add("@ParcelHeight", transitionCostView.ParcelHeight, DbType.Decimal);
                     parameters.Add("@ParcelWeight", transitionCostView.ParcelWeight, DbType.Decimal);
-                    parameters.Add("@CargoType", transitionCostView.CargoType, DbType.String);
+                    parameters.Add("@CargoTypeId", transitionCostView.CargoTypeId, DbType.Int32);
                     parameters.Add("@IsExtraPackaging", transitionCostView.IsExtraPackaging, DbType.Boolean);
-                    parameters.Add("@IsFragileItem", transitionCostView.IsFragileItem, DbType.Boolean);
-                   // parameters.Add("@RoutingTypeId", transitionCostView.RoutingTypeId, DbType.Int32);
+                    parameters.Add("@IsPickup", transitionCostView.IsPickUp, DbType.Boolean);
+                    parameters.Add("@ItemTypeId", transitionCostView.ItemTypeId, DbType.Int32);
+                    parameters.Add("@ShipmentArrivalDate", transitionCostView.ShipmentArrivalDate, DbType.DateTime);
+
+
+                   
 
 
                     decimal cost = await dbConnection.ExecuteScalarAsync<decimal>(
