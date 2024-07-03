@@ -10,6 +10,6 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
     public interface IGetTransitionCostRepository
     {
         //Task <decimal> GetTransitionCostWithOutVat(decimal parcellLengt, decimal parcellWidth, decimal parcelHeight, decimal parcellWeight, string cargoType, bool isExtralPackaging, bool isFragiItem );
-        Task<decimal> GetTransitionCostWithoutVat(GetTransitionCostView transitionCostView);
+        Task<IEnumerable<GetTransitionCostOutputView>> GetTransitionCostWithoutVat(GetTransitionCostView transitionCostView);
     }
 }

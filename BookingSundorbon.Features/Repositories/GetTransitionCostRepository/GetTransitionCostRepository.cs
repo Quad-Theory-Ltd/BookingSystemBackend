@@ -22,7 +22,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<decimal> GetTransitionCostWithoutVat(GetTransitionCostView transitionCostView)
+        public async Task<IEnumerable<GetTransitionCostOutputView>> GetTransitionCostWithoutVat(GetTransitionCostView transitionCostView)
         {
             try
             {
@@ -44,11 +44,11 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                    
 
 
-                    decimal cost = await dbConnection.ExecuteScalarAsync<decimal>(
+                    var result = await dbConnection.QueryAsync<GetTransitionCostOutputView>(
                         "[dbo].[SP_GetCalculateTotalPricing]", parameters, commandType: CommandType.StoredProcedure);
 
                    
-                    return cost;
+                    return result.ToList();
                 }
             }
             catch (Exception ex) {
