@@ -46,10 +46,6 @@ namespace BookingSundorbon.Features
             services.AddScoped<IDistrictRepository, DistrictRepository>();
             #endregion
 
-            #region "G"
-            services.AddScoped<IGetTransitionCostRepository, GetTransitionCostRepository>();
-            #endregion
-
             #region "I"
             services.AddScoped<IItemTypeRepository, ItemTypeRepository>();
             #endregion
@@ -72,7 +68,9 @@ namespace BookingSundorbon.Features
             #region "S"
             services.AddScoped<ISenderRepository, SenderRepository>();
             #endregion
-
+            #region "T"
+            services.AddScoped<ITransitionCostRepository, TransitionCostRepository>();
+            #endregion
             #region "U"
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             #endregion

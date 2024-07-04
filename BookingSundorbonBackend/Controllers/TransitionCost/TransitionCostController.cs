@@ -1,6 +1,9 @@
 ﻿using BookingSundorbon.Features.Repositories.BranchRepository;
+using BookingSundorbon.Features.Repositories.CompanyRepository;
 using BookingSundorbon.Features.Repositories.GetTransitionCostRepository;
+using BookingSundorbon.Views.DTOs.CompanyView;
 using BookingSundorbon.Views.DTOs.GetTransitionCostView;
+using BookingSundorbon.Views.DTOs.TransitionCostView;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,11 +11,11 @@ namespace BookingSundorbonBackend.Controllers.GetTransitionCost
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GetTransitionCostController : ControllerBase
+    public class TransitionCostController : ControllerBase
     {
-        private readonly IGetTransitionCostRepository _getTransitionCostRepository;
+        private readonly ITransitionCostRepository _getTransitionCostRepository;
 
-        public GetTransitionCostController (IGetTransitionCostRepository getTransitionCostRepository)
+        public TransitionCostController (ITransitionCostRepository getTransitionCostRepository)
         {
             _getTransitionCostRepository = getTransitionCostRepository;
         }
@@ -34,6 +37,18 @@ namespace BookingSundorbonBackend.Controllers.GetTransitionCost
             catch (Exception ex) {
                 return BadRequest();
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateParcelBooking([FromBody] CreateParcelBookingView createParcelBookingView)
+        {
+            if (createParcelBookingView == null)
+            {
+                return BadRequest("Parcel Booking is null.");
+            }
+
+            var result = await _getTransitionCostRepository.CreateParcelBookingAsync(createParcelBookingView);
+            return Ok(result);
         }
     }
 }
