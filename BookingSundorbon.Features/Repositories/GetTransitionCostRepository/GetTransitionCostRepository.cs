@@ -22,7 +22,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<IEnumerable<GetTransitionCostOutputView>> GetTransitionCostWithoutVat(GetTransitionCostView transitionCostView)
+        public async Task<IEnumerable<GetTransitionCostOutputView>> GetTransitionCost(GetTransitionCostView transitionCostView)
         {
             try
             {

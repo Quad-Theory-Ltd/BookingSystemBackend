@@ -19,15 +19,21 @@ namespace BookingSundorbonBackend.Controllers.GetTransitionCost
 
 
         [HttpGet]
-        public async Task<ActionResult> GetTotalTransitionCostWithoutVat([FromQuery]GetTransitionCostView getTransitionCost)
+        public async Task<ActionResult> GetTotalTransitionCost([FromQuery]GetTransitionCostView getTransitionCost)
         {
-            if(getTransitionCost == null)
+            try
             {
+                if (getTransitionCost == null)
+                {
+                    return BadRequest();
+                }
+                var result = await _getTransitionCostRepository.GetTransitionCost(getTransitionCost);
+
+                return Ok(result);
+            }
+            catch (Exception ex) {
                 return BadRequest();
             }
-            var result = await _getTransitionCostRepository.GetTransitionCostWithoutVat(getTransitionCost);
-          
-            return Ok( result);
         }
     }
 }
