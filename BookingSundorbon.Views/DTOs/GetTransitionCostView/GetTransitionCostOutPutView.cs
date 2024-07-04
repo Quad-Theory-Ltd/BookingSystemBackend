@@ -22,11 +22,18 @@ namespace BookingSundorbon.Views.DTOs.GetTransitionCostView
         public decimal WeightCost { get; set; }
         public decimal ExtraPackagingCost { get; set; }
         public decimal ItemTypeCost {  get; set; }
+        public string ShippingServiceName { get; set; }
         public decimal ShippingServiceCost { get; set; }
         public decimal ShippingServicePercentage { get; set; }
         public decimal ShippingServicePercentageAmount { get; set; }
         public decimal DimensionCost { get; set; }
         public decimal PickUpCost { get; set; }
+        public decimal VATPercentage { get; set; }
+        public decimal VATAmount { get; set; }
+        public decimal VATAmountPercentage { get;set; }
+        public decimal TotalCostWithVAT { get; set; }
+        public decimal TotalCostWithoutVAT { get; set; }
+        
 
 
     }
