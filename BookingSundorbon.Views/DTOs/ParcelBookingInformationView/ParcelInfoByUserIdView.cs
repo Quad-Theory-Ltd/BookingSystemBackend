@@ -43,5 +43,7 @@ namespace BookingSundorbon.Views.DTOs.ParcelBookingInformationView
         public string RouteName { get; set; }
         public string DimensionName { get; set; }
         public string WeightDescription { get; set; }
+        public string TotalCost { get; set; }
+        
     }
 }
