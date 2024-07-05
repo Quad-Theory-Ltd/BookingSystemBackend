@@ -20,19 +20,19 @@ namespace BookingSundorbon.Features.Repositories.LoginRepository
             _connectionstring = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<LoginView> GetAllCustomerListAsync(string userName, string password, int type)
+        public async Task<LoginView> GetLoginByIdAsync(string userName, string password, string userType)
         {
             try
             {
                 using (IDbConnection _dbConnection = new SqlConnection(_connectionstring))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@userName", userName, DbType.String);
-                    parameters.Add("@password", password, DbType.String);
-                    parameters.Add("@type", type, DbType.Int32);
+                    parameters.Add("@UserName", userName, DbType.String);
+                    parameters.Add("@Password", password, DbType.String);
+                    parameters.Add("@UserType", userType, DbType.String);
 
 
-                    var results = await _dbConnection.QueryFirstOrDefaultAsync<LoginView>("[dbo].[SP_GetUserDetailsByUserNameAndPassword]", parameters, commandType: CommandType.StoredProcedure);
+                    var results = await _dbConnection.QueryFirstOrDefaultAsync<LoginView>("[dbo].[SP_GetLoginById]", parameters, commandType: CommandType.StoredProcedure);
 
                     return results;
                 }

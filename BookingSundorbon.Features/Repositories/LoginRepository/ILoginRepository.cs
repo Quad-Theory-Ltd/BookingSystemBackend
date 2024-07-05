@@ -9,6 +9,7 @@ namespace BookingSundorbon.Features.Repositories.LoginRepository
 {
     public interface ILoginRepository
     {
-        Task<LoginView> GetAllCustomerListAsync(string userName, string password,int type);
+        //Task<LoginView> GetAllCustomerListAsync(string userName, string password,string userType);
+        Task<LoginView> GetLoginByIdAsync(string userName, string password,string userType);
     }
 }
