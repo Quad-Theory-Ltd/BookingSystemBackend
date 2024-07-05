@@ -102,6 +102,8 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     parameters.Add("@IsActive", createParcelBookingView.IsActive, DbType.Boolean);
                     parameters.Add("@Barcode", createParcelBookingView.IsActive, DbType.String);
 
+                    parameters.Add("@IsAgent", createParcelBookingView.IsAgent, DbType.Boolean);
+                    parameters.Add("@AgentId", createParcelBookingView.AgentId, DbType.Int32);
 
 
                     int result = await dbConnection.ExecuteScalarAsync<int>(

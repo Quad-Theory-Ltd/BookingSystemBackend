@@ -55,8 +55,6 @@ namespace BookingSundorbon.Views.DTOs.TransitionCostView
         public string ParcelPickUpInstractions { get; set; }
         public decimal PickupCost { get; set; }
 
-        //
-
         public int CargoTypeId { get; set; }
         public decimal CargoCost { get; set; }
 
@@ -76,6 +74,8 @@ namespace BookingSundorbon.Views.DTOs.TransitionCostView
         public string ModifierId { get; set; }
         public bool? IsActive { get; set; }
         public string? Barcode { get; set; }
+        public bool IsAgent { get; set; }
+        public int AgentId { get; set; }
 
 
     }
