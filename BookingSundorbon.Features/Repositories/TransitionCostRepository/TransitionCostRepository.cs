@@ -23,7 +23,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<int> CreateParcelBookingAsync(CreateParcelBookingView createParcelBookingView)
+        public async Task<CreateParcelBookingOutputView> CreateParcelBookingAsync(CreateParcelBookingView createParcelBookingView)
         {
             try
             {
@@ -54,13 +54,9 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     parameters.Add("@ItemTypeId", createParcelBookingView.ItemTypeId, DbType.Int32);
                     parameters.Add("@ItemTypeCost", createParcelBookingView.ItemTypeCost, DbType.Decimal);
 
-
-
                     parameters.Add("@DimensionId", createParcelBookingView.DimensionId, DbType.Int32);
                     parameters.Add("@DimensionCost", createParcelBookingView.DimensionCost, DbType.Decimal);
 
-
-   
                     parameters.Add("@WeightId", createParcelBookingView.WeightId, DbType.Int32);
                     parameters.Add("@WeightCost", createParcelBookingView.WeightCost, DbType.Decimal);
 
@@ -106,7 +102,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     parameters.Add("@AgentId", createParcelBookingView.AgentId, DbType.Int32);
 
 
-                    int result = await dbConnection.ExecuteScalarAsync<int>(
+                    var result = await dbConnection.QueryFirstOrDefaultAsync<CreateParcelBookingOutputView>(
                         "[SP_InsertIntoParcelBooking]", parameters, commandType: CommandType.StoredProcedure);
 
 
