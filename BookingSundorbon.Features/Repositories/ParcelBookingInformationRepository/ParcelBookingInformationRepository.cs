@@ -30,7 +30,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationReposit
                     parameters.Add("@UserId", userId, DbType.String);
 
                     var result = await dbConnection.QueryAsync<ParcelInfoByUserIdView>(
-                        "[dbo].[SP_GetParcelInfoByUserId]", parameters, commandType: CommandType.StoredProcedure);
+                        "[dbo].[GetParcelInfoByUserId]", parameters, commandType: CommandType.StoredProcedure);
 
                     return result;
                 }
