@@ -24,6 +24,7 @@ using BookingSundorbon.Features.Repositories.RouteRepository;
 using BookingSundorbon.Features.Repositories.ItemTypeRepository;
 using BookingSundorbon.Features.Repositories.CargoTypeRepository;
 using BookingSundorbon.Features.Repositories.CountryRepository;
+using BookingSundorbon.Features.Repositories.AgentBookingRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -31,6 +32,10 @@ namespace BookingSundorbon.Features
     {
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
+            #region "A"
+            services.AddScoped<IAgentBookingRepository, AgentBookingRepository>();
+            #endregion
+
             #region "B"
             services.AddScoped<IBranchRepository, BranchRepository>();
             #endregion
