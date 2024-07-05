@@ -75,7 +75,7 @@ namespace BookingSundorbon.Views.DTOs.TransitionCostView
         public bool? IsActive { get; set; }
         public string? Barcode { get; set; }
         public bool IsAgent { get; set; }
-        public int AgentId { get; set; }
+        public int? AgentId { get; set; }
 
 
     }
