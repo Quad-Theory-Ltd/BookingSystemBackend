@@ -11,5 +11,6 @@ namespace BookingSundorbon.Features.Repositories.ProhibitedItemRepository
     public interface IProhibitedItemRepository
     {
         Task<IEnumerable<ProhibitedItemView>> GetAllActiveProhitedItemsAsync();
+        Task<int> CreateProhibitedItemAsync(CreateProhibitedItemView prohibitedItem);
     }
 }

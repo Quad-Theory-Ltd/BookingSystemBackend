@@ -6,19 +6,23 @@ using System.Threading.Tasks;
 
 namespace BookingSundorbon.Core.Models
 {
-    public class WeightModel
+    public class ShippingServiceModel
     {
         public int Id { get; set; }
-        public int CompanyId { get; set; }
-        public string WeightDescription {  get; set; }
-        public decimal MinimumWeight { get; set; }
-        public decimal MaximumWeight { get; set; }
-        public int MeasurementUnitId { get; set; }
-        public decimal Cost { get; set; }
+        public int RouteId { get; set; }
+        public int CargoId { get; set; }
+        public bool IsExpressService { get; set; }
+        public string ServiceName { get; set; }
+        public int Days { get; set; }
+        public decimal ShippingServiceAmount { get; set; }
+        public decimal ShippingServiceAmountPercentage { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }
         public string ModifierId { get; set; }
         public DateTime ModificationDate { get; set; }
+
+
     }
 }
+

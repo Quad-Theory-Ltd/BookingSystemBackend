@@ -26,6 +26,14 @@ using BookingSundorbon.Features.Repositories.CargoTypeRepository;
 using BookingSundorbon.Features.Repositories.CountryRepository;
 using BookingSundorbon.Features.Repositories.AgentBookingRepository;
 using BookingSundorbon.Features.Repositories.ParcelBookingInformationRepository;
+using BookingSundorbon.Features.Repositories.PickupRepository;
+using BookingSundorbon.Features.Repositories.MeasurementUnitRepository;
+using BookingSundorbon.Features.Repositories.WeigthRepository;
+using BookingSundorbon.Features.Repositories.VATConfigurationRepository;
+using BookingSundorbon.Features.Repositories.ShipmentProcessRepository;
+using BookingSundorbon.Features.Repositories.ShippingServiceRepository;
+using BookingSundorbon.Features.Repositories.RoleRepository;
+using BookingSundorbon.Features.Repositories.ScreenRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -59,21 +67,29 @@ namespace BookingSundorbon.Features
             #region "L"
             services.AddScoped<ILoginRepository, LoginRepository>();
             #endregion
+            #region "M"
+            services.AddScoped<IMeasurementUnitRepository, MeasurementUnitRepository>();
+            #endregion
 
             #region "P"
             services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
             services.AddScoped<IParcelContentRepository, ParcelContentRepository>();
             services.AddScoped<IProhibitedItemRepository, ProhibitedItemRepository>();
             services.AddScoped<IParcelBookingInformationRepository, ParcelBookingInformationRepository>();
+            services.AddScoped<IPickupRepository, PickupRepository>();
             #endregion
 
             #region "R"
             services.AddScoped<IReceiverRepository, ReceiverRepository>();
             services.AddScoped<IRouteRepository, RouteRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
             #endregion
 
             #region "S"
             services.AddScoped<ISenderRepository, SenderRepository>();
+            services.AddScoped<IShippingServiceRepository, ShippingServiceRepository>();
+            services.AddScoped<IScreenRepository, ScreenRepository>();
+            
             #endregion
             #region "T"
             services.AddScoped<ITransitionCostRepository, TransitionCostRepository>();
@@ -81,6 +97,15 @@ namespace BookingSundorbon.Features
             #region "U"
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             #endregion
+
+            #region "V"
+            services.AddScoped<IVATConfigurationRepository,VATConfigurationRepository>();
+            #endregion
+
+            #region "W"
+            services.AddScoped<IWeightRepository, WeightRepository>();
+            #endregion
+
 
 
 

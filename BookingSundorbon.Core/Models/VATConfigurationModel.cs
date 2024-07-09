@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 
 namespace BookingSundorbon.Core.Models
 {
-    public class WeightModel
+    public class VATConfigurationModel
     {
         public int Id { get; set; }
-        public int CompanyId { get; set; }
-        public string WeightDescription {  get; set; }
-        public decimal MinimumWeight { get; set; }
-        public decimal MaximumWeight { get; set; }
-        public int MeasurementUnitId { get; set; }
-        public decimal Cost { get; set; }
+        public string ConfigurationDescription { get; set; }
+        public decimal ConfigurationPercentage { get; set; }
+        public decimal ConfigurationAmount { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }
         public string ModifierId { get; set; }
         public DateTime ModificationDate { get; set; }
+
+
     }
 }

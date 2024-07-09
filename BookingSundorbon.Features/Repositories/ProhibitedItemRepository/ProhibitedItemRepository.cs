@@ -20,6 +20,31 @@ namespace BookingSundorbon.Features.Repositories.ProhibitedItemRepository
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
+
+        public async Task<int> CreateProhibitedItemAsync(CreateProhibitedItemView prohibitedItem)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@CompanyId", prohibitedItem.CompanyId, DbType.Int32);
+                    parameters.Add("@ItemName", prohibitedItem.ItemName, DbType.String);
+                    parameters.Add("@IsActive", prohibitedItem.IsActive, DbType.Boolean);
+                    parameters.Add("@CreatorId", prohibitedItem.CreatorId, DbType.String);
+
+                    var newId = await dbConnection.ExecuteScalarAsync<int>(
+                        "[dbo].[SP_InsertIntoProhibitedItem]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return newId;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public async Task<IEnumerable<ProhibitedItemView>> GetAllActiveProhitedItemsAsync()
         {
             try
@@ -36,5 +61,7 @@ namespace BookingSundorbon.Features.Repositories.ProhibitedItemRepository
                 throw;
             }
         }
+
+     
     }
 }
