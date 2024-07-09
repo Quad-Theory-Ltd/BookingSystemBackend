@@ -1,4 +1,5 @@
-﻿using BookingSundorbon.Views.DTOs.MeasurementUnitView;
+﻿using BookingSundorbon.Views.DTOs.BranchView;
+using BookingSundorbon.Views.DTOs.MeasurementUnitView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,10 @@ namespace BookingSundorbon.Features.Repositories.MeasurementUnitRepository
 {
     public interface IMeasurementUnitRepository
     {
-        Task<int> CreateMeasurementUnitAsync(CreateMeasurementUnitView measurementUnit);
+        Task<int> CreateMeasurementUnitAsync(MeasurementUnitView measurementUnit);
+       Task<MeasurementUnitView> GetMeasurementUnitAsync(int id);
+        Task<IEnumerable<MeasurementUnitView>> GetAllMeasurementUnitsAsync();
+        Task UpdateMeasurementUnitAsync(MeasurementUnitView measurementUnit);
+        Task DeleteMeasurementUnitAsync(int id);
     }
 }
