@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BookingSundorbon.Features.Repositories.PickupRepository
 {
     internal class PickupRepository : IPickupRepository
@@ -18,7 +19,7 @@ namespace BookingSundorbon.Features.Repositories.PickupRepository
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");            
         }
-        public async Task<int> CreatePickupAsync(CreatePickupView pickup)
+        public async Task<int> CreatePickupAsync(PickupView pickup)
         {
             try
             {
@@ -34,6 +35,87 @@ namespace BookingSundorbon.Features.Repositories.PickupRepository
                         "[dbo].[SP_InsertIntoPickup]", parameters, commandType: CommandType.StoredProcedure);
 
                     return newId;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+        public async Task DeletePickupAsync(int id)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", id, DbType.Int32);
+
+                    await dbConnection.ExecuteAsync(
+                        "[dbo].[SP_DeletePickup]", parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<PickupView>> GetAllPickupUnitsAsync()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var pickup = await dbConnection.QueryAsync<PickupView>(
+                        "[dbo].[SP_GetAllPickup]", commandType: CommandType.StoredProcedure);
+
+                    return pickup;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<PickupView> GetPickupAsync(int id)
+        {
+            try { 
+            using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+            {
+                DynamicParameters parameters = new();
+                parameters.Add("@Id", id, DbType.Int32);
+
+                var pickup = await dbConnection.QueryFirstOrDefaultAsync<PickupView>(
+                    "[dbo].[SP_GetPickUpDetailsById]", parameters, commandType: CommandType.StoredProcedure);
+
+                return pickup;
+            }
+        }
+            catch (Exception ex)
+            {
+                throw;
+            }
+}
+
+        public async Task UpdatePickupAsync(PickupView pickup)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", pickup.Id, DbType.Int32);
+                    parameters.Add("@PickUpDescription", pickup.PickUpDescription, DbType.String);
+                    parameters.Add("@Cost", pickup.Cost, DbType.String);
+                    parameters.Add("@IsActive", pickup.IsActive, DbType.Boolean);
+                    parameters.Add("@ModifierId", pickup.ModifierId, DbType.String);
+
+                    await dbConnection.ExecuteAsync(
+                        "[dbo].[SP_UpdatePickup]", parameters, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception ex)

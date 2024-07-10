@@ -17,7 +17,7 @@ namespace BookingSundorbonBackend.Controllers.Pickup
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatePickUp([FromBody] CreatePickupView pickup)
+        public async Task<IActionResult> CreatePickUp([FromBody] PickupView pickup)
         {
             if(pickup == null)
             {
@@ -26,6 +26,54 @@ namespace BookingSundorbonBackend.Controllers.Pickup
 
             var pickupId = await _pickupRepository.CreatePickupAsync(pickup);
             return Ok(pickupId);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPickup(int id)
+        {
+            var pickup = await _pickupRepository.GetPickupAsync(id);
+            if (pickup == null)
+            {
+                return NotFound("Pick up not found.");
+            }
+            return Ok(pickup);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllPickups()
+        {
+            var pickup = await _pickupRepository.GetAllPickupUnitsAsync();
+            return Ok(pickup);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdatePickup(int id, [FromBody] PickupView pickup)
+        {
+            if (pickup == null || pickup.Id != id)
+            {
+                return BadRequest("Pickup Data is Invalid!");
+            }
+            var existingPickup = await _pickupRepository.GetPickupAsync(id);
+            if (existingPickup == null)
+            {
+                return BadRequest("Pickup data Not Found!");
+            }
+            await _pickupRepository.UpdatePickupAsync(pickup);
+            return NoContent();
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePickup(int id)
+        {
+            var pickup = await _pickupRepository.GetPickupAsync(id);
+            if (pickup == null)
+            {
+                return NotFound("Pickup data not found.");
+            }
+
+            await _pickupRepository.DeletePickupAsync(id);
+            return NoContent();
         }
     }
 }

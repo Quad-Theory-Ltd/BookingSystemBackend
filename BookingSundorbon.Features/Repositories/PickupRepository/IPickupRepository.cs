@@ -9,6 +9,10 @@ namespace BookingSundorbon.Features.Repositories.PickupRepository
 {
    public interface IPickupRepository
     {
-        Task<int> CreatePickupAsync(CreatePickupView pickup);
+        Task<int> CreatePickupAsync(PickupView pickup);
+        Task<PickupView> GetPickupAsync(int id);
+        Task<IEnumerable<PickupView>> GetAllPickupUnitsAsync();
+        Task UpdatePickupAsync(PickupView pickup);
+        Task DeletePickupAsync(int id);
     }
 }
