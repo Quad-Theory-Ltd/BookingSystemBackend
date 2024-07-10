@@ -34,6 +34,7 @@ using BookingSundorbon.Features.Repositories.ShipmentProcessRepository;
 using BookingSundorbon.Features.Repositories.ShippingServiceRepository;
 using BookingSundorbon.Features.Repositories.RoleRepository;
 using BookingSundorbon.Features.Repositories.ScreenRepository;
+using BookingSundorbon.Features.Repositories.WeightRepository;
 
 namespace BookingSundorbon.Features
 {

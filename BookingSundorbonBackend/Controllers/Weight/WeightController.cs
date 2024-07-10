@@ -15,9 +15,15 @@ namespace BookingSundorbonBackend.Controllers.WeightController
         {
             _weightRepository = weightRepository;
         }
+        [HttpGet]
+        public async Task<IActionResult> GetAllActiveWeights()
+        {
+            var weights = await _weightRepository.GetAllActiveWeightsAsync();
+            return Ok(weights);
+        }
 
         [HttpPost]
-        public async Task<IActionResult> CreateWeight([FromBody] CreateWeigthView weigth)
+        public async Task<IActionResult> CreateWeight([FromBody] WeightView weigth)
         {
             if(weigth == null)
             {
@@ -26,8 +32,51 @@ namespace BookingSundorbonBackend.Controllers.WeightController
 
             var weightId = await _weightRepository.CreateWeightAsync(weigth);
 
-            return Ok(weightId);
+            return CreatedAtAction(nameof(GetWeight), new {id = weightId}, weightId);
 
+        }
+
+        [HttpGet("{id}")]
+
+        public async Task<IActionResult> GetWeight(int id)
+        {
+            var weight = await _weightRepository.GetWeightAsync(id);
+            if (weight == null)
+            {
+                return NotFound(" Routing Type not found.");
+            }
+            return Ok(weight);
+        }
+
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateWeight(int id, [FromBody] WeightView weightType)
+        {
+            if (weightType == null || weightType.Id != id)
+            {
+                return BadRequest("Weight Data is Invalid!");
+            }
+            var existingWeight = await _weightRepository.GetWeightAsync(id);
+            if (existingWeight == null)
+            {
+                return BadRequest(" Weight Not Found!");
+            }
+            await _weightRepository.UpdateWeightAsync(weightType);
+            return NoContent();
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteWeight(int id)
+        {
+            var weight = await _weightRepository.GetWeightAsync(id);
+            if (weight == null)
+            {
+                return NotFound(" Weight not found.");
+            }
+
+            await _weightRepository.DeleteWeightAsync(id);
+            return NoContent();
         }
 
     }

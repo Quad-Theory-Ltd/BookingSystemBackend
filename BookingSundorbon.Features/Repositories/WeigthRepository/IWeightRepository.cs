@@ -9,6 +9,10 @@ namespace BookingSundorbon.Features.Repositories.WeigthRepository
 {
     public interface IWeightRepository
     {
-        Task<int> CreateWeightAsync(CreateWeigthView weigth);
+        Task<IEnumerable<WeightView>> GetAllActiveWeightsAsync();
+        Task<int> CreateWeightAsync(WeightView weigth);
+        Task<WeightView> GetWeightAsync(int id);
+        Task UpdateWeightAsync(WeightView weight);
+        Task DeleteWeightAsync(int id);
     }
 }
