@@ -43,7 +43,7 @@ namespace BookingSundorbonBackend.Controllers.WeightController
             var weight = await _weightRepository.GetWeightAsync(id);
             if (weight == null)
             {
-                return NotFound(" Routing Type not found.");
+                return NotFound("Weight not found.");
             }
             return Ok(weight);
         }

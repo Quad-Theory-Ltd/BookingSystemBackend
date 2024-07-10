@@ -25,7 +25,7 @@ namespace BookingSundorbonBackend.Controllers.Pickup
             }
 
             var pickupId = await _pickupRepository.CreatePickupAsync(pickup);
-            return Ok(pickupId);
+            return CreatedAtAction(nameof(GetPickup), new {id = pickupId}, pickupId);
         }
 
         [HttpGet("{id}")]

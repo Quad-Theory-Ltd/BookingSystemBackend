@@ -1,5 +1,6 @@
 ﻿using BookingSundorbon.Features.Repositories.RoleRepository;
 using BookingSundorbon.Views.DTOs.RoleView;
+using BookingSundorbon.Views.DTOs.ScreenView;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,6 +46,24 @@ namespace BookingSundorbonBackend.Controllers.Role
             }
             return Ok(role);
         }
+
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateRole(string id, [FromBody] RoleView role)
+        {
+            if (role == null || role.Id != id)
+            {
+                return BadRequest("Role Id is Invalid!");
+            }
+            var existingScreen = await _roleRepository.GetRoleAsync(id);
+            if (existingScreen == null)
+            {
+                return BadRequest("Role Not Found!");
+            }
+            await _roleRepository.UpdateRoleAsync(role);
+            return NoContent();
+        }
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRole(string id)

@@ -12,7 +12,7 @@ namespace BookingSundorbon.Features.Repositories.RoleRepository
         Task CreateRoleAsynce(RoleView role);
         Task<RoleView> GetRoleAsync(string id);
         Task<IEnumerable<RoleView>> GetAllActiveRolesAsync();
-        //Task UpdateRoleAsync(RoleView role);
+        Task UpdateRoleAsync(RoleView role);
         Task DeleteRoleAsync(string id);
     }
 }

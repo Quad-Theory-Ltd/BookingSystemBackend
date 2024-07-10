@@ -29,7 +29,7 @@ namespace BookingSundorbon.Features.Repositories.RoleRepository
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@ID", role.Id, DbType.String);
+                    parameters.Add("@Id", role.Id, DbType.String);
                     parameters.Add("@RoleName", role.RoleName, DbType.String);
                     parameters.Add("@IsActive", role.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", role.CreatorId, DbType.String);
@@ -97,6 +97,28 @@ namespace BookingSundorbon.Features.Repositories.RoleRepository
                         "[dbo].[SP_GetRoleDetailsById]", parameters, commandType: CommandType.StoredProcedure);
 
                     return role;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task UpdateRoleAsync(RoleView role)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", role.Id, DbType.String);
+                    parameters.Add("@RoleName", role.RoleName, DbType.String);
+                    parameters.Add("@IsActive", role.IsActive, DbType.Boolean);
+                    parameters.Add("@IsDefault", role.IsDefault, DbType.Boolean);
+
+                    await dbConnection.ExecuteAsync(
+                        "[dbo].[SP_UpdateRole]", parameters, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception ex)

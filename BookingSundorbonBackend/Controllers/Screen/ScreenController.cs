@@ -79,16 +79,6 @@ namespace BookingSundorbonBackend.Controllers.Screen
             return NoContent();
         }
 
-        /* [HttpPost("CreateScreenFunction")]
-         public async Task<IActionResult> CreateScreenFunction(CreateScreenFunctionView screenFunction)
-         {
-             if (screenFunction == null)
-             {
-                 return BadRequest("Screen is Null");
-             }
 
-             await _screenRepository.CreateScreenFunctionAsync(screenFunction);
-             return NoContent();
-         }*/
     }
 }
