@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BookingSundorbon.Features.Repositories.RoleRepository
 {
     internal class RoleRepository : IRoleRepository
@@ -20,7 +21,8 @@ namespace BookingSundorbon.Features.Repositories.RoleRepository
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task CreateRoleAsynce(CreateRoleView role)
+
+        public async Task CreateRoleAsynce(RoleView role)
         {
             try
             {
@@ -42,7 +44,66 @@ namespace BookingSundorbon.Features.Repositories.RoleRepository
                 throw;
             }
         }
-           
-}
+
+        public async Task DeleteRoleAsync(string id)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", id, DbType.String);
+
+                    await dbConnection.ExecuteAsync(
+                        "[dbo].[SP_DeleteRole]", parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+        public async Task<IEnumerable<RoleView>> GetAllActiveRolesAsync()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var roles = await dbConnection.QueryAsync<RoleView> (
+                        "[dbo].[SP_GetAllActiveRoles]", commandType: CommandType.StoredProcedure);
+
+                    return roles;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+        public async Task<RoleView> GetRoleAsync(string id)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", id, DbType.String);
+
+                    var role = await dbConnection.QueryFirstOrDefaultAsync<RoleView>(
+                        "[dbo].[SP_GetRoleDetailsById]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return role;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+    }
     }
 
