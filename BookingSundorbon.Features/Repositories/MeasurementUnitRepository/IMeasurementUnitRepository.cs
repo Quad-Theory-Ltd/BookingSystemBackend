@@ -12,7 +12,7 @@ namespace BookingSundorbon.Features.Repositories.MeasurementUnitRepository
     {
         Task<int> CreateMeasurementUnitAsync(MeasurementUnitView measurementUnit);
        Task<MeasurementUnitView> GetMeasurementUnitAsync(int id);
-        Task<IEnumerable<MeasurementUnitView>> GetAllMeasurementUnitsAsync();
+        Task<IEnumerable<MeasurementUnitView>> GetAllActiveMeasurementUnitsAsync();
         Task UpdateMeasurementUnitAsync(MeasurementUnitView measurementUnit);
         Task DeleteMeasurementUnitAsync(int id);
     }

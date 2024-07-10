@@ -63,14 +63,14 @@ namespace BookingSundorbon.Features.Repositories.PickupRepository
             }
         }
 
-        public async Task<IEnumerable<PickupView>> GetAllPickupUnitsAsync()
+        public async Task<IEnumerable<PickupView>> GetAllActivePickupUnitsAsync()
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     var pickup = await dbConnection.QueryAsync<PickupView>(
-                        "[dbo].[SP_GetAllPickup]", commandType: CommandType.StoredProcedure);
+                        "[dbo].[SP_GetAllActivePickup]", commandType: CommandType.StoredProcedure);
 
                     return pickup;
                 }

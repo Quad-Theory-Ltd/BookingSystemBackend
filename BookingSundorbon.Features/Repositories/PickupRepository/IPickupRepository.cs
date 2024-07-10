@@ -11,7 +11,7 @@ namespace BookingSundorbon.Features.Repositories.PickupRepository
     {
         Task<int> CreatePickupAsync(PickupView pickup);
         Task<PickupView> GetPickupAsync(int id);
-        Task<IEnumerable<PickupView>> GetAllPickupUnitsAsync();
+        Task<IEnumerable<PickupView>> GetAllActivePickupUnitsAsync();
         Task UpdatePickupAsync(PickupView pickup);
         Task DeletePickupAsync(int id);
     }

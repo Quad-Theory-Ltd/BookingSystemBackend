@@ -21,7 +21,7 @@ namespace BookingSundorbonBackend.Controllers.Pickup
         {
             if(pickup == null)
             {
-                return BadRequest();
+                return BadRequest("Pickup is null.");
             }
 
             var pickupId = await _pickupRepository.CreatePickupAsync(pickup);
@@ -40,9 +40,9 @@ namespace BookingSundorbonBackend.Controllers.Pickup
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllPickups()
+        public async Task<IActionResult> GetAllActivePickups()
         {
-            var pickup = await _pickupRepository.GetAllPickupUnitsAsync();
+            var pickup = await _pickupRepository.GetAllActivePickupUnitsAsync();
             return Ok(pickup);
         }
 

@@ -61,13 +61,13 @@ namespace BookingSundorbon.Features.Repositories.MeasurementUnitRepository
             }
         }
 
-        public async Task<IEnumerable<MeasurementUnitView>> GetAllMeasurementUnitsAsync()
+        public async Task<IEnumerable<MeasurementUnitView>> GetAllActiveMeasurementUnitsAsync()
         {
             try { 
             using (IDbConnection dbConnection = new SqlConnection(_connectionString))
             {
                 var measurementUnits = await dbConnection.QueryAsync<MeasurementUnitView>(
-                    "[dbo].[SP_GetAllMeasurementUnits]", commandType: CommandType.StoredProcedure);
+                    "[dbo].[SP_GetAllActiveMeasurementUnits]", commandType: CommandType.StoredProcedure);
 
                 return measurementUnits;
             }

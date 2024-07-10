@@ -43,7 +43,7 @@ namespace BookingSundorbonBackend.Controllers.MeasurementUnit
         [HttpGet]
         public async Task<IActionResult> GetAllMeasurementUnits()
         {
-            var measurementUnits = await _measurementUnitRepository.GetAllMeasurementUnitsAsync();
+            var measurementUnits = await _measurementUnitRepository.GetAllActiveMeasurementUnitsAsync();
             return Ok(measurementUnits);
         }
 
