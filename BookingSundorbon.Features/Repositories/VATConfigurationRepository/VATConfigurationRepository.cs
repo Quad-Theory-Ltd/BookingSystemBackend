@@ -19,7 +19,7 @@ namespace BookingSundorbon.Features.Repositories.VATConfigurationRepository
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<int> CreateVatConfigurationAsync(CreateVATConfigurationView vatConfiguration)
+        public async Task<int> CreateVatConfigurationAsync(VATConfigurationView vatConfiguration)
         {
             try
             {
@@ -36,6 +36,90 @@ namespace BookingSundorbon.Features.Repositories.VATConfigurationRepository
                         "[dbo].[SP_InsertIntoVATConfiguration]", parameters, commandType: CommandType.StoredProcedure);
 
                     return newId;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task DeleteVATConfigurationAsync(int id)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", id, DbType.Int32);
+
+                    await dbConnection.ExecuteAsync(
+                        "[dbo].[SP_DeleteVATConfiguration]", parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<VATConfigurationView>> GetAllActiveVATConfigurationesAsync()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var result = await dbConnection.QueryAsync<VATConfigurationView>("SP_GetAllActiveVATConfiguration");
+
+                    return result.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+
+            }
+        }
+
+        public async Task<VATConfigurationView> GetVATConfigurationAsync(int id)
+        {
+
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", id, DbType.Int32);
+
+                    var vatConfiguration = await dbConnection.QueryFirstOrDefaultAsync<VATConfigurationView>(
+                        "[dbo].[SP_GetVATConfigurationDetailsById]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return vatConfiguration;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task UpdateVATConfigurationAsync(VATConfigurationView vatconfiguration)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", vatconfiguration.Id, DbType.Int32);
+                    parameters.Add("@ConfigurationDescription", vatconfiguration.ConfigurationDescription, DbType.String);
+                    parameters.Add("@ConfigurationPercentage", vatconfiguration.ConfigurationPercentage, DbType.Decimal);
+                    parameters.Add("@ConfigurationAmount", vatconfiguration.ConfigurationAmount, DbType.Decimal);
+                    parameters.Add("@IsActive", vatconfiguration.IsActive, DbType.Boolean);
+                    parameters.Add("@ModifierId", vatconfiguration.ModifierId, DbType.String);
+
+                    await dbConnection.ExecuteAsync(
+                        "[dbo].[SP_UpdateVATconfiguration]", parameters, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception ex)

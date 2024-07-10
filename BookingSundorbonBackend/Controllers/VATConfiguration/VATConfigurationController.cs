@@ -16,8 +16,15 @@ namespace BookingSundorbonBackend.Controllers.VATConfiguration
             _vatConfigurationRepository = vatConfigurationRepository;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllActiveVATConfiguration()
+        {
+            var vatconfiguration = await _vatConfigurationRepository.GetAllActiveVATConfigurationesAsync();
+            return Ok(vatconfiguration);
+        }
+
         [HttpPost]
-        public async Task <IActionResult> CreateVatConfiguration([FromBody] CreateVATConfigurationView vatConfiguration)
+        public async Task <IActionResult> CreateVatConfiguration([FromBody] VATConfigurationView vatConfiguration)
         {
             if(vatConfiguration == null)
             {
@@ -26,10 +33,54 @@ namespace BookingSundorbonBackend.Controllers.VATConfiguration
 
             var vatConfigurationId = await _vatConfigurationRepository.CreateVatConfigurationAsync(vatConfiguration);
             
-            return Ok(vatConfigurationId);
+            return CreatedAtAction(nameof(GetVATConfiguration), new {id = vatConfigurationId}, vatConfigurationId);
 
         }
-        
+
+
+        [HttpGet("{id}")]
+
+        public async Task<IActionResult> GetVATConfiguration(int id)
+        {
+            var vatConfiguration = await _vatConfigurationRepository.GetVATConfigurationAsync(id);
+            if (vatConfiguration == null)
+            {
+                return NotFound("Vat Configuration not found.");
+            }
+            return Ok(vatConfiguration);
+        }
+
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateVATConfiguration(int id, [FromBody] VATConfigurationView vatConfiguration)
+        {
+            if (vatConfiguration == null || vatConfiguration.Id != id)
+            {
+                return BadRequest("Vat Configuration Id is Invalid!");
+            }
+            var existingVATConfiguration = await _vatConfigurationRepository.GetVATConfigurationAsync(id);
+            if (existingVATConfiguration == null)
+            {
+                return BadRequest(" Vat Configuration Not Found!");
+            }
+            await _vatConfigurationRepository.UpdateVATConfigurationAsync(vatConfiguration);
+            return NoContent();
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteVATConfiguration(int id)
+        {
+            var vatConfiguration = await _vatConfigurationRepository.GetVATConfigurationAsync(id);
+            if (vatConfiguration == null)
+            {
+                return NotFound("Vat Configuration not found.");
+            }
+
+            await _vatConfigurationRepository.DeleteVATConfigurationAsync(id);
+            return NoContent();
+        }
+
 
     }
 }

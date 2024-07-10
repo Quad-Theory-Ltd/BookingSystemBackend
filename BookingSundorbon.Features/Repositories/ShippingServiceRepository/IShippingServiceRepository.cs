@@ -1,4 +1,4 @@
-﻿using BookingSundorbon.Views.DTOs.ShippingService;
+﻿using BookingSundorbon.Views.DTOs.ShippingServiceView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,10 @@ namespace BookingSundorbon.Features.Repositories.ShippingServiceRepository
 {
     public interface IShippingServiceRepository
     {
-        Task<int> CreateShippingServiceAsync(CreateShippingServiceView shippingService);
+        Task<int> CreateShippingServiceAsync(ShippingServiceView shippingService);
+        Task<ShippingServiceView> GetShippingServiceAsync(int id);
+        Task<IEnumerable<ShippingServiceView>> GetAllActiveShippingServiceesAsync();
+        Task UpdateShippingServiceAsync(ShippingServiceView shippingService);
+        Task DeleteShippingServiceAsync(int id);
     }
 }

@@ -9,6 +9,10 @@ namespace BookingSundorbon.Features.Repositories.VATConfigurationRepository
 {
     public interface IVATConfigurationRepository
     {
-        Task<int> CreateVatConfigurationAsync(CreateVATConfigurationView vatConfiguration);
+        Task<int> CreateVatConfigurationAsync(VATConfigurationView vatConfiguration);
+        Task<VATConfigurationView> GetVATConfigurationAsync(int id);
+        Task<IEnumerable<VATConfigurationView>> GetAllActiveVATConfigurationesAsync();
+        Task UpdateVATConfigurationAsync(VATConfigurationView vatconfiguration);
+        Task DeleteVATConfigurationAsync(int id);
     }
 }
