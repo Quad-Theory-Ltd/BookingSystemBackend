@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookingSundorbon.Views.DTOs.ScreenView;
 
 namespace BookingSundorbon.Features.Repositories.ScreenRepository
 {
@@ -20,7 +21,7 @@ namespace BookingSundorbon.Features.Repositories.ScreenRepository
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task CreateScreenAsync(CreateScreenView screen)
+        public async Task CreateScreenAsync(ScreenView screen)
         {
             try
             {
@@ -43,28 +44,88 @@ namespace BookingSundorbon.Features.Repositories.ScreenRepository
             }
         }
 
-        public async Task CreateScreenFunctionAsync(CreateScreenFunctionView screenFunction)
+        public async Task DeleteScreenAsync(string id)
         {
+
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@Id", screenFunction.Id, DbType.String);
-                    parameters.Add("@ScreenId", screenFunction.ScreenId, DbType.String);
-                    parameters.Add("@FunctionId", screenFunction.FunctionId, DbType.String);
-                    parameters.Add("@IsActive", screenFunction.IsActive, DbType.Boolean);
-                    parameters.Add("@CreatorId", screenFunction.CreatorId, DbType.String);
+                    parameters.Add("@Id", id, DbType.String);
 
-                    await dbConnection.ExecuteScalarAsync<int>("[dbo].[SP_InsertIntoScreenFunctions]", parameters, commandType: CommandType.StoredProcedure);
+                    await dbConnection.ExecuteAsync(
+                        "[dbo].[SP_DeleteScreen]", parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
+        public async Task<IEnumerable<ScreenView>> GetAllActiveScreenesAsync()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var result = await dbConnection.QueryAsync<ScreenView>("SP_GetAllActiveScreens");
+
+                    return result.ToList();
                 }
             }
             catch (Exception ex)
             {
 
                 throw;
+
             }
         }
+
+        public async Task<ScreenView> GetScreenAsync(string id)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", id, DbType.String);
+
+                    var screen = await dbConnection.QueryFirstOrDefaultAsync<ScreenView>(
+                        "[dbo].[SP_GetScreenDetailsById]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return screen;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task UpdateScreenAsync(ScreenView screen)
+        {
+
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", screen.Id, DbType.String);
+                    parameters.Add("@UIName", screen.UIName, DbType.String);
+                    parameters.Add("@IsActive", screen.IsActive, DbType.Boolean);
+                    parameters.Add("@ModifierId", screen.ModifierId, DbType.String);
+
+                    await dbConnection.ExecuteAsync(
+                        "[dbo].[SP_UpdateScreen]", parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

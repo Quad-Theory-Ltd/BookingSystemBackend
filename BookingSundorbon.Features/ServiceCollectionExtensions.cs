@@ -35,6 +35,7 @@ using BookingSundorbon.Features.Repositories.ShippingServiceRepository;
 using BookingSundorbon.Features.Repositories.RoleRepository;
 using BookingSundorbon.Features.Repositories.ScreenRepository;
 using BookingSundorbon.Features.Repositories.WeightRepository;
+using BookingSundorbon.Features.Repositories.ScreenFunctionRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -90,6 +91,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<ISenderRepository, SenderRepository>();
             services.AddScoped<IShippingServiceRepository, ShippingServiceRepository>();
             services.AddScoped<IScreenRepository, ScreenRepository>();
+            services.AddScoped<IScreenFunctionRepository, ScreenFunctionRepository>();
             
             #endregion
             #region "T"

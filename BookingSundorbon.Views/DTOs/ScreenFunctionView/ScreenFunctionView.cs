@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingSundorbon.Core.Models
+namespace BookingSundorbon.Views.DTOs.ScreenFunctionView
 {
-    public class ScreenFunctionModel
+    public class ScreenFunctionView
     {
         public string Id { get; set; }
         public string ScreenId { get; set; }
@@ -16,6 +16,5 @@ namespace BookingSundorbon.Core.Models
         public DateTime CreationDate { get; set; }
         public string ModifierId { get; set; }
         public DateTime ModificationDate { get; set; }
-
     }
 }

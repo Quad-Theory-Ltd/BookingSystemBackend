@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace BookingSundorbon.Views.DTOs.ScreenView
 {
-    public class CreateScreenView
+    public class ScreenView
     {
         public string Id { get; set; }
         public string UIName { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
+        public DateTime CreationDate { get; set; }
+        public string ModifierId { get; set; }
+        public DateTime ModificationDate { get; set; }
     }
 }
