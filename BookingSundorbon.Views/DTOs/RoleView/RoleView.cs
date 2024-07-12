@@ -9,6 +9,8 @@ namespace BookingSundorbon.Views.DTOs.RoleView
     public class RoleView
     {
         public string Id { get; set; }
+        public int CompanyId { get; set; }
+        public int BranchId { get; set; }
         public string RoleName { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }

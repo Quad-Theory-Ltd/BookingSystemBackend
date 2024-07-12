@@ -4,16 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingSundorbon.Core.Models
+namespace BookingSundorbon.Views.DTOs.DeviceView
 {
-    public class DiscountedOfferModel
+    public class DeviceView
     {
         public int Id { get; set; }
-        public int RouteId { get; set; }
-        public int CargoId { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public string  DiscountDiscription { get; set; }
+        public string DeviceName { get; set; }
+        public string IPAddress { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }

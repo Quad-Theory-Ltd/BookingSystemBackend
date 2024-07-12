@@ -15,4 +15,8 @@
     <ProjectReference Include="..\BookingSundorbon.Features\BookingSundorbon.Features.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\AdditionalCost\" />
+  </ItemGroup>
+
 </Project>

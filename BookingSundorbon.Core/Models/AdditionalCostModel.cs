@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace BookingSundorbon.Core.Models
 {
-    public class RoleModel
+    public class AdditionalCostModel
     {
-        public string Id { get; set; }
-        public int CompanyId { get; set; }
-        public int BranchId { get; set; }
-        public string RoleName { get; set; }
+        public int Id { get; set; }
+        public string AdditionalCostName { get; set; }
+        public Decimal Cost { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }
-        public bool IsDefault { get; set; }
+        public string ModifierId { get; set; }
+        public DateTime ModificationDate { get; set; }
+
     }
 }

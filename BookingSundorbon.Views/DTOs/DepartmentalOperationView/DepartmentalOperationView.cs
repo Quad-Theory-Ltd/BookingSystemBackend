@@ -4,17 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingSundorbon.Core.Models
+namespace BookingSundorbon.Views.DTOs.DepartmentalOperationView
 {
-    public class DiscountedOfferModel
+    public class DepartmentalOperationView
     {
         public int Id { get; set; }
-        public int RouteId { get; set; }
-        public int CargoId { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public string  DiscountDiscription { get; set; }
-        public bool IsActive { get; set; }
+        public int CompanyId { get; set; }
+        public int DepartmentId { get; set; }
+        public int OperationId { get; set; }
+        public bool HasAccess { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }
         public string ModifierId { get; set; }

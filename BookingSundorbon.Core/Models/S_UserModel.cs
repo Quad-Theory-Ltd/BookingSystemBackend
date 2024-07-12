@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace BookingSundorbon.Core.Models
 {
-    public class DiscountedOfferModel
+    public class S_UserModel
     {
-        public int Id { get; set; }
-        public int RouteId { get; set; }
-        public int CargoId { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public string  DiscountDiscription { get; set; }
+        public int UserId { get; set; }
+        public int RoleId { get; set; }
+        public string UserName { get; set; }
+        public bool IsEmailConfirmed { get; set; }
+        public string UserEamil { get; set; }
+        public bool IsTemporaryPass { get; set; }
+        public string PasswordHash { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }
