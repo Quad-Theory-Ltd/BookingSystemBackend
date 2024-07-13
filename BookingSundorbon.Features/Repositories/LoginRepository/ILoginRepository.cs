@@ -9,10 +9,11 @@ namespace BookingSundorbon.Features.Repositories.LoginRepository
 {
     public interface ILoginRepository
     {
-        Task<LoginView> GetLoginByIdAsync(string userName, string password,string userType);
-       //Task CreateLoginAsync(LoginView login);
+        Task<LoginView> GetLoginByIdAsync(string userName, string password, string userType);
+        Task<LoginView> GetLoginByUserIdAsync(int id);
+        Task <int> CreateLoginAsync(LoginView login);
+        Task UpdateLoginAsync(LoginView login);
         //Task<IEnumerable<LoginView>> GetAllLoginAsync();
-        //Task UpdateLoginAsync(LoginView login);
-       //Task DeleteLoginAsync(string id);
+        //Task DeleteLoginAsync(string id);
     }
 }

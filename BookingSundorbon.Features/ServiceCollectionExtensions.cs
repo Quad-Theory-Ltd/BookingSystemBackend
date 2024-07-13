@@ -47,6 +47,7 @@ using BookingSundorbon.Features.Repositories.DiscountedOfferDetailRepository;
 using BookingSundorbon.Features.Repositories.ExtraPackagingRepository;
 using BookingSundorbon.Features.Repositories.FunctionRepository;
 using BookingSundorbon.Features.Repositories.ItemCategoryRepository;
+using BookingSundorbon.Features.Repositories.ScanningPersonRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -121,6 +122,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IShippingServiceRepository, ShippingServiceRepository>();
             services.AddScoped<IScreenRepository, ScreenRepository>();
             services.AddScoped<IScreenFunctionRepository, ScreenFunctionRepository>();
+            services.AddScoped<IScanningPersonRepository, ScanningPersonRepository>();
             
             #endregion
             #region "T"

@@ -1,5 +1,4 @@
-﻿using BookingSundorbon.Views.DTOs.AgentView;
-using BookingSundorbon.Views.DTOs.LoginView;
+﻿using BookingSundorbon.Views.DTOs.LoginView;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -44,7 +43,27 @@ namespace BookingSundorbon.Features.Repositories.LoginRepository
             }
         }
 
-      /*  public async Task CreateLoginAsync(LoginView login)
+        public async Task<LoginView> GetLoginByUserIdAsync(int id)
+        {
+            try
+            {
+                using (IDbConnection _dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", id, DbType.Int32);
+                  
+                    var results = await _dbConnection.QueryFirstOrDefaultAsync<LoginView>("[dbo].[SP_GetLoginByUserId]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return results;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<int> CreateLoginAsync(LoginView login)
         {
             try
             {
@@ -54,11 +73,13 @@ namespace BookingSundorbon.Features.Repositories.LoginRepository
                     parameters.Add("@UserId", login.UserId, DbType.String);
                     parameters.Add("@Password", login.Password, DbType.String);
                     parameters.Add("@UserType", login.UserType, DbType.String);
-                    parameters.Add("@UserType", login.ParcelId, DbType.Int32);
-                    parameters.Add("@UserType", login.AgentId, DbType.Int32);
+                    parameters.Add("@ParcelId", login.ParcelId, DbType.Int32);
+                    parameters.Add("@AgentId", login.AgentId, DbType.Int32);
 
-                    await dbConnection.ExecuteScalarAsync<int>(
+                   var newId =  await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoLogin]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return newId;
 
                 }
             }
@@ -66,6 +87,30 @@ namespace BookingSundorbon.Features.Repositories.LoginRepository
             {
                 throw;
             }
-        }*/
+        }
+
+        public async Task UpdateLoginAsync(LoginView login)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", login.Id, DbType.Int32);
+                    parameters.Add("@UserId", login.UserId, DbType.String);
+                    parameters.Add("@Password", login.Password, DbType.String);
+                    parameters.Add("@UserType", login.UserType, DbType.String);
+                    parameters.Add("@ParcelId", login.ParcelId, DbType.Int32);
+                    parameters.Add("@AgentId", login.AgentId, DbType.Int32);
+
+                    await dbConnection.ExecuteAsync(
+                        "[dbo].[SP_UpdateLogin]", parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }
