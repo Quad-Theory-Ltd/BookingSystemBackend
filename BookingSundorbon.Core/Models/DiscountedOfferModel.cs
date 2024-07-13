@@ -13,7 +13,7 @@ namespace BookingSundorbon.Core.Models
         public int CargoId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string  DiscountDiscription { get; set; }
+        public string DiscontDescription { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }

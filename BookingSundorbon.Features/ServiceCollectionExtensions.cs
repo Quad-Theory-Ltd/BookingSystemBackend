@@ -36,6 +36,17 @@ using BookingSundorbon.Features.Repositories.RoleRepository;
 using BookingSundorbon.Features.Repositories.ScreenRepository;
 using BookingSundorbon.Features.Repositories.WeightRepository;
 using BookingSundorbon.Features.Repositories.ScreenFunctionRepository;
+using BookingSundorbon.Features.Repositories.AdditionalCostRepository;
+using BookingSundorbon.Features.Repositories.AgentRepository;
+using BookingSundorbon.Features.Repositories.DepartmentalOperationRepository;
+using BookingSundorbon.Features.Repositories.DepartmentRepository;
+using BookingSundorbon.Features.Repositories.DeviceRepository;
+using BookingSundorbon.Features.Repositories.DimensionRepository;
+using BookingSundorbon.Features.Repositories.DiscountedOfferRepository;
+using BookingSundorbon.Features.Repositories.DiscountedOfferDetailRepository;
+using BookingSundorbon.Features.Repositories.ExtraPackagingRepository;
+using BookingSundorbon.Features.Repositories.FunctionRepository;
+using BookingSundorbon.Features.Repositories.ItemCategoryRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -45,6 +56,8 @@ namespace BookingSundorbon.Features
         {
             #region "A"
             services.AddScoped<IAgentBookingRepository, AgentBookingRepository>();
+            services.AddScoped<IAdditionalCostRepository, AdditionalCostRepository>();
+            services.AddScoped<IAgentRepository, AgentRepository>();
             #endregion
 
             #region "B"
@@ -60,10 +73,26 @@ namespace BookingSundorbon.Features
 
             #region "D"
             services.AddScoped<IDistrictRepository, DistrictRepository>();
+            services.AddScoped<IDepartmentalOperationRepository, DepartmentalOperationRepository>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IDeviceRepository, DeviceRepository>();
+            services.AddScoped<IDimensionRepository, DimensionRepository>();
+            services.AddScoped<IDiscountedOfferRepository, DiscountedOfferRepository>();
+            services.AddScoped<IDiscountedOfferDetailRepository, DiscountedOfferDetailRepository>();
             #endregion
+
+            #region "E"
+            services.AddScoped<IExtraPackagingRepository, ExtraPackagingRepository>();
+            #endregion
+
+            #region "F"
+            services.AddScoped<IFunctionRepository, FunctionRepository>();
+            #endregion
+
 
             #region "I"
             services.AddScoped<IItemTypeRepository, ItemTypeRepository>();
+            services.AddScoped<IItemCategoryRepository, ItemCategoryRepository>();
             #endregion
 
             #region "L"

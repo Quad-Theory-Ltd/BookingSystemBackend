@@ -9,7 +9,7 @@ namespace BookingSundorbon.Views.DTOs.DimensionView
     public class DimensionView
     {
         public int Id { get; set; }
-        public int CompanayId { get; set; }
+        public int CompanyId { get; set; }
         public string DimensionName { get; set; }
         public decimal Length { get; set; }
         public decimal Width { get; set; }

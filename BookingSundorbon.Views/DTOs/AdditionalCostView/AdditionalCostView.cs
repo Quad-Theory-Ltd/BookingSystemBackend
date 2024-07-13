@@ -9,7 +9,7 @@ namespace BookingSundorbon.Views.DTOs.AdditionalCostView
     public class AdditionalCostView
     {
         public int Id { get; set; }
-        public string AdditionalCostName { get; set; }
+        public string AdditionaCostName { get; set; }
         public Decimal Cost { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }

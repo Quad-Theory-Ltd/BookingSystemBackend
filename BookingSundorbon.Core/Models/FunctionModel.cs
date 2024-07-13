@@ -8,7 +8,7 @@ namespace BookingSundorbon.Core.Models
 {
     public class FunctionModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string FunctionName { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }

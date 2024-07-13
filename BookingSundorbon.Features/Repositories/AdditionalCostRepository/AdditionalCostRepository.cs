@@ -20,17 +20,17 @@ namespace BookingSundorbon.Features.Repositories.AdditionalCostRepository
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<int> CreateAdditionalCostAsync(AdditionalCostView AdditionalCost)
+        public async Task<int> CreateAdditionalCostAsync(AdditionalCostView additionalCost)
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@AdditionalCostName", AdditionalCost.AdditionalCostName, DbType.String);
-                    parameters.Add("@Cost", AdditionalCost.Cost, DbType.Decimal);
-                    parameters.Add("@IsActive", AdditionalCost.IsActive, DbType.Boolean);
-                    parameters.Add("@CreatorId", AdditionalCost.CreatorId, DbType.String);
+                    parameters.Add("@AdditionaCostName", additionalCost.AdditionaCostName, DbType.String);
+                    parameters.Add("@Cost", additionalCost.Cost, DbType.Decimal);
+                    parameters.Add("@IsActive", additionalCost.IsActive, DbType.Boolean);
+                    parameters.Add("@CreatorId", additionalCost.CreatorId, DbType.String);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoAdditionalCost]", parameters, commandType: CommandType.StoredProcedure);
@@ -53,10 +53,10 @@ namespace BookingSundorbon.Features.Repositories.AdditionalCostRepository
                     DynamicParameters parameters = new();
                     parameters.Add("@Id", id, DbType.Int32);
 
-                    var AdditionalCost = await dbConnection.QueryFirstOrDefaultAsync<AdditionalCostView>(
+                    var additionalCost = await dbConnection.QueryFirstOrDefaultAsync<AdditionalCostView>(
                         "[dbo].[SP_GetAdditionalCostDetailsById]", parameters, commandType: CommandType.StoredProcedure);
 
-                    return AdditionalCost;
+                    return additionalCost;
                 }
             }
             catch (Exception ex)
@@ -71,10 +71,10 @@ namespace BookingSundorbon.Features.Repositories.AdditionalCostRepository
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
-                    var AdditionalCostes = await dbConnection.QueryAsync<AdditionalCostView>(
-                        "[dbo].[SP_GetAllAdditionalCostes]", commandType: CommandType.StoredProcedure);
+                    var additionalCostes = await dbConnection.QueryAsync<AdditionalCostView>(
+                        "[dbo].[SP_GetAllActiveAdditionalCost]", commandType: CommandType.StoredProcedure);
 
-                    return AdditionalCostes;
+                    return additionalCostes;
                 }
             }
             catch (Exception ex)
@@ -83,18 +83,18 @@ namespace BookingSundorbon.Features.Repositories.AdditionalCostRepository
             }
         }
 
-        public async Task UpdateAdditionalCostAsync(AdditionalCostView AdditionalCost)
+        public async Task UpdateAdditionalCostAsync(AdditionalCostView additionalCost)
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@Id", AdditionalCost.Id, DbType.Int32);
-                    parameters.Add("@Cost", AdditionalCost.Cost, DbType.Decimal);
-                    parameters.Add("@IsActive", AdditionalCost.IsActive, DbType.Boolean);
-                    parameters.Add("@IsActive", AdditionalCost.IsActive, DbType.Boolean);
-                    parameters.Add("@ModifierId", AdditionalCost.ModifierId, DbType.String);
+                    parameters.Add("@Id", additionalCost.Id, DbType.Int32);
+                    parameters.Add("@AdditionaCostName", additionalCost.AdditionaCostName, DbType.String);
+                    parameters.Add("@Cost", additionalCost.Cost, DbType.Decimal);
+                    parameters.Add("@IsActive", additionalCost.IsActive, DbType.Boolean);
+                    parameters.Add("@ModifierId", additionalCost.ModifierId, DbType.String);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateAdditionalCost]", parameters, commandType: CommandType.StoredProcedure);

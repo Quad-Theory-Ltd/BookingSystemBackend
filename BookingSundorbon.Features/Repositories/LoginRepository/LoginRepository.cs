@@ -1,4 +1,5 @@
-﻿using BookingSundorbon.Views.DTOs.LoginView;
+﻿using BookingSundorbon.Views.DTOs.AgentView;
+using BookingSundorbon.Views.DTOs.LoginView;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -13,18 +14,18 @@ namespace BookingSundorbon.Features.Repositories.LoginRepository
 {
     internal class LoginRepository : ILoginRepository
     {
-        private readonly string _connectionstring;
+        private readonly string _connectionString;
 
         public LoginRepository(IConfiguration configuration)
         {
-            _connectionstring = configuration.GetConnectionString("DefaultConnection");
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
         public async Task<LoginView> GetLoginByIdAsync(string userName, string password, string userType)
         {
             try
             {
-                using (IDbConnection _dbConnection = new SqlConnection(_connectionstring))
+                using (IDbConnection _dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
                     parameters.Add("@UserName", userName, DbType.String);
@@ -42,5 +43,29 @@ namespace BookingSundorbon.Features.Repositories.LoginRepository
                 throw;
             }
         }
+
+      /*  public async Task CreateLoginAsync(LoginView login)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@UserId", login.UserId, DbType.String);
+                    parameters.Add("@Password", login.Password, DbType.String);
+                    parameters.Add("@UserType", login.UserType, DbType.String);
+                    parameters.Add("@UserType", login.ParcelId, DbType.Int32);
+                    parameters.Add("@UserType", login.AgentId, DbType.Int32);
+
+                    await dbConnection.ExecuteScalarAsync<int>(
+                        "[dbo].[SP_InsertIntoLogin]", parameters, commandType: CommandType.StoredProcedure);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }*/
     }
 }

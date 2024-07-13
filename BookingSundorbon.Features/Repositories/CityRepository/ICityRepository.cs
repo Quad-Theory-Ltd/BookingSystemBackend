@@ -9,6 +9,10 @@ namespace BookingSundorbon.Features.Repositories.CityRepository
 {
     public interface ICityRepository
     {
+        Task<int> CreateCityAsync(ActiveCityView city);
+        Task<ActiveCityView> GetCityAsync(int id);
         Task<IEnumerable<ActiveCityView>> GetAllActiveCitiesAsync();
+        Task UpdateCityAsync(ActiveCityView city);
+        Task DeleteCityAsync(int id);
     }
 }

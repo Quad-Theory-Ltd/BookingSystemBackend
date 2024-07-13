@@ -8,7 +8,7 @@ namespace BookingSundorbon.Views.DTOs.AgentView
 {
     public class AgentView
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public int CompanyId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }

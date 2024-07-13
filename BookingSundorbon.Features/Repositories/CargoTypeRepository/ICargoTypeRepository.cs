@@ -10,5 +10,9 @@ namespace BookingSundorbon.Features.Repositories.CargoTypeRepository
     public interface ICargoTypeRepository
     {
         Task<IEnumerable<ActiveCargoTypeView>> GetAllActiveCargoTypesAsync();
+        Task <int> CreateCargoTypeAsync(ActiveCargoTypeView cargoType);
+        Task<ActiveCargoTypeView> GetCargoTypeAsync(int id);
+        Task UpdateCargoTypeAsync(ActiveCargoTypeView cargoType);
+        Task DeleteCargoTypeAsync(int id);
     }
 }

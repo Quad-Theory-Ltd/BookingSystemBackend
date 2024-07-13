@@ -9,10 +9,10 @@ namespace BookingSundorbon.Features.Repositories.AdditionalCostRepository
 {
     public interface IAdditionalCostRepository
     {
-        Task<int> CreateAdditionalCostAsync(AdditionalCostView AdditionalCost);
+        Task<int> CreateAdditionalCostAsync(AdditionalCostView additionalCost);
         Task<AdditionalCostView> GetAdditionalCostAsync(int id);
         Task<IEnumerable<AdditionalCostView>> GetAllActiveAdditionalCostAsync();
-        Task UpdateAdditionalCostAsync(AdditionalCostView AdditionalCost);
+        Task UpdateAdditionalCostAsync(AdditionalCostView additionalCost);
         Task DeleteAdditionalCostAsync(int id);
     }
 }
