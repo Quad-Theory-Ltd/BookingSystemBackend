@@ -31,6 +31,8 @@ namespace BookingSundorbon.Features.Repositories.RoleRepository
                     DynamicParameters parameters = new();
                     parameters.Add("@Id", role.Id, DbType.String);
                     parameters.Add("@RoleName", role.RoleName, DbType.String);
+                    parameters.Add("@CompanyId", role.CompanyId, DbType.String);
+                    parameters.Add("@BranchId", role.BranchId, DbType.String);
                     parameters.Add("@IsActive", role.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", role.CreatorId, DbType.String);
                     parameters.Add("@IsDefault", role.IsDefault, DbType.Boolean);
@@ -114,6 +116,8 @@ namespace BookingSundorbon.Features.Repositories.RoleRepository
                     DynamicParameters parameters = new();
                     parameters.Add("@Id", role.Id, DbType.String);
                     parameters.Add("@RoleName", role.RoleName, DbType.String);
+                    parameters.Add("@CompanyId", role.CompanyId, DbType.String);
+                    parameters.Add("@BranchId", role.BranchId, DbType.String);
                     parameters.Add("@IsActive", role.IsActive, DbType.Boolean);
                     parameters.Add("@IsDefault", role.IsDefault, DbType.Boolean);
 
