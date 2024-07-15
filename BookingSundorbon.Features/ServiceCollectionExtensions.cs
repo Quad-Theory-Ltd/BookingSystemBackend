@@ -48,6 +48,8 @@ using BookingSundorbon.Features.Repositories.ExtraPackagingRepository;
 using BookingSundorbon.Features.Repositories.FunctionRepository;
 using BookingSundorbon.Features.Repositories.ItemCategoryRepository;
 using BookingSundorbon.Features.Repositories.ScanningPersonRepository;
+using BookingSundorbon.Features.Repositories.BarcodeStatusRepository;
+using BookingSundorbon.Features.Repositories.BarcodeStatusDetailRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -63,6 +65,8 @@ namespace BookingSundorbon.Features
 
             #region "B"
             services.AddScoped<IBranchRepository, BranchRepository>();
+            services.AddScoped<IBarcodeStatusRepository, BarcodeStatusRepository>();
+            services.AddScoped<IBarcodeStatusDetailRepository, BarcodeStatusDetailRepository>();
             #endregion
 
             #region "C"
