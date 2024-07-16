@@ -12,7 +12,7 @@ namespace BookingSundorbon.Core.Models
         public int CompanyId { get; set; }
         public string WeightDescription {  get; set; }
         public decimal MinimumWeight { get; set; }
-        public decimal MiximumWeight { get; set; }
+        public decimal MaximumWeight { get; set; }
         public int MeasurementUnitId { get; set; }
         public decimal Cost { get; set; }
         public bool IsActive { get; set; }

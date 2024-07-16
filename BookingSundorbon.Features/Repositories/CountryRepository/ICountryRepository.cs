@@ -9,6 +9,11 @@ namespace BookingSundorbon.Features.Repositories.CountryRepository
 {
     public interface ICountryRepository
     {
+        
+        Task<int> CreateCountryAsync(ActiveCountryView country);
+        Task<ActiveCountryView> GetCountryAsync(int id);
         Task<IEnumerable<ActiveCountryView>> GetAllActiveCountriesAsync();
+        Task UpdateCountryAsync(ActiveCountryView country);
+        Task DeleteCountryAsync(int id);
     }
 }

@@ -10,5 +10,9 @@ namespace BookingSundorbon.Features.Repositories.ItemTypeRepository
     public interface IItemTypeRepository
     {
         Task<IEnumerable<ActiveItemTypeView>> GetAllActiveItemTypesAsync();
+        Task<int> CreateItemTypeAsync(ActiveItemTypeView itemType);
+        Task<ActiveItemTypeView> GetItemTypeAsync(int id);
+        Task UpdateItemTypeAsync(ActiveItemTypeView itemType);
+        Task DeleteItemTypeAsync(int id);
     }
 }

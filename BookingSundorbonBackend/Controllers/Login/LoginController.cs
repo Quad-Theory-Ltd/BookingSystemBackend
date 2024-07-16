@@ -63,5 +63,38 @@ namespace BookingSundorbonBackend.Controllers.Login
             var tokend = new JwtSecurityTokenHandler().WriteToken(token);
             return tokend;
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> CreateLogin([FromBody] LoginView login)
+        {
+            if (login == null)
+            {
+                return BadRequest("LoginId is Null");
+            }
+            var loginId =  await _loginRepository.CreateLoginAsync(login);
+
+            return Ok(loginId);
+
+            // return CreatedAtAction(nameof(GetLoginId), new { id = loginId }, loginId);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateLogin(int id, [FromBody] LoginView login)
+        {
+            if (login == null || login.Id != id)
+            {
+                return BadRequest("Login Id is Invalid!");
+            }
+            var existingLogin = await _loginRepository.GetLoginByUserIdAsync(id);
+            if (existingLogin == null)
+            {
+                return BadRequest(" Login Not Found!");
+            }
+            await _loginRepository.UpdateLoginAsync(login);
+            return NoContent();
+        }
+
+
     }
 }

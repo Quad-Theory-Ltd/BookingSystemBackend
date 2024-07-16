@@ -9,7 +9,11 @@ namespace BookingSundorbon.Features.Repositories.RouteRepository
 {
     public interface IRouteRepository
     {
-        Task<IEnumerable<ActiveRouteView>> GetAllActiveRoutesAsync();
+        Task<IEnumerable<RouteView>> GetAllActiveRoutesAsync();
+        Task <int> CreateRouteTypeAsync(RouteView routeType);
+        Task<RouteView> GetRouteAsync(int id);
+        Task UpdateRouteAsync(RouteView route);
+        Task DeleteRouteAsync(int id);
     }
 
 }
