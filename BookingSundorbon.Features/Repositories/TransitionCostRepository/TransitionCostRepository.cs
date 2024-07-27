@@ -29,6 +29,8 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
+                    string barcode = Guid.NewGuid().ToString();
+                   
                     DynamicParameters parameters = new();
                     parameters.Add("@CompanyId", createParcelBookingView.CompanyId, DbType.Int32);
                     parameters.Add("@RoutingTypeId", createParcelBookingView.RoutingTypeId, DbType.Int32);
@@ -96,7 +98,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     parameters.Add("@CreatorId", createParcelBookingView.CreatorId, DbType.String);
                     parameters.Add("@ModifierId", createParcelBookingView.ModifierId, DbType.String);
                     parameters.Add("@IsActive", createParcelBookingView.IsActive, DbType.Boolean);
-                    parameters.Add("@Barcode", createParcelBookingView.Barcode, DbType.String);
+                    parameters.Add("@Barcode", barcode, DbType.String);
 
                     parameters.Add("@IsAgent", createParcelBookingView.IsAgent, DbType.Boolean);
                     parameters.Add("@AgentId", createParcelBookingView.AgentId, DbType.String);
@@ -105,6 +107,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     var result = await dbConnection.QueryFirstOrDefaultAsync<CreateParcelBookingOutputView>(
                         "[SP_InsertIntoParcelBooking]", parameters, commandType: CommandType.StoredProcedure);
 
+                    result.Barcode = barcode;
 
                     return result ;
                 }

@@ -50,6 +50,7 @@ using BookingSundorbon.Features.Repositories.ItemCategoryRepository;
 using BookingSundorbon.Features.Repositories.ScanningPersonRepository;
 using BookingSundorbon.Features.Repositories.BarcodeStatusRepository;
 using BookingSundorbon.Features.Repositories.BarcodeStatusDetailRepository;
+using BookingSundorbon.Features.Repositories.ParcelNumbersWithBarcodeRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -113,6 +114,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IProhibitedItemRepository, ProhibitedItemRepository>();
             services.AddScoped<IParcelBookingInformationRepository, ParcelBookingInformationRepository>();
             services.AddScoped<IPickupRepository, PickupRepository>();
+            services.AddScoped<IParcelNumbersWithBarcodeRepository, ParcelNumbersWithBarcodeRepository>();
             #endregion
 
             #region "R"
@@ -154,5 +156,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IEmailService, EmailService>();
             return services;
         }
+
+       
     }
 }
