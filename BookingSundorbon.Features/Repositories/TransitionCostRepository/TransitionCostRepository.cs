@@ -96,7 +96,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     parameters.Add("@CreatorId", createParcelBookingView.CreatorId, DbType.String);
                     parameters.Add("@ModifierId", createParcelBookingView.ModifierId, DbType.String);
                     parameters.Add("@IsActive", createParcelBookingView.IsActive, DbType.Boolean);
-                    parameters.Add("@Barcode", createParcelBookingView.IsActive, DbType.String);
+                    parameters.Add("@Barcode", createParcelBookingView.Barcode, DbType.String);
 
                     parameters.Add("@IsAgent", createParcelBookingView.IsAgent, DbType.Boolean);
                     parameters.Add("@AgentId", createParcelBookingView.AgentId, DbType.String);
