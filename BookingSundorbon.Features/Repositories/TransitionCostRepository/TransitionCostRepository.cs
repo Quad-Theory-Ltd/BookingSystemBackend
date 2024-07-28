@@ -70,8 +70,8 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
 
                     parameters.Add("@IsPickup", createParcelBookingView.IsPickup, DbType.Boolean);
                     parameters.Add("@PickupDate", createParcelBookingView.PickupDate, DbType.Date);
-                    parameters.Add("@FromTime", createParcelBookingView.FromTime, DbType.DateTime);
-                    parameters.Add("@ToTime", createParcelBookingView.ToTime, DbType.DateTime);
+                    parameters.Add("@FromTime", createParcelBookingView.FromTime, DbType.String);
+                    parameters.Add("@ToTime", createParcelBookingView.ToTime, DbType.String);
                     parameters.Add("@PickUpCountryId", createParcelBookingView.PickUpCountryId, DbType.Int32);
                     parameters.Add("@PickUpCityId", createParcelBookingView.PickUpCityId, DbType.Int32);
                     parameters.Add("@PickUpLandMark", createParcelBookingView.PickUpLandMark, DbType.String);

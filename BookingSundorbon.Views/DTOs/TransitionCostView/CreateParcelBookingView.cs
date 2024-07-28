@@ -45,9 +45,9 @@ namespace BookingSundorbon.Views.DTOs.TransitionCostView
         public string ParcelAdditionalInfo { get; set; }
 
         public bool  IsPickup { get; set; }
-        public DateTime PickupDate { get; set; }
-        public DateTime FromTime { get; set; }
-        public DateTime ToTime { get; set; }
+        public DateTime? PickupDate { get; set; }
+        public string FromTime { get; set; }
+        public string ToTime { get; set; }
         public int PickUpCountryId { get; set; }
         public int PickUpCityId { get; set; }
         public string PickUpLandMark { get; set; }
