@@ -26,5 +26,28 @@ namespace BookingSundorbonBackend.Controllers.ParcelBookingInformation
             }
             return Ok(count);
         }
+
+
+        [HttpGet("Parcelcounts")]
+        public async Task<IActionResult> GetParcelCounts()
+        {
+            var count = await _parcelBookingInformationRepository.GetParcelCounts();
+            if (count == null)
+            {
+                return NotFound("Parcel Info not found.");
+            }
+            return Ok(count);
+        }
+
+        [HttpGet("Parcelcounts/dimensions")]
+        public async Task<IActionResult> GetParcelCountsWithDimensions()
+        {
+            var count = await _parcelBookingInformationRepository.GetParcelCountsWithDimensions();
+            if (count == null)
+            {
+                return NotFound("Parcel Info not found.");
+            }
+            return Ok(count);
+        }
     }
 }

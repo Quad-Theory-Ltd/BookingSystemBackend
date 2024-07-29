@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using BookingSundorbon.Views.DTOs.BranchView;
+using BookingSundorbon.Views.DTOs.ParcelCountView;
+using BookingSundorbon.Views.DTOs.ParcelBoxCountView;
 
 namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationRepository
 {
@@ -35,6 +38,41 @@ namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationReposit
                     return result;
                 }
 
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<ParcelCountView>> GetParcelCounts()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var branches = await dbConnection.QueryAsync<ParcelCountView>(
+                        "[dbo].[SP_GetParcelCounts]", commandType: CommandType.StoredProcedure);
+
+                    return branches;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<IEnumerable<ParcelBoxCountView>> GetParcelCountsWithDimensions()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var branches = await dbConnection.QueryAsync<ParcelBoxCountView>(
+                        "[dbo].[SP_GetParcelCountsWithDimensions]", commandType: CommandType.StoredProcedure);
+
+                    return branches;
+                }
             }
             catch (Exception ex)
             {
