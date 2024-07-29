@@ -11,6 +11,7 @@ using Dapper;
 using System.Data.Common;
 using BookingSundorbon.Views.DTOs.GetTransitionCostView;
 using BookingSundorbon.Views.DTOs.TransitionCostView;
+using System.Text.Json;
 
 namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
 {
@@ -30,7 +31,10 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     string barcode = Guid.NewGuid().ToString();
-                   
+                    string userId=null;
+                    string password=null;
+
+
                     DynamicParameters parameters = new();
                     parameters.Add("@CompanyId", createParcelBookingView.CompanyId, DbType.Int32);
                     parameters.Add("@RoutingTypeId", createParcelBookingView.RoutingTypeId, DbType.Int32);
@@ -69,7 +73,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     parameters.Add("@ParcelAdditionalInfo", createParcelBookingView.ParcelAdditionalInfo, DbType.String);
 
                     parameters.Add("@IsPickup", createParcelBookingView.IsPickup, DbType.Boolean);
-                    parameters.Add("@PickupDate", createParcelBookingView.PickupDate, DbType.Date);
+                    parameters.Add("@PickupDate", createParcelBookingView.PickupDate, DbType.DateTime);
                     parameters.Add("@FromTime", createParcelBookingView.FromTime, DbType.String);
                     parameters.Add("@ToTime", createParcelBookingView.ToTime, DbType.String);
                     parameters.Add("@PickUpCountryId", createParcelBookingView.PickUpCountryId, DbType.Int32);
@@ -104,18 +108,70 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     parameters.Add("@AgentId", createParcelBookingView.AgentId, DbType.String);
 
 
-                    var result = await dbConnection.QueryFirstOrDefaultAsync<CreateParcelBookingOutputView>(
-                        "[SP_InsertIntoParcelBooking]", parameters, commandType: CommandType.StoredProcedure);
 
+                    if (!createParcelBookingView.IsAgent)
+                    {
+                         userId = createParcelBookingView.SenderName;
+                         password = GenerateRandomPassword();
+
+                        var user = new
+                        {
+                            RoleId = 3,
+                            UserName = userId,
+                            IsEmailConfirmed = false,
+                            UserEmail = string.IsNullOrEmpty(createParcelBookingView.SenderEmail) ? "N/A" : createParcelBookingView.SenderEmail,
+                            IsTemporaryPass = true,
+                            PasswordHash = password,
+                            PhoneNo = string.IsNullOrEmpty(createParcelBookingView.SenderMobileNo) ? "N/A" : createParcelBookingView.SenderMobileNo,
+                            Address = string.IsNullOrEmpty(createParcelBookingView.SenderAdditionalAddressInfo) ? "N/A" : createParcelBookingView.SenderAdditionalAddressInfo,
+                            CreatorId = createParcelBookingView.CreatorId, 
+                            CreationDate = DateTime.UtcNow,
+                            ModifierId = createParcelBookingView.ModifierId,
+                            ModificationDate = DateTime.UtcNow
+                        };
+
+                        using (HttpClient httpClient = new HttpClient())
+                        {
+                            try
+                            {
+                                httpClient.BaseAddress = new Uri("https://localhost:7187");
+
+                                string jsonData = JsonSerializer.Serialize(user);
+                                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                                HttpResponseMessage response = await httpClient.PostAsync("/api/UserLogin/PostGoTasteUser", content);
+
+                                var httpResult = await response.Content.ReadAsStringAsync();
+                            }
+                            catch (Exception ex)
+                            {
+                                throw;
+                            }
+                        }
+                    }
+
+
+                   var result = await dbConnection.QueryFirstOrDefaultAsync<CreateParcelBookingOutputView>(
+                 "[SP_InsertIntoParcelBooking]", parameters, commandType: CommandType.StoredProcedure);
                     result.Barcode = barcode;
+                    result.UserId = userId;
+                    result.Password = password;
+               
 
-                    return result ;
+                    return result;
                 }
             }
             catch (Exception ex)
             {
                 throw;
             }
+        }
+
+        private string GenerateRandomPassword(int length = 8)
+        {
+            const string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            Random random = new();
+            return new string(Enumerable.Repeat(validChars, length)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
         public async Task<IEnumerable<GetTransitionCostOutputView>> GetTransitionCost(GetTransitionCostView transitionCostView)
