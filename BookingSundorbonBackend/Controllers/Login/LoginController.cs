@@ -23,13 +23,13 @@ namespace BookingSundorbonBackend.Controllers.Login
         }
 
         [HttpGet]
-        public async Task<IActionResult> userLoginDetails(string userName, string password, int type)
+        public async Task<IActionResult> GetLoginById(string userName, string password, string userType)
         {
-            var res = await _loginRepository.GetAllCustomerListAsync(userName, password, type);
+            var res = await _loginRepository.GetLoginByIdAsync(userName, password, userType);
             if (res != null)
             {
                 var token = GenerateJwtToken(res);
-                return new OkObjectResult(token);
+                return Ok(res);
             }
             return BadRequest("User Not Found");
         }
@@ -37,11 +37,11 @@ namespace BookingSundorbonBackend.Controllers.Login
         {
             var authClaims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, login.UserName),
-                    new Claim("UserName", login.UserName.ToString()),
-                    new Claim("UserId", login.UserId.ToString()),
-                    new Claim("RoleId", login.RoleId.ToString()),
-                    new Claim("EmployeeId", login.EmployeeId.ToString()),
+                    //new Claim(ClaimTypes.Name, login.UserName),
+                    //new Claim("UserName", login.UserName.ToString()),
+                    //new Claim("UserId", login.UserId.ToString()),
+                    //new Claim("RoleId", login.RoleId.ToString()),
+                    //new Claim("EmployeeId", login.EmployeeId.ToString()),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
 
                 };
@@ -63,5 +63,38 @@ namespace BookingSundorbonBackend.Controllers.Login
             var tokend = new JwtSecurityTokenHandler().WriteToken(token);
             return tokend;
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> CreateLogin([FromBody] LoginView login)
+        {
+            if (login == null)
+            {
+                return BadRequest("LoginId is Null");
+            }
+            var loginId =  await _loginRepository.CreateLoginAsync(login);
+
+            return Ok(loginId);
+
+            // return CreatedAtAction(nameof(GetLoginId), new { id = loginId }, loginId);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateLogin(int id, [FromBody] LoginView login)
+        {
+            if (login == null || login.Id != id)
+            {
+                return BadRequest("Login Id is Invalid!");
+            }
+            var existingLogin = await _loginRepository.GetLoginByUserIdAsync(id);
+            if (existingLogin == null)
+            {
+                return BadRequest(" Login Not Found!");
+            }
+            await _loginRepository.UpdateLoginAsync(login);
+            return NoContent();
+        }
+
+
     }
 }

@@ -21,5 +21,60 @@ namespace BookingSundorbonBackend.Controllers.City
             var cities = await _cityRepository.GetAllActiveCitiesAsync();
             return Ok(cities);
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> CreateCity([FromBody] ActiveCityView city)
+        {
+            if (city == null)
+            {
+                return BadRequest("City is Null");
+            }
+            var cityId = await _cityRepository.CreateCityAsync(city);
+
+            return CreatedAtAction(nameof(GetCity), new { id = cityId }, cityId);
+        }
+        [HttpGet("{id}")]
+
+        public async Task<IActionResult> GetCity(int id)
+        {
+            var city = await _cityRepository.GetCityAsync(id);
+            if (city == null)
+            {
+                return NotFound("City not found.");
+            }
+            return Ok(city);
+        }
+
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCity(int id, [FromBody] ActiveCityView city)
+        {
+            if (city == null || city.Id != id)
+            {
+                return BadRequest(" City Id is Invalid!");
+            }
+            var existingCity = await _cityRepository.GetCityAsync(id);
+            if (existingCity == null)
+            {
+                return BadRequest(" City Not Found!");
+            }
+            await _cityRepository.UpdateCityAsync(city);
+            return NoContent();
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCity(int id)
+        {
+            var city = await _cityRepository.GetCityAsync(id);
+            if (city == null)
+            {
+                return NotFound("City not found.");
+            }
+
+            await _cityRepository.DeleteCityAsync(id);
+            return NoContent();
+        }
     }
 }
