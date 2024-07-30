@@ -49,5 +49,27 @@ namespace BookingSundorbonBackend.Controllers.ParcelBookingInformation
             }
             return Ok(count);
         }
+
+        [HttpGet("ParcelBookingHistory")]
+        public async Task<IActionResult> GetParcelBookingHistory()
+        {
+            var count = await _parcelBookingInformationRepository.GetParcelBookingHistory();
+            if (count == null)
+            {
+                return NotFound("Parcel Info not found.");
+            }
+            return Ok(count);
+        }
+
+        [HttpGet("ParcelAgentBookingHistory")]
+        public async Task<IActionResult> GetParcelAgentBookingHistory()
+        {
+            var count = await _parcelBookingInformationRepository.GetParcelAgentBookingHistory();
+            if (count == null)
+            {
+                return NotFound("Parcel Info not found.");
+            }
+            return Ok(count);
+        }
     }
 }
