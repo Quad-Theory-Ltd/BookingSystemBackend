@@ -22,7 +22,7 @@ namespace BookingSundorbon.Views.DTOs.ParcelBookingHistoryView
         public decimal DimensionCost { get; set; }
         public string ParcelAdditionalInfo { get; set; }
         public string UniqItemDescription { get; set; }
-        public string AgentId { get; set; }
+        public int AgentId { get; set; }
         public string AgentName { get; set; }
 
         public decimal? CommisionPercentage { get; set; }

@@ -118,7 +118,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationReposit
             }
         }
 
-        public async Task<IEnumerable<ParcelBookingHistoryView>> GetParcelAgentBookingHistoryByAgentId(string AgentId)
+        public async Task<IEnumerable<ParcelBookingHistoryView>> GetParcelAgentBookingHistoryByAgentId(int AgentId)
         {
             try
             {
@@ -126,10 +126,10 @@ namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationReposit
                 {
                     
                   DynamicParameters parameters = new();
-                    parameters.Add("@AgentId", AgentId, DbType.String);
+                    parameters.Add("@AgentUserId", AgentId, DbType.Int32);
 
                     var result = await dbConnection.QueryAsync<ParcelBookingHistoryView>(
-                        "[dbo].[SP_GetAgentBookingDetailsByAgentId]", commandType: CommandType.StoredProcedure);
+                        "[dbo].[SP_GetAgentBookingDetailsByAgentId]", parameters,commandType: CommandType.StoredProcedure);
 
                     return result;
                 }

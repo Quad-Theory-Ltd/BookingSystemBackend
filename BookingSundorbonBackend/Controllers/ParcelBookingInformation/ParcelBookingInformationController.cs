@@ -73,7 +73,7 @@ namespace BookingSundorbonBackend.Controllers.ParcelBookingInformation
         }
 
         [HttpGet("agent/{AgentId}")]
-        public async Task<IActionResult> GetParcelAgentBookingHistoryByAgentId(string AgentId)
+        public async Task<IActionResult> GetParcelAgentBookingHistoryByAgentId(int AgentId)
         {
             var count = await _parcelBookingInformationRepository.GetParcelAgentBookingHistoryByAgentId(AgentId);
             if (count == null)
