@@ -12,6 +12,7 @@ using BookingSundorbon.Views.DTOs.BranchView;
 using BookingSundorbon.Views.DTOs.ParcelCountView;
 using BookingSundorbon.Views.DTOs.ParcelBoxCountView;
 using BookingSundorbon.Views.DTOs.ParcelBookingHistoryView;
+using System.Data.Common;
 
 namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationRepository
 {
@@ -107,6 +108,28 @@ namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationReposit
                 {
                     var result = await dbConnection.QueryAsync<ParcelBookingHistoryView>(
                         "[dbo].[SP_GetAgentBookingHistory]", commandType: CommandType.StoredProcedure);
+
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<ParcelBookingHistoryView>> GetParcelAgentBookingHistoryByAgentId(string AgentId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    
+                  DynamicParameters parameters = new();
+                    parameters.Add("@AgentId", AgentId, DbType.String);
+
+                    var result = await dbConnection.QueryAsync<ParcelBookingHistoryView>(
+                        "[dbo].[SP_GetAgentBookingDetailsByAgentId]", commandType: CommandType.StoredProcedure);
 
                     return result;
                 }

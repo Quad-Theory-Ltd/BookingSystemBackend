@@ -9,6 +9,6 @@ namespace BookingSundorbon.Features.Repositories.AgentBookingRepository
 {
     public interface IAgentBookingRepository
     {
-        Task<IEnumerable<AgentBookingCountByDimensionView>> GetAgentBookingCountsByDimensionAsync(string id);
+        Task<IEnumerable<AgentBookingCountByDimensionView>> GetAgentBookingCountsByDimensionAsync(int id);
     }
 }

@@ -29,8 +29,9 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@Id", agent.Id, DbType.String);
+                    //parameters.Add("@Id", agent.Id, DbType.String);
                     parameters.Add("@CompanyId", agent.CompanyId, DbType.Int32);
+                    parameters.Add("@UserId", agent.UserId, DbType.Int32);
                     parameters.Add("@Name", agent.Name, DbType.String);
                     parameters.Add("@Address", agent.Address, DbType.String);
                     parameters.Add("@Email", agent.Email, DbType.String);
@@ -56,14 +57,14 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
             }
         }
 
-        public async Task<AgentView> GetAgentAsync(string id)
+        public async Task<AgentView> GetAgentAsync(int id)
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@Id", id, DbType.String);
+                    parameters.Add("@UserId", id, DbType.Int32);
 
                     var agent = await dbConnection.QueryFirstOrDefaultAsync<AgentView>(
                         "[dbo].[SP_GetAgentDetailsById]", parameters, commandType: CommandType.StoredProcedure);
@@ -102,8 +103,9 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@Id", agent.Id, DbType.String);
+                    //parameters.Add("@Id", agent.Id, DbType.String);
                     parameters.Add("@CompanyId", agent.CompanyId, DbType.Int32);
+                    parameters.Add("@UserId", agent.UserId, DbType.Int32);
                     parameters.Add("@Name", agent.Name, DbType.String);
                     parameters.Add("@Address", agent.Address, DbType.String);
                     parameters.Add("@Email", agent.Email, DbType.String);
@@ -126,14 +128,14 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
             }
         }
 
-        public async Task DeleteAgentAsync(string id)
+        public async Task DeleteAgentAsync(int id)
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@Id", id, DbType.String);
+                    parameters.Add("@Id", id, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_DeleteAgent]", parameters, commandType: CommandType.StoredProcedure);

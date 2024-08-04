@@ -71,5 +71,16 @@ namespace BookingSundorbonBackend.Controllers.ParcelBookingInformation
             }
             return Ok(count);
         }
+
+        [HttpGet("agent/{AgentId}")]
+        public async Task<IActionResult> GetParcelAgentBookingHistoryByAgentId(string AgentId)
+        {
+            var count = await _parcelBookingInformationRepository.GetParcelAgentBookingHistoryByAgentId(AgentId);
+            if (count == null)
+            {
+                return NotFound("Parcel Info not found.");
+            }
+            return Ok(count);
+        }
     }
 }

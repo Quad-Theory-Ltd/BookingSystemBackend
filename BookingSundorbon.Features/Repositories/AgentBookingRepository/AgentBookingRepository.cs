@@ -21,14 +21,14 @@ namespace BookingSundorbon.Features.Repositories.AgentBookingRepository
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<IEnumerable<AgentBookingCountByDimensionView>> GetAgentBookingCountsByDimensionAsync(string id)
+        public async Task<IEnumerable<AgentBookingCountByDimensionView>> GetAgentBookingCountsByDimensionAsync(int id)
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@AgentId", id, DbType.String);
+                    parameters.Add("@AgentUserId", id, DbType.Int32);
 
                     var result = await dbConnection.QueryAsync<AgentBookingCountByDimensionView>(
                         "[dbo].[SP_GetAgentBookingCountsByDimension]", parameters, commandType: CommandType.StoredProcedure);
