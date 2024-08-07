@@ -116,6 +116,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
 
                         var user = new
                         {
+                            Id = 0,
                             RoleId = 3,
                             UserName = userId,
                             IsEmailConfirmed = false,
@@ -124,10 +125,12 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                             PasswordHash = password,
                             PhoneNo = string.IsNullOrEmpty(createParcelBookingView.SenderMobileNo) ? "N/A" : createParcelBookingView.SenderMobileNo,
                             Address = string.IsNullOrEmpty(createParcelBookingView.SenderAdditionalAddressInfo) ? "N/A" : createParcelBookingView.SenderAdditionalAddressInfo,
-                            CreatorId = createParcelBookingView.CreatorId, 
+                            IsActive = true,
+                            CreatorId = createParcelBookingView.CreatorId,
                             CreationDate = DateTime.UtcNow,
                             ModifierId = createParcelBookingView.ModifierId,
-                            ModificationDate = DateTime.UtcNow
+                            ModificationDate = DateTime.UtcNow,
+                            RoleName = ""
                         };
 
                         using (HttpClient httpClient = new HttpClient())
@@ -138,7 +141,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
 
                                 string jsonData = JsonSerializer.Serialize(user);
                                 StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                                HttpResponseMessage response = await httpClient.PostAsync("/api/UserLogin/PostGoTasteUser", content);
+                                HttpResponseMessage response = await httpClient.PostAsync("/api/UserLogin", content);
 
                                 var httpResult = await response.Content.ReadAsStringAsync();
                             }

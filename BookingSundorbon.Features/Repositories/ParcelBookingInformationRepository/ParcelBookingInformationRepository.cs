@@ -25,17 +25,17 @@ namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationReposit
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<IEnumerable<ParcelInfoByUserIdView>> GetParcelInfoByUserIdAsync(string userId)
+        public async Task<IEnumerable<ParcelBookingHistoryView>> GetParcelInfoByUserIdAsync(int userId)
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@UserId", userId, DbType.String);
+                    parameters.Add("@UserId", userId, DbType.Int32);
 
-                    var result = await dbConnection.QueryAsync<ParcelInfoByUserIdView>(
-                        "[dbo].[SP_GetParcelInfoByUserId]", parameters, commandType: CommandType.StoredProcedure);
+                    var result = await dbConnection.QueryAsync<ParcelBookingHistoryView>(
+                        "[dbo].[SP_GetAgentBookingDetailsByUserId]", parameters, commandType: CommandType.StoredProcedure);
 
                     return result;
                 }

@@ -11,7 +11,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationReposit
 {
     public interface IParcelBookingInformationRepository
     {
-        Task<IEnumerable<ParcelInfoByUserIdView>> GetParcelInfoByUserIdAsync(string userId);
+        Task<IEnumerable<ParcelBookingHistoryView>> GetParcelInfoByUserIdAsync(int userId);
         Task<IEnumerable<ParcelCountView>> GetParcelCounts();
         Task<IEnumerable<ParcelBoxCountView>> GetParcelCountsWithDimensions();
         Task<IEnumerable<ParcelBookingHistoryView>> GetParcelBookingHistory();
