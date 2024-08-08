@@ -10,8 +10,8 @@ namespace BookingSundorbon.Features.Repositories.ReceiveRepository
     public interface IReceiveRepository
     {
         Task<int> CreateReceiveAsync(ReceiveView receive);
-        //Task<ReceiveView> GetReceiveAsync(int receiveNo);
-        //Task<IEnumerable<ReceiveView>> GetAllReceiveAsync();
+        Task<ReceiveView> GetReceiveAsync(int receiveNo);
+        Task<IEnumerable<ReceiveView>> GetAllReceiveAsync();
         //Task UpdateReceiveAsync(ReceiveView receive);
         //Task DeleteReceiveAsync(int id);
     }

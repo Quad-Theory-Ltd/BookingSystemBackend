@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookingSundorbon.Views.DTOs.ReceiveView;
+using BookingSundorbon.Views.DTOs.IssueView;
 
 
 namespace BookingSundorbon.Features.Repositories.ReceiveRepository
@@ -50,7 +51,43 @@ namespace BookingSundorbon.Features.Repositories.ReceiveRepository
             }
         }
 
- 
+        public async Task<IEnumerable<ReceiveView>> GetAllReceiveAsync()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var receive = await dbConnection.QueryAsync<ReceiveView>(
+                        "[dbo].[SP_GetAllReceive]", commandType: CommandType.StoredProcedure);
 
+                    return receive;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<ReceiveView> GetReceiveAsync(int receiveNo)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@ReceiveNo", receiveNo, DbType.Int32);
+
+                    var receive = await dbConnection.QueryFirstOrDefaultAsync<ReceiveView>(
+                        "[dbo].[SP_GetReceiveDetailsByReceiveNo]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return receive;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

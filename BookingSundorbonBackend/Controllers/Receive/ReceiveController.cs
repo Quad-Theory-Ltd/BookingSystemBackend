@@ -1,4 +1,5 @@
-﻿using BookingSundorbon.Features.Repositories.ReceiveRepository;
+﻿using BookingSundorbon.Features.Repositories.AgentRequisitionRepository;
+using BookingSundorbon.Features.Repositories.ReceiveRepository;
 using BookingSundorbon.Views.DTOs.ReceiveView;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,25 @@ namespace BookingSundorbonBackend.Controllers.Receive
             //return CreatedAtAction(nameof(GetReceive), new { id = receiveId }, receiveId);
             return Ok("Receive Created");
         }
-        
+
+        [HttpGet("GetAllReceive")]
+        public async Task<IActionResult> GetAllReceive()
+        {
+            var receive = await _receiveRepository.GetAllReceiveAsync();
+            return Ok(receive);
+        }
+
+        [HttpGet("{receiveNo}")]
+        public async Task<IActionResult> GetReceiveByReceiveNo(int receiveNo)
+        {
+            var receive = await _receiveRepository.GetReceiveAsync(receiveNo);
+            if (receive == null)
+            {
+                return NotFound("Receive not found.");
+            }
+            return Ok(receive);
+        }
+
 
     }
 }

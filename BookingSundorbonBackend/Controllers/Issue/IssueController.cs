@@ -1,4 +1,5 @@
 ﻿using BookingSundorbon.Features.Repositories.IssueRepository;
+using BookingSundorbon.Features.Repositories.IssueRepository;
 using BookingSundorbon.Views.DTOs.IssueView;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,27 @@ namespace BookingSundorbonBackend.Controllers.Issue
             //return CreatedAtAction(nameof(GetIssue), new { id = issueId }, issueId);
             return Ok("Issue Created");
         }
-        
+
+        [HttpGet("GetAllIssue")]
+        public async Task<IActionResult> GetAllIssue()
+        {
+            var issues = await _issueRepository.GetAllIssueAsync();
+            return Ok(issues);
+        }
+
+        [HttpGet("{issueNo}")]
+        public async Task<IActionResult> GetIssueByIssueNo(int issueNo)
+        {
+            var agent = await _issueRepository.GetIssueAsync(issueNo);
+            if (agent == null)
+            {
+                return NotFound("Agent Requisition not found.");
+            }
+            return Ok(agent);
+        }
+
+
+
 
     }
 }

@@ -77,7 +77,7 @@ namespace BookingSundorbon.Features.Repositories.IssueRepository
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@Id", issueNo, DbType.Int32);
+                    parameters.Add("@issueNo", issueNo, DbType.Int32);
 
                     var issue = await dbConnection.QueryFirstOrDefaultAsync<IssueView>(
                         "[dbo].[SP_GetIssueDetailsByIssueNo]", parameters, commandType: CommandType.StoredProcedure);
