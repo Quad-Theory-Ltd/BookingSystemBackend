@@ -51,6 +51,8 @@ using BookingSundorbon.Features.Repositories.ScanningPersonRepository;
 using BookingSundorbon.Features.Repositories.BarcodeStatusRepository;
 using BookingSundorbon.Features.Repositories.BarcodeStatusDetailRepository;
 using BookingSundorbon.Features.Repositories.AgentRequisitionRepository;
+using BookingSundorbon.Features.Repositories.IssueRepository;
+using BookingSundorbon.Features.Repositories.ReceiveRepository;
 using BookingSundorbon.Features.Repositories.ParcelNumbersWithBarcodeRepository;
 using BookingSundorbon.Features.Repositories.AgentBoxAssignmentRepository;
 
@@ -103,6 +105,7 @@ namespace BookingSundorbon.Features
             #region "I"
             services.AddScoped<IItemTypeRepository, ItemTypeRepository>();
             services.AddScoped<IItemCategoryRepository, ItemCategoryRepository>();
+            services.AddScoped<IIssueRepository, IssueRepository>();
             #endregion
 
             #region "L"
@@ -125,6 +128,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IReceiverRepository, ReceiverRepository>();
             services.AddScoped<IRouteRepository, RouteRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IReceiveRepository, ReceiveRepository>();
             #endregion
 
             #region "S"

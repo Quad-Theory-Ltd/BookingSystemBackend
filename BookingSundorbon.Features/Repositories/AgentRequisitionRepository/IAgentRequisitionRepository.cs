@@ -11,6 +11,9 @@ namespace BookingSundorbon.Features.Repositories.AgentRequisitionRepository
     {
         Task CreateAgentRequisitionAsync(AgentRequisitionView agentRequisition);
         Task<AgentRequisitionView> GetAgentRequisitionAsync(int requisitionNo);
+
+        Task<IEnumerable<AgentRequisitionView>> GetAllAgentRequisitionWithAgentInfoAsync();
+
         Task<IEnumerable<AgentRequisitionView>> GetAllAgentRequisitionAsync();
 
 
