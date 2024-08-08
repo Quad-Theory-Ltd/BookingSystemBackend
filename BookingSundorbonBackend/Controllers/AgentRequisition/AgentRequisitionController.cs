@@ -1,4 +1,5 @@
-﻿using BookingSundorbon.Features.Repositories.AgentRequisitionRepository;
+﻿using BookingSundorbon.Features.Repositories.AgentRepository;
+using BookingSundorbon.Features.Repositories.AgentRequisitionRepository;
 using BookingSundorbon.Views.DTOs.AgentRequisitionView;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -34,7 +35,26 @@ namespace BookingSundorbonBackend.Controllers.AgentRequisition
             //return CreatedAtAction(nameof(GetAgentRequisition), new { id = agentRequisitionId }, agentRequisitionId);
         }
 
-     
+        [HttpGet("GetAllAgentRequisition")]
+        public async Task<IActionResult> GetAllAgentRequisition()
+        {
+            var agent = await _agentRequisitionRepository.GetAllAgentRequisitionAsync();
+            return Ok(agent);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAgentRequisition(int id)
+        {
+            var agent = await _agentRequisitionRepository.GetAgentRequisitionAsync(id);
+            if (agent == null)
+            {
+                return NotFound("Agent Requisition not found.");
+            }
+            return Ok(agent);
+        }
+
+
+
 
     }
 }
