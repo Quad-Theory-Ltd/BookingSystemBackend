@@ -10,8 +10,8 @@ namespace BookingSundorbon.Features.Repositories.AgentRequisitionRepository
     public interface IAgentRequisitionRepository
     {
         Task CreateAgentRequisitionAsync(AgentRequisitionView agentRequisition);
-        Task<AgentRequisitionView> GetAgentRequisitionAsync(int id);
-        Task<IEnumerable<AgentRequisitionView>> GetAllAgentRequisitionAsync();
+        //Task<AgentRequisitionView> GetAgentRequisitionAsync(int id);
+        //Task<IEnumerable<AgentRequisitionView>> GetAllAgentRequisitionAsync();
  
 
     }
