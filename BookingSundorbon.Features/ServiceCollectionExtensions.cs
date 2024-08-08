@@ -52,6 +52,7 @@ using BookingSundorbon.Features.Repositories.BarcodeStatusRepository;
 using BookingSundorbon.Features.Repositories.BarcodeStatusDetailRepository;
 using BookingSundorbon.Features.Repositories.AgentRequisitionRepository;
 using BookingSundorbon.Features.Repositories.ParcelNumbersWithBarcodeRepository;
+using BookingSundorbon.Features.Repositories.AgentBoxAssignmentRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -64,6 +65,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IAdditionalCostRepository, AdditionalCostRepository>();
             services.AddScoped<IAgentRepository, AgentRepository>();
             services.AddScoped<IAgentRequisitionRepository, AgentRequisitionRepository>();
+            services.AddScoped<IAgentBoxAssignmentRepository, AgentBoxAssignmentRepository>();
             #endregion
 
             #region "B"

@@ -13,7 +13,7 @@ using System.Net;
 
 namespace BookingSundorbon.Features.Repositories.AgentRepository
 {
-    internal class AgentRepository : IAgentRepository
+    public class AgentRepository : IAgentRepository
     {
         private readonly string _connectionString;
 
