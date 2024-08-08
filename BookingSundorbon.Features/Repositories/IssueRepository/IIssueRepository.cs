@@ -10,8 +10,8 @@ namespace BookingSundorbon.Features.Repositories.IssueRepository
     public interface IIssueRepository
     {
         Task<int> CreateIssueAsync(IssueView issue);
-        //Task<IssueView> GetIssueAsync(int issueNo);
-        //Task<IEnumerable<IssueView>> GetAllIssueAsync();
+        Task<IssueView> GetIssueAsync(int issueNo);
+        Task<IEnumerable<IssueView>> GetAllIssueAsync();
         //Task UpdateIssueAsync(IssueView issue);
         //Task DeleteIssueAsync(int id);
     }

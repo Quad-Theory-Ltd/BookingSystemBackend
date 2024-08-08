@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using BookingSundorbon.Views.DTOs.IssueView;
 
 
+
 namespace BookingSundorbon.Features.Repositories.IssueRepository
 {
     internal class IssueRepository:IIssueRepository
@@ -35,7 +36,9 @@ namespace BookingSundorbon.Features.Repositories.IssueRepository
 
                     parameters.Add("@IssuedBy", issue.IssuedBy, DbType.Int32);
                     parameters.Add("@IssuedPrice", issue.IssuedPrice, DbType.Decimal);
-                   
+                    parameters.Add("@Remarks", issue.Remarks, DbType.String);
+
+
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoIssue]", parameters, commandType: CommandType.StoredProcedure);
@@ -49,7 +52,43 @@ namespace BookingSundorbon.Features.Repositories.IssueRepository
             }
         }
 
- 
+        public async Task<IEnumerable<IssueView>> GetAllIssueAsync()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var issue = await dbConnection.QueryAsync<IssueView>(
+                        "[dbo].[SP_GetAllIssue]", commandType: CommandType.StoredProcedure);
 
+                    return issue;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<IssueView> GetIssueAsync(int issueNo)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", issueNo, DbType.Int32);
+
+                    var issue = await dbConnection.QueryFirstOrDefaultAsync<IssueView>(
+                        "[dbo].[SP_GetIssueDetailsByIssueNo]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return issue;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -36,6 +36,8 @@ namespace BookingSundorbon.Features.Repositories.ReceiveRepository
                     
                     parameters.Add("@ReceivedBy", receive.ReceivedBy, DbType.Int32);
                     parameters.Add("@ReceivedPrice", receive.ReceivedPrice, DbType.Decimal);
+                    parameters.Add("@Remarks", receive.Remarks, DbType.String);
+
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoReceive]", parameters, commandType: CommandType.StoredProcedure);
 
