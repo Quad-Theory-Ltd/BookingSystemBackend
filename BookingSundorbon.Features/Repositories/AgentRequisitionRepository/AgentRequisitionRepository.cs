@@ -34,6 +34,9 @@ namespace BookingSundorbon.Features.Repositories.AgentRequisitionRepository
                     parameters.Add("@requisitionDate", agentRequisition.RequisitionDate, DbType.DateTime);
                     parameters.Add("@agentId", agentRequisition.AgentId, DbType.Int32);
                     parameters.Add("@CreatorId", agentRequisition.CreatorId, DbType.String);
+                    parameters.Add("@RequestedQty", agentRequisition.AgentId, DbType.Int32);
+                    parameters.Add("@DimensionId", agentRequisition.AgentId, DbType.Int32);
+                    parameters.Add("@Remarks", agentRequisition.Remarks, DbType.String);
 
 
                     await dbConnection.ExecuteScalarAsync<int>(
@@ -71,6 +74,8 @@ namespace BookingSundorbon.Features.Repositories.AgentRequisitionRepository
             }
         }
 
+        
+
         public async Task<IEnumerable<AgentRequisitionView>> GetAllAgentRequisitionAsync()
         {
             try
@@ -89,6 +94,22 @@ namespace BookingSundorbon.Features.Repositories.AgentRequisitionRepository
             }
         }
 
+        public async Task<IEnumerable<AgentRequisitionView>> GetAllAgentRequisitionWithAgentInfoAsync()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var agenteRequisition = await dbConnection.QueryAsync<AgentRequisitionView>(
+                        "[dbo].[SP_GetAllAgentRequisitionWithAgentInfo]", commandType: CommandType.StoredProcedure);
 
+                    return agenteRequisition;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

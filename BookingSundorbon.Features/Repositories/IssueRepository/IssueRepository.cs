@@ -33,6 +33,10 @@ namespace BookingSundorbon.Features.Repositories.IssueRepository
                     parameters.Add ("@AgentRequisitionNo" , issue.AgentRequisitionNo, DbType.Int32);
                     parameters.Add("@CreatorId", issue.CreatorId, DbType.String);
 
+                    parameters.Add("@IssuedBy", issue.IssuedBy, DbType.Int32);
+                    parameters.Add("@IssuedPrice", issue.IssuedPrice, DbType.Decimal);
+                   
+
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoIssue]", parameters, commandType: CommandType.StoredProcedure);
 

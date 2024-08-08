@@ -11,9 +11,14 @@ namespace BookingSundorbon.Views.DTOs.AgentRequisitionView
         public int RequisitionNo { get; set; }
         public DateTime RequisitionDate { get; set; }
         public int AgentId { get; set; }
+        public string AgentName { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }
         public string ModifierId { get; set; }
         public DateTime ModificationDate { get; set; }
+        public int RequestedQty { get; set; }
+        public int DimensionId { get; set; }
+        public string Remarks { get; set; }
+
     }
 }
