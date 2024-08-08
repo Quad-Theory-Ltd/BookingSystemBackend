@@ -50,6 +50,7 @@ using BookingSundorbon.Features.Repositories.ItemCategoryRepository;
 using BookingSundorbon.Features.Repositories.ScanningPersonRepository;
 using BookingSundorbon.Features.Repositories.BarcodeStatusRepository;
 using BookingSundorbon.Features.Repositories.BarcodeStatusDetailRepository;
+using BookingSundorbon.Features.Repositories.AgentRequisitionRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -61,6 +62,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IAgentBookingRepository, AgentBookingRepository>();
             services.AddScoped<IAdditionalCostRepository, AdditionalCostRepository>();
             services.AddScoped<IAgentRepository, AgentRepository>();
+            services.AddScoped<IAgentRequisitionRepository, AgentRequisitionRepository>();
             #endregion
 
             #region "B"
