@@ -1,4 +1,5 @@
-﻿using BookingSundorbon.Features.Repositories.IssueRepository;
+﻿using BookingSundorbon.Features.Repositories.AgentRequisitionRepository;
+using BookingSundorbon.Features.Repositories.IssueRepository;
 using BookingSundorbon.Features.Repositories.IssueRepository;
 using BookingSundorbon.Views.DTOs.IssueView;
 using Microsoft.AspNetCore.Http;
@@ -58,6 +59,17 @@ namespace BookingSundorbonBackend.Controllers.Issue
             if (issueNo == null)
             {
                 return NotFound("Issue No not found.");
+            }
+            return Ok(issueNo);
+        }
+
+        [HttpGet("GetNextIssueNo")]
+        public async Task<IActionResult> GetNextIssueNo()
+        {
+            var issueNo = await _issueRepository.GetNextIssueNoAsync();
+            if (issueNo == 0)
+            {
+                return NotFound("Issue No Not found.");
             }
             return Ok(issueNo);
         }
