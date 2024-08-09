@@ -130,5 +130,28 @@ namespace BookingSundorbon.Features.Repositories.AgentRequisitionRepository
                 throw;
             }
         }
+
+     
+
+        public async Task<int> GetNextRequisitionNoAsync()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var requisitionNumber = await dbConnection.ExecuteScalarAsync<int>(
+                        "[dbo].[SP_GetLastAgentRequisitionNo]", commandType: CommandType.StoredProcedure);
+
+                    return requisitionNumber + 1 ;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }
+
+
+

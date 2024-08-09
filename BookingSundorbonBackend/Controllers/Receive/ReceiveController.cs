@@ -1,4 +1,5 @@
 ﻿using BookingSundorbon.Features.Repositories.AgentRequisitionRepository;
+using BookingSundorbon.Features.Repositories.IssueRepository;
 using BookingSundorbon.Features.Repositories.ReceiveRepository;
 using BookingSundorbon.Views.DTOs.ReceiveView;
 using Microsoft.AspNetCore.Http;
@@ -50,6 +51,16 @@ namespace BookingSundorbonBackend.Controllers.Receive
             return Ok(receive);
         }
 
+        [HttpGet("GetNextReceiveNo")]
+        public async Task<IActionResult> GetNextReceiveNo()
+        {
+            var receiveNo = await _receiveRepository.GetNextReceiveNoAsync();
+            if (receiveNo == 0)
+            {
+                return NotFound("Receive No Not found.");
+            }
+            return Ok(receiveNo);
+        }
 
     }
 }
