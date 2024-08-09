@@ -50,6 +50,17 @@ namespace BookingSundorbonBackend.Controllers.Issue
             return Ok(agent);
         }
 
+        [HttpGet("GetAllIssueNo")]
+
+        public async Task<IActionResult> GetAllIssueNo()
+        {
+            var issueNo = await _issueRepository.GetAllIssueNo();
+            if (issueNo == null)
+            {
+                return NotFound("Issue No not found.");
+            }
+            return Ok(issueNo);
+        }
 
 
 
