@@ -38,6 +38,7 @@ namespace BookingSundorbon.Features.Repositories.IssueRepository
                     parameters.Add("@IssuedPrice", issue.IssuedPrice, DbType.Decimal);
                     parameters.Add("@Remarks", issue.Remarks, DbType.String);
                     parameters.Add("@DimensionId", issue.DimensionId, DbType.Int32);
+                    parameters.Add("@IssuedQty", issue.IssuedQty, DbType.Int32);
                     
 
 
@@ -63,6 +64,24 @@ namespace BookingSundorbon.Features.Repositories.IssueRepository
                         "[dbo].[SP_GetAllIssue]", commandType: CommandType.StoredProcedure);
 
                     return issue;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<int>> GetAllIssueNo()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var issueNo = await dbConnection.QueryAsync<int>(
+                        "[dbo].[SP_GetAllIssueNo]", commandType: CommandType.StoredProcedure);
+
+                    return issueNo;
                 }
             }
             catch (Exception ex)
