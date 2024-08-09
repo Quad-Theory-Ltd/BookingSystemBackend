@@ -20,5 +20,6 @@ namespace BookingSundorbon.Views.DTOs.IssueView
         public decimal IssuedPrice { get; set; }
         public string Remarks { get; set; }
         public int DimensionId { get; set; }
+        public int IssuedQty { get; set; }
     }
 }

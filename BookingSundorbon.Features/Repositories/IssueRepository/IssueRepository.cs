@@ -38,6 +38,7 @@ namespace BookingSundorbon.Features.Repositories.IssueRepository
                     parameters.Add("@IssuedPrice", issue.IssuedPrice, DbType.Decimal);
                     parameters.Add("@Remarks", issue.Remarks, DbType.String);
                     parameters.Add("@DimensionId", issue.DimensionId, DbType.Int32);
+                    parameters.Add("@IssuedQty", issue.IssuedQty, DbType.Int32);
                     
 
 
