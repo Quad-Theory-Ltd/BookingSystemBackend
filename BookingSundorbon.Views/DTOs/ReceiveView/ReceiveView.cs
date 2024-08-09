@@ -18,5 +18,7 @@ namespace BookingSundorbon.Views.DTOs.ReceiveView
         public int ReceivedBy { get; set; }
         public Decimal ReceivedPrice { get; set; }
         public string Remarks { get; set; }
+        public int ReceivedQty { get; set; }
+        public int DimensionId { get; set; }
     }
 }
