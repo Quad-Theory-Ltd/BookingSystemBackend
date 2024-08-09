@@ -19,6 +19,7 @@ namespace BookingSundorbon.Views.DTOs.AgentRequisitionView
         public int RequestedQty { get; set; }
         public int DimensionId { get; set; }
         public string Remarks { get; set; }
+        public string BoxName { get; set; }
 
     }
 }
