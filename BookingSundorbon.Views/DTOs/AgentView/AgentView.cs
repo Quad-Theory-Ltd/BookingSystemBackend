@@ -19,8 +19,8 @@ namespace BookingSundorbon.Views.DTOs.AgentView
         public string BIN { get; set; }
         public string BankAccountInfo { get; set; }
 
-        public decimal? ComissionPercentage { get; set; }
-        public decimal? FixedCommisionAmount { get; set; }
+        public decimal ComissionPercentage { get; set; }
+        public decimal FixedCommisionAmount { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }
