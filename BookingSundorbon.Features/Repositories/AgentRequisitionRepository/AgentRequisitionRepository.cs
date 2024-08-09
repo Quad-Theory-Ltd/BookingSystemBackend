@@ -95,6 +95,24 @@ namespace BookingSundorbon.Features.Repositories.AgentRequisitionRepository
             }
         }
 
+        public async Task<IEnumerable<int>> GetAllAgentRequisitionNo()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var agenteRequisition = await dbConnection.QueryAsync<int>(
+                        "[dbo].[SP_GetAllAgentRequisitionNo]", commandType: CommandType.StoredProcedure);
+
+                    return agenteRequisition;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public async Task<IEnumerable<AgentRequisitionView>> GetAllAgentRequisitionWithAgentInfoAsync()
         {
             try
