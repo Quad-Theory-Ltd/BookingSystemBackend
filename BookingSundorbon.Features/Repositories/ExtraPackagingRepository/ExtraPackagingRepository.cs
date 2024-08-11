@@ -31,6 +31,7 @@ namespace BookingSundorbon.Features.Repositories.ExtraPackagingRepository
                     parameters.Add("@Cost", extraPackaging.Cost, DbType.Decimal);
                     parameters.Add("@IsActive", extraPackaging.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", extraPackaging.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", extraPackaging.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoExtraPackaging]", parameters, commandType: CommandType.StoredProcedure);
@@ -95,6 +96,7 @@ namespace BookingSundorbon.Features.Repositories.ExtraPackagingRepository
                     parameters.Add("@Cost", extraPackaging.Cost, DbType.Decimal);
                     parameters.Add("@IsActive", extraPackaging.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", extraPackaging.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", extraPackaging.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateExtraPackaging]", parameters, commandType: CommandType.StoredProcedure);

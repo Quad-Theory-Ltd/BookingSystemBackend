@@ -29,6 +29,7 @@ namespace BookingSundorbon.Features.Repositories.MeasurementUnitRepository
                     parameters.Add("@UnitDescription", measurementUnit.UnitDescription, DbType.String);
                     parameters.Add("@IsActive", measurementUnit.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", measurementUnit.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", measurementUnit.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoMeasurementUnit]", parameters, commandType: CommandType.StoredProcedure);
@@ -110,7 +111,7 @@ namespace BookingSundorbon.Features.Repositories.MeasurementUnitRepository
                     parameters.Add("@UnitDescription", measurementUnit.UnitDescription, DbType.String);
                     parameters.Add("@IsActive", measurementUnit.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", measurementUnit.ModifierId, DbType.String);
-
+                    parameters.Add("@BranchId", measurementUnit.BranchId, DbType.Int32);
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateMeasurementUnit]", parameters, commandType: CommandType.StoredProcedure);
                 }

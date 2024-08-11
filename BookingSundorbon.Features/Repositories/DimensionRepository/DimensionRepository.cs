@@ -37,6 +37,7 @@ namespace BookingSundorbon.Features.Repositories.DimensionRepository
                     parameters.Add("@Price", dimension.Price, DbType.Decimal);
                     parameters.Add("@IsActive", dimension.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", dimension.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", dimension.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoDimension]", parameters, commandType: CommandType.StoredProcedure);
@@ -106,6 +107,7 @@ namespace BookingSundorbon.Features.Repositories.DimensionRepository
                     parameters.Add("@Price", dimension.Price, DbType.Decimal);
                     parameters.Add("@IsActive", dimension.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", dimension.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", dimension.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateDimension]", parameters, commandType: CommandType.StoredProcedure);

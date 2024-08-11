@@ -34,6 +34,7 @@ namespace BookingSundorbon.Features.Repositories.DiscountedOfferRepository
                     parameters.Add("@DiscontDescription", discountedOffer.DiscontDescription, DbType.String);
                     parameters.Add("@IsActive", discountedOffer.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", discountedOffer.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", discountedOffer.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoDiscountedOffer]", parameters, commandType: CommandType.StoredProcedure);
@@ -101,6 +102,7 @@ namespace BookingSundorbon.Features.Repositories.DiscountedOfferRepository
                     parameters.Add("@DiscontDescription", discountedOffer.DiscontDescription, DbType.String);
                     parameters.Add("@IsActive", discountedOffer.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", discountedOffer.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", discountedOffer.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateDiscountedOffer]", parameters, commandType: CommandType.StoredProcedure);

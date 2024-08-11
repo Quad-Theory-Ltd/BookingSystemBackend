@@ -31,6 +31,7 @@ namespace BookingSundorbon.Features.Repositories.DeviceRepository
                     parameters.Add("@IPAddress", device.IPAddress, DbType.String);
                     parameters.Add("@IsActive", device.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", device.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", device.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoDevice]", parameters, commandType: CommandType.StoredProcedure);
@@ -95,6 +96,7 @@ namespace BookingSundorbon.Features.Repositories.DeviceRepository
                     parameters.Add("@IPAddress", device.IPAddress, DbType.String);
                     parameters.Add("@IsActive", device.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", device.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", device.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateDevice]", parameters, commandType: CommandType.StoredProcedure);

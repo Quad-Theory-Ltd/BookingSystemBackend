@@ -30,6 +30,7 @@ namespace BookingSundorbon.Features.Repositories.PickupRepository
                     parameters.Add("@Cost", pickup.Cost, DbType.Decimal);
                     parameters.Add("@IsActive", pickup.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", pickup.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", pickup.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoPickup]", parameters, commandType: CommandType.StoredProcedure);
@@ -113,6 +114,7 @@ namespace BookingSundorbon.Features.Repositories.PickupRepository
                     parameters.Add("@Cost", pickup.Cost, DbType.String);
                     parameters.Add("@IsActive", pickup.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", pickup.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", pickup.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdatePickup]", parameters, commandType: CommandType.StoredProcedure);

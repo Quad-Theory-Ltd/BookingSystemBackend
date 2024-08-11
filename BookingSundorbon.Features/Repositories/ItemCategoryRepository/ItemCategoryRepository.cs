@@ -31,6 +31,7 @@ namespace BookingSundorbon.Features.Repositories.ItemCategoryRepository
                     parameters.Add("@Name", itemCategory.Name, DbType.String);
                     parameters.Add("@IsActive", itemCategory.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", itemCategory.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", itemCategory.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoItemCategory]", parameters, commandType: CommandType.StoredProcedure);
@@ -95,6 +96,7 @@ namespace BookingSundorbon.Features.Repositories.ItemCategoryRepository
                     parameters.Add("@Name", itemCategory.Name, DbType.String);
                     parameters.Add("@IsActive", itemCategory.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", itemCategory.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", itemCategory.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateItemCategory]", parameters, commandType: CommandType.StoredProcedure);

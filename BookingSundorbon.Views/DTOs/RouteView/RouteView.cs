@@ -15,6 +15,8 @@ namespace BookingSundorbon.Views.DTOs.RouteView
         public string StartingArea { get; set; }
         public string EndingArea { get; set; }
         public decimal RouteCost { get; set; }
+        public int BranchId { get; set; }
+        public string BranchName { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }

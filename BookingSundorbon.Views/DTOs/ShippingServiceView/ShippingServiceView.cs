@@ -16,6 +16,8 @@ namespace BookingSundorbon.Views.DTOs.ShippingServiceView
         public int Days { get; set; }
         public decimal ShippingServiceAmount { get; set; }
         public decimal ShippingServiceAmountPercentage { get; set; }
+        public int BranchId { get; set; }
+        public string BranchName { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }

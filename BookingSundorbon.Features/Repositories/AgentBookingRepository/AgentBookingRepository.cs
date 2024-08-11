@@ -28,7 +28,7 @@ namespace BookingSundorbon.Features.Repositories.AgentBookingRepository
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@AgentId", id, DbType.String);
+                    parameters.Add("@AgentUserId", id, DbType.String);
 
                     var result = await dbConnection.QueryAsync<AgentBookingCountByDimensionView>(
                         "[dbo].[SP_GetAgentBookingCountsByDimension]", parameters, commandType: CommandType.StoredProcedure);

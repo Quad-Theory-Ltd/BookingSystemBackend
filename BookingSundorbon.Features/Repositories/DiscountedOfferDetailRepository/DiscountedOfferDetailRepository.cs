@@ -56,7 +56,7 @@ namespace BookingSundorbon.Features.Repositories.DiscountedOfferDetailRepository
                     parameters.Add("@Id", id, DbType.Int32);
 
                     var discountedOfferDetail = await dbConnection.QueryFirstOrDefaultAsync<DiscountedOfferDetailView>(
-                        "[dbo].[SP_GetDiscountedOfferDetailById]", parameters, commandType: CommandType.StoredProcedure);
+                        "[dbo].[SP_GetDiscountedOfferDetailById_2]", parameters, commandType: CommandType.StoredProcedure);
 
                     return discountedOfferDetail;
                 }

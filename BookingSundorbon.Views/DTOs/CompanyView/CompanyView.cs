@@ -14,6 +14,8 @@ namespace BookingSundorbon.Views.DTOs.CompanyView
         public string BIN { get; set; }
         public string TIN { get; set; }
         public string VATRegNo { get; set; }
+        public int BranchId { get; set; }
+        public string BranchName { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }

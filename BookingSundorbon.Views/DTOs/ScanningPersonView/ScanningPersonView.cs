@@ -14,6 +14,8 @@ namespace BookingSundorbon.Views.DTOs.ScanningPersonView
         public string ScanningPointName { get; set; }
         public bool IsActive { get; set; }
         public int DeviceId { get; set; }
+        public int BranchId { get; set; }
+        public string BranchName { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }
         public string ModifierId { get; set; }
