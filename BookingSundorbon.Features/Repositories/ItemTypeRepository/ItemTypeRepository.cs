@@ -50,10 +50,11 @@ namespace BookingSundorbon.Features.Repositories.ItemTypeRepository
                     DynamicParameters parameters = new();
                     parameters.Add("@Id", itemType.Id, DbType.Int32);
                     parameters.Add("@CompanyId", itemType.CompanyId, DbType.Int32);
-                    parameters.Add("@Cost", itemType.Cost, DbType.Int32);
+                    parameters.Add("@Cost", itemType.Cost, DbType.Decimal);
                     parameters.Add("@Name", itemType.Name, DbType.String);
                     parameters.Add("@IsActive", itemType.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", itemType.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", itemType.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoItemType]", parameters, commandType: CommandType.StoredProcedure);
@@ -100,10 +101,11 @@ namespace BookingSundorbon.Features.Repositories.ItemTypeRepository
                     DynamicParameters parameters = new();
                     parameters.Add("@Id", itemType.Id, DbType.Int32);
                     parameters.Add("@CompanyId", itemType.CompanyId, DbType.Int32);
-                    parameters.Add("@Cost", itemType.CompanyId, DbType.Int32);
+                    parameters.Add("@Cost", itemType.CompanyId, DbType.Decimal);
                     parameters.Add("@Name", itemType.Name, DbType.String);
                     parameters.Add("@IsActive", itemType.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", itemType.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", itemType.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateItemType]", parameters, commandType: CommandType.StoredProcedure);

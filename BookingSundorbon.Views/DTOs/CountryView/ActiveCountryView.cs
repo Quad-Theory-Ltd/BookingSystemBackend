@@ -11,6 +11,8 @@ namespace BookingSundorbon.Views.DTOs.CountryView
         public int Id { get; set; }
         public int CompanyId { get; set; }
         public string Name { get; set; }
+        public int BranchId { get; set; }
+        public string BranchName { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }

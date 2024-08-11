@@ -37,6 +37,7 @@ namespace BookingSundorbon.Features.Repositories.CargoTypeRepository
                     parameters.Add("@CargoCost", cargoType.CargoCost, DbType.Decimal);
                     parameters.Add("@IsActive", cargoType.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", cargoType.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", cargoType.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoCargoType]", parameters, commandType: CommandType.StoredProcedure);
@@ -103,6 +104,7 @@ namespace BookingSundorbon.Features.Repositories.CargoTypeRepository
                     parameters.Add("@CargoCost", cargoType.CargoCost, DbType.Decimal);
                     parameters.Add("@IsActive", cargoType.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", cargoType.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", cargoType.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateCargoType]", parameters, commandType: CommandType.StoredProcedure);

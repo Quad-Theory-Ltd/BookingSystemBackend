@@ -12,6 +12,8 @@ namespace BookingSundorbon.Views.DTOs.VATConfigurationView
         public string ConfigurationDescription { get; set; }
         public decimal ConfigurationPercentage { get; set; }
         public decimal ConfigurationAmount { get; set; }
+        public int BranchId { get; set; }
+        public string BranchName { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }

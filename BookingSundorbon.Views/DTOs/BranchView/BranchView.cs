@@ -13,6 +13,8 @@ namespace BookingSundorbon.Views.DTOs.BranchView
         public string BranchName { get; set; }
         public string AddressLine { get; set; }
         public bool IsActive { get; set; }
+        public decimal BranchDiscountPercentage { get; set; }
+        public decimal BranchDiscountAmount { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }
         public string ModifierId { get; set; }

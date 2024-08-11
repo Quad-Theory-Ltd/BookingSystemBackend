@@ -36,6 +36,7 @@ namespace BookingSundorbon.Features.Repositories.ShippingServiceRepository
                     parameters.Add("@ShippingServiceAmountPercentage", shippingService.ShippingServiceAmountPercentage, DbType.Decimal);
                     parameters.Add("@IsActive", shippingService.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", shippingService.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", shippingService.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoShippingService]", parameters, commandType: CommandType.StoredProcedure);
@@ -126,6 +127,7 @@ namespace BookingSundorbon.Features.Repositories.ShippingServiceRepository
                     parameters.Add("@ShippingServiceAmountPercentage", shippingService.ShippingServiceAmountPercentage, DbType.Decimal);
                     parameters.Add("@IsActive", shippingService.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", shippingService.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", shippingService.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateShippingService]", parameters, commandType: CommandType.StoredProcedure);

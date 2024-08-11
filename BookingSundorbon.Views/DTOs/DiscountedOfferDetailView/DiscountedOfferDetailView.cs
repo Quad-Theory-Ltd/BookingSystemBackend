@@ -14,5 +14,6 @@ namespace BookingSundorbon.Views.DTOs.DiscountedOfferDetailView
         public decimal DiscountedPercentage { get; set; }
         public decimal DiscountedAmount { get; set; }
         public int BranchId { get; set; }
+        public string BranchName { get; set; }
     }
 }

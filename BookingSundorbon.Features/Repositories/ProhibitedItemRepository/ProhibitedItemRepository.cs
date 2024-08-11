@@ -32,6 +32,7 @@ namespace BookingSundorbon.Features.Repositories.ProhibitedItemRepository
                     parameters.Add("@ItemName", prohibitedItem.ItemName, DbType.String);
                     parameters.Add("@IsActive", prohibitedItem.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", prohibitedItem.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", prohibitedItem.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoProhibitedItem]", parameters, commandType: CommandType.StoredProcedure);
@@ -114,7 +115,7 @@ namespace BookingSundorbon.Features.Repositories.ProhibitedItemRepository
                     parameters.Add("@ItemName", prohibiteditem.ItemName, DbType.String);
                     parameters.Add("@IsActive", prohibiteditem.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", prohibiteditem.ModifierId, DbType.String);
-
+                     parameters.Add("@BranchId", prohibiteditem.BranchId, DbType.Int32);
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateProhibitedItem]", parameters, commandType: CommandType.StoredProcedure);
                 }

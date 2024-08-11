@@ -33,6 +33,7 @@ namespace BookingSundorbon.Features.Repositories.ScanningPersonRepository
                     parameters.Add("@IsActive", scanningPerson.IsActive, DbType.Boolean);
                     parameters.Add("@DeviceId", scanningPerson.DeviceId, DbType.Int32);
                     parameters.Add("@CreatorId", scanningPerson.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", scanningPerson.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoScanningPerson]", parameters, commandType: CommandType.StoredProcedure);
@@ -99,6 +100,7 @@ namespace BookingSundorbon.Features.Repositories.ScanningPersonRepository
                     parameters.Add("@IsActive", scanningPerson.IsActive, DbType.Boolean);
                     parameters.Add("@DeviceId", scanningPerson.DeviceId, DbType.Int32);
                     parameters.Add("@ModifierId", scanningPerson.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", scanningPerson.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateScanningPerson]", parameters, commandType: CommandType.StoredProcedure);
