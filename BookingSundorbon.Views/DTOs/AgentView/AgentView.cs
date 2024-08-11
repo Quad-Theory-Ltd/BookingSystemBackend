@@ -8,7 +8,7 @@ namespace BookingSundorbon.Views.DTOs.AgentView
 {
     public class AgentView
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public int CompanyId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
@@ -19,6 +19,9 @@ namespace BookingSundorbon.Views.DTOs.AgentView
         public string BankAccountInfo { get; set; }
         public decimal ComissionPercentage { get; set; }
         public decimal FixedCommisionAmount { get; set; }
+        public int BranchId { get; set; }
+        public string  BranchName { get; set; }
+        public int UserId { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }

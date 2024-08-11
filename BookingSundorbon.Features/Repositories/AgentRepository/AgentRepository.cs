@@ -29,7 +29,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@Id", agent.Id, DbType.String);
+    
                     parameters.Add("@CompanyId", agent.CompanyId, DbType.Int32);
                     parameters.Add("@Name", agent.Name, DbType.String);
                     parameters.Add("@Address", agent.Address, DbType.String);
@@ -42,8 +42,10 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                     parameters.Add("@FixedCommisionAmount", agent.FixedCommisionAmount, DbType.Decimal);
                     parameters.Add("@IsActive", agent.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", agent.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", agent.BranchId, DbType.Int32);
+                    parameters.Add("@userId", agent.UserId, DbType.Int32);
 
-   
+
                     await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoAgent]", parameters, commandType: CommandType.StoredProcedure);
 
@@ -56,7 +58,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
             }
         }
 
-        public async Task<AgentView> GetAgentAsync(string id)
+        public async Task<AgentView> GetAgentAsync(int id)
         {
             try
             {
@@ -115,6 +117,8 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                     parameters.Add("@FixedCommisionAmount", agent.FixedCommisionAmount, DbType.Decimal);
                     parameters.Add("@IsActive", agent.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", agent.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", agent.BranchId, DbType.Int32);
+                    parameters.Add("@UserId", agent.UserId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateAgent]", parameters, commandType: CommandType.StoredProcedure);
@@ -126,7 +130,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
             }
         }
 
-        public async Task DeleteAgentAsync(string id)
+        public async Task DeleteAgentAsync(int id)
         {
             try
             {

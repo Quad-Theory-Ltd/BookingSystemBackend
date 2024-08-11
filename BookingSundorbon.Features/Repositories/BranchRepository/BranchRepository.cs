@@ -32,6 +32,9 @@ namespace BookingSundorbon.Features.Repositories.BranchRepository
                     parameters.Add("@CompanyId", branch.CompanyId, DbType.Int32);
                     parameters.Add("@IsActive", branch.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", branch.CreatorId, DbType.String);
+                    parameters.Add("@BranchDiscountPercentage", branch.BranchDiscountPercentage, DbType.Decimal);
+                    parameters.Add("@BranchDiscountAmount", branch.BranchDiscountAmount, DbType.Decimal);
+                    
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoBranch]", parameters, commandType: CommandType.StoredProcedure);
@@ -97,6 +100,9 @@ namespace BookingSundorbon.Features.Repositories.BranchRepository
                     parameters.Add("@CompanyId", branch.CompanyId, DbType.Int32);
                     parameters.Add("@IsActive", branch.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", branch.ModifierId, DbType.String);
+                    parameters.Add("@BranchDiscountPercentage", branch.BranchDiscountPercentage, DbType.Decimal);
+                    parameters.Add("@BranchDiscountAmount", branch.BranchDiscountAmount, DbType.Decimal);
+
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateBranch]", parameters, commandType: CommandType.StoredProcedure);
