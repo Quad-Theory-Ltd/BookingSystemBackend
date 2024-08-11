@@ -150,5 +150,15 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                 throw;
             }
         }
+
+        public Task<AgentView> GetAgentAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAgentAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
