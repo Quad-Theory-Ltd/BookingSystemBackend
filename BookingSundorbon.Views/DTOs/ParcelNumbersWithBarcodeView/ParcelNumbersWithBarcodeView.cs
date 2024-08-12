@@ -10,5 +10,7 @@ namespace BookingSundorbon.Views.DTOs.ParcelNumbersWithBarcodeView
     {
         public int PercelNumber { get; set; }
         public string Barcode { get; set; }
+
+        public string RouteName { get; set; }
     }
 }
