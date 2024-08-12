@@ -101,7 +101,7 @@ namespace BookingSundorbon.Features.Repositories.ItemTypeRepository
                     DynamicParameters parameters = new();
                     parameters.Add("@Id", itemType.Id, DbType.Int32);
                     parameters.Add("@CompanyId", itemType.CompanyId, DbType.Int32);
-                    parameters.Add("@Cost", itemType.CompanyId, DbType.Decimal);
+                    parameters.Add("@Cost", itemType.Cost, DbType.Decimal);
                     parameters.Add("@Name", itemType.Name, DbType.String);
                     parameters.Add("@IsActive", itemType.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", itemType.ModifierId, DbType.String);
