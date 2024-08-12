@@ -30,9 +30,13 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
-                    string barcode = Guid.NewGuid().ToString();
+                    //string barcode = Guid.NewGuid().ToString();
+
+                    string barcode = Guid.NewGuid().ToString("N").Substring(0, 8) + Guid.NewGuid().ToString("N").Substring(24, 8);
+
                     string userId=null;
                     string password=null;
+                
 
 
                     DynamicParameters parameters = new();
@@ -160,7 +164,9 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     result.Barcode = barcode;
                     result.UserId = userId;
                     result.Password = password;
-               
+                    result.RouteId = createParcelBookingView.RoutingTypeId;
+
+
 
                     return result;
                 }
