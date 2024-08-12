@@ -65,7 +65,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@Id", id, DbType.String);
+                    parameters.Add("@Id", id, DbType.Int32);
 
                     var agent = await dbConnection.QueryFirstOrDefaultAsync<AgentView>(
                         "[dbo].[SP_GetAgentDetailsById]", parameters, commandType: CommandType.StoredProcedure);
