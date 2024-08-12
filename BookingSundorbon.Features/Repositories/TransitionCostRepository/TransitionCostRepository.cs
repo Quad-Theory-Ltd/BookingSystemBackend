@@ -164,7 +164,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     result.Barcode = barcode;
                     result.UserId = userId;
                     result.Password = password;
-                    result.RouteId = createParcelBookingView.RoutingTypeId;
+                    //result.RouteId = createParcelBookingView.RoutingTypeId;
 
 
 
