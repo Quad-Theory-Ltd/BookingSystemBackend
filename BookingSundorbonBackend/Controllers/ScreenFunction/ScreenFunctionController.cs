@@ -32,7 +32,7 @@ namespace BookingSundorbonBackend.Controllers.Screen
             }
 
             await _screenFunctionRepository.CreateScreenFunctionAsync(screenFunction);
-            return NoContent();
+            return Created("", "Created");
         }
 
 
