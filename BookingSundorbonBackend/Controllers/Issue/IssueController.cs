@@ -30,7 +30,7 @@ namespace BookingSundorbonBackend.Controllers.Issue
             var issueId = await _issueRepository.CreateIssueAsync(issue);
 
             //return CreatedAtAction(nameof(GetIssue), new { id = issueId }, issueId);
-            return Ok("Issue Created");
+            return Created("","Issue Created");
         }
 
         [HttpGet("GetAllIssue")]

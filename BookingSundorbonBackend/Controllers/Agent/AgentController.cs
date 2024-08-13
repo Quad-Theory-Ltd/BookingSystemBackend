@@ -34,7 +34,7 @@ namespace BookingSundorbonBackend.Controllers.Agent
             }
             await _agentRepository.CreateAgentAsync(agent);
 
-            return NoContent();
+            return Created("", "Created");
 
            // return CreatedAtAction(nameof(GetAgent), new { id = agentId }, agentId);
         }

@@ -26,7 +26,7 @@ namespace BookingSundorbonBackend.Controllers.Role
             }
             await _roleRepository.CreateRoleAsynce(role);
 
-            return NoContent();
+            return Created("", "Created");
         }
 
         [HttpGet]
