@@ -27,7 +27,7 @@ namespace BookingSundorbon.Features.Repositories.CountryRepository
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@Id", country.Id, DbType.Int32);
+                   
                     parameters.Add("@CompanyId", country.CompanyId, DbType.Int32);
                     parameters.Add("@Name", country.Name, DbType.String);
                     parameters.Add("@IsActive", country.IsActive, DbType.Boolean);
