@@ -48,7 +48,7 @@ namespace BookingSundorbon.Features.Repositories.ItemTypeRepository
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@Id", itemType.Id, DbType.Int32);
+                   
                     parameters.Add("@CompanyId", itemType.CompanyId, DbType.Int32);
                     parameters.Add("@Cost", itemType.Cost, DbType.Decimal);
                     parameters.Add("@Name", itemType.Name, DbType.String);

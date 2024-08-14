@@ -31,7 +31,7 @@ namespace BookingSundorbon.Features.Repositories.CargoTypeRepository
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@Id", cargoType.Id, DbType.Int32);
+             
                     parameters.Add("@CompanyId", cargoType.CompanyId, DbType.Int32);
                     parameters.Add("@CargoTypeName", cargoType.CargoTypeName, DbType.String);
                     parameters.Add("@CargoCost", cargoType.CargoCost, DbType.Decimal);
