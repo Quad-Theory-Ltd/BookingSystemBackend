@@ -48,7 +48,7 @@ namespace BookingSundorbonBackend.Controllers.ProhibitedItem
             return Ok(prohibiteditem);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProhibitedItem(int id, [FromBody] ProhibitedItemView prohibiteditem)
         {
             if (prohibiteditem == null || prohibiteditem.Id != id)
