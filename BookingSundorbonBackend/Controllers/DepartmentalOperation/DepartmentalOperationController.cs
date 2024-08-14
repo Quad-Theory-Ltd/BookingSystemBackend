@@ -17,12 +17,12 @@ namespace BookingSundorbonBackend.Controllers.DepartmentalOperation
             _departmentalOperationRepository = departmentalOperationRepository;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllDepartmentalOperation()
-        {
-            var departmentalOperation = await _departmentalOperationRepository.GetAllDepartmentalOperationAsync();
-            return Ok(departmentalOperation);
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> GetAllDepartmentalOperation()
+        //{
+        //    var departmentalOperation = await _departmentalOperationRepository.GetAllDepartmentalOperationAsync();
+        //    return Ok(departmentalOperation);
+        //}
 
 
         [HttpPost]
