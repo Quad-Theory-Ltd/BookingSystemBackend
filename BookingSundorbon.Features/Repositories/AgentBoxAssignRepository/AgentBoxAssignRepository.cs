@@ -20,6 +20,28 @@ namespace BookingSundorbon.Features.Repositories.AgentBoxAssignRepository
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
+
+        public async Task<AgentBoxAssignView> AgentBoxAssignByDetailsByIdAsync(int id)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", id, DbType.Int32);
+
+                    var agentBox = await dbConnection.QueryFirstOrDefaultAsync<AgentBoxAssignView>(
+                        "[dbo].[SP_AgentBoxAssignDetailsById]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return agentBox;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public async Task<CountAgentBoxAssign> CountAgentBoxAssignByAgentIdAsync(int id)
         {
             try
