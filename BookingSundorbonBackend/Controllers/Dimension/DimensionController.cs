@@ -80,5 +80,16 @@ namespace BookingSundorbonBackend.Controllers.Dimension
             return NoContent();
         }
 
+        [HttpGet("(GetDimensionPriceById/{id})")]
+
+        public async Task<IActionResult> GetDimensionPriceById(int id)
+        {
+            var dimension = await _dimensionRepository.GetDimensionPriceByIdAsync(id);
+            if (dimension == null)
+            {
+                return NotFound("Dimension not found.");
+            }
+            return Ok(dimension);
+        }
     }
 }

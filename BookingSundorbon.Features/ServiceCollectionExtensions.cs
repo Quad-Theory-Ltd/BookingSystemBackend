@@ -54,6 +54,7 @@ using BookingSundorbon.Features.Repositories.AgentRequisitionRepository;
 using BookingSundorbon.Features.Repositories.IssueRepository;
 using BookingSundorbon.Features.Repositories.ReceiveRepository;
 using BookingSundorbon.Features.Repositories.PaymentTypeMethodRepository;
+using BookingSundorbon.Features.Repositories.AgentBoxAssignRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -66,6 +67,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IAdditionalCostRepository, AdditionalCostRepository>();
             services.AddScoped<IAgentRepository, AgentRepository>();
             services.AddScoped<IAgentRequisitionRepository, AgentRequisitionRepository>();
+            services.AddScoped<IAgentBoxAssignRepository, AgentBoxAssignRepository>();
             #endregion
 
             #region "B"

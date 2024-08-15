@@ -137,5 +137,26 @@ namespace BookingSundorbon.Features.Repositories.DimensionRepository
                 throw;
             }
         }
+
+        public async Task<decimal> GetDimensionPriceByIdAsync(int id)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", id, DbType.Int32);
+
+                    var price = await dbConnection.QueryFirstOrDefaultAsync<decimal>(
+                        "[dbo].[SP_GetDimensionPriceById]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return price;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }
