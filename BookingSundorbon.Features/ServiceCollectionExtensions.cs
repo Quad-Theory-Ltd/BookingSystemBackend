@@ -53,6 +53,7 @@ using BookingSundorbon.Features.Repositories.BarcodeStatusDetailRepository;
 using BookingSundorbon.Features.Repositories.AgentRequisitionRepository;
 using BookingSundorbon.Features.Repositories.IssueRepository;
 using BookingSundorbon.Features.Repositories.ReceiveRepository;
+using BookingSundorbon.Features.Repositories.PaymentTypeMethodRepository;
 using BookingSundorbon.Features.Repositories.ParcelNumbersWithBarcodeRepository;
 using BookingSundorbon.Features.Repositories.AgentBoxAssignmentRepository;
 
@@ -121,6 +122,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IProhibitedItemRepository, ProhibitedItemRepository>();
             services.AddScoped<IParcelBookingInformationRepository, ParcelBookingInformationRepository>();
             services.AddScoped<IPickupRepository, PickupRepository>();
+            services.AddScoped<IPaymentTypeMethodRepository, PaymentTypeMethodRepository>();
             services.AddScoped<IParcelNumbersWithBarcodeRepository, ParcelNumbersWithBarcodeRepository>();
             #endregion
 
