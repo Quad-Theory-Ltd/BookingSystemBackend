@@ -9,7 +9,7 @@ namespace BookingSundorbon.Features.Repositories.AgentBoxAssignRepository
 {
     public interface IAgentBoxAssignRepository
     {
-        Task<CountAgentBoxAssign> CountAgentBoxAssignByAgentIdAsync(int id);
+        Task<IEnumerable<AgentBoxAssignDetailsView>> AgentBoxAssignDetailsByAgentIdAsync(int id);
         Task<AgentBoxAssignView> AgentBoxAssignByDetailsByIdAsync(int id);
     }
 }

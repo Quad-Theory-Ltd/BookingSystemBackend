@@ -17,10 +17,10 @@ namespace BookingSundorbonBackend.Controllers.AgentBoxAssign
            _agentBoxAssignRepository = agentBoxAssignRepository;
         }
 
-        [HttpGet("CountAgentBoxAssignByAgentId/{id}")]
-        public async Task<IActionResult> CountAgentBoxAssignByAgentId(int id)
+        [HttpGet("AgentBoxAssignDetailsByAgentId/{id}")]
+        public async Task<IActionResult> AgentBoxAssignDetailsByAgentId(int id)
         {
-            var count = await _agentBoxAssignRepository.CountAgentBoxAssignByAgentIdAsync(id);
+            var count = await _agentBoxAssignRepository.AgentBoxAssignDetailsByAgentIdAsync(id);
             return Ok(count);
         }
 
