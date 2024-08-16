@@ -85,29 +85,31 @@ namespace BookingSundorbon.Features.Repositories.TransportAgentRepository
             }
         }
 
-        //public async Task UpdateTransportAgentAsync(TransportAgentView transportAgent)
-        //{
-        //    try
-        //    {
-        //        using (IDbConnection dbConnection = new SqlConnection(_connectionString))
-        //        {
-        //            DynamicParameters parameters = new();
-        //            parameters.Add("@Id", transportAgent.Id, DbType.Int32);
-        //            parameters.Add("@TransportAgentName", transportAgent.TransportAgentName, DbType.String);
-               
-        //            parameters.Add("@IsActive", transportAgent.IsActive, DbType.Boolean);
-        //            parameters.Add("@ModifierId", transportAgent.ModifierId, DbType.String);
-              
+        public async Task UpdateTransportAgentAsync(TransportAgentView transportAgent)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", transportAgent.Id, DbType.Int32);
+                    parameters.Add("@TransportAgentName", transportAgent.TransportAgentName, DbType.String);
+                    parameters.Add("@TransportAgentAdddress", transportAgent.TransportAgentAdddress, DbType.String);
+                    parameters.Add("@IsActive", transportAgent.IsActive, DbType.Boolean);
+                    parameters.Add("@ModifierId", transportAgent.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", transportAgent.BranchId, DbType.Int32);
+                   
 
-        //            await dbConnection.ExecuteAsync(
-        //                "[dbo].[SP_UpdateTransportAgent]", parameters, commandType: CommandType.StoredProcedure);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw;
-        //    }
-        //}
+
+                    await dbConnection.ExecuteAsync(
+                        "[dbo].[SP_UpdateTransportAgent]", parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         //public async Task DeleteTransportAgentAsync(int id)
         //{

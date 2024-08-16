@@ -50,21 +50,21 @@ namespace BookingSundorbonBackend.Controllers.TransportAgent
         }
 
 
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> UpdateTransportAgent(int id, [FromBody] TransportAgentView transportAgent)
-        //{
-        //    if (transportAgent == null || transportAgent.Id != id)
-        //    {
-        //        return BadRequest(" TransportAgent Id is Invalid!");
-        //    }
-        //    var existingTransportAgent = await _transportAgentRepository.GetTransportAgentAsync(id);
-        //    if (existingTransportAgent == null)
-        //    {
-        //        return BadRequest(" TransportAgent Not Found!");
-        //    }
-        //    await _transportAgentRepository.UpdateTransportAgentAsync(transportAgent);
-        //    return NoContent();
-        //}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateTransportAgent(int id, [FromBody] TransportAgentView transportAgent)
+        {
+            if (transportAgent == null || transportAgent.Id != id)
+            {
+                return BadRequest(" TransportAgent Id is Invalid!");
+            }
+            var existingTransportAgent = await _transportAgentRepository.GetTransportAgentAsync(id);
+            if (existingTransportAgent == null)
+            {
+                return BadRequest(" TransportAgent Not Found!");
+            }
+            await _transportAgentRepository.UpdateTransportAgentAsync(transportAgent);
+            return NoContent();
+        }
 
 
         //[HttpDelete("{id}")]
