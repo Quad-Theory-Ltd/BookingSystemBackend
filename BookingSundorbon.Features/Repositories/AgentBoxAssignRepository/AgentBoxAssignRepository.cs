@@ -42,7 +42,7 @@ namespace BookingSundorbon.Features.Repositories.AgentBoxAssignRepository
             }
         }
 
-        public async Task<CountAgentBoxAssign> CountAgentBoxAssignByAgentIdAsync(int id)
+        public async Task<IEnumerable<AgentBoxAssignDetailsView>> AgentBoxAssignDetailsByAgentIdAsync(int id)
         {
             try
             {
@@ -51,8 +51,8 @@ namespace BookingSundorbon.Features.Repositories.AgentBoxAssignRepository
                     DynamicParameters parameters = new();
                     parameters.Add("@AgentId", id, DbType.Int32);
 
-                    var agentCount = await dbConnection.QueryFirstOrDefaultAsync<CountAgentBoxAssign>(
-                        "[dbo].[SP_CountAgentBoxAssignByAgentIdAsync]", parameters, commandType: CommandType.StoredProcedure);
+                    var agentCount = await dbConnection.QueryAsync<AgentBoxAssignDetailsView>(
+                        "[dbo].[SP_AgentBoxAssignDetailsByAgentId]", parameters, commandType: CommandType.StoredProcedure);
 
                     return agentCount;
                 }

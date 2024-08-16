@@ -80,7 +80,7 @@ namespace BookingSundorbonBackend.Controllers.Dimension
             return NoContent();
         }
 
-        [HttpGet("(GetDimensionPriceById/{id})")]
+        [HttpGet("GetDimensionPriceById/{id}")]
 
         public async Task<IActionResult> GetDimensionPriceById(int id)
         {
