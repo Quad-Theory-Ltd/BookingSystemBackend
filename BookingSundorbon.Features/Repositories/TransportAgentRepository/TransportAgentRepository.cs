@@ -31,6 +31,7 @@ namespace BookingSundorbon.Features.Repositories.TransportAgentRepository
                     parameters.Add("@TransportAgentAdddress", transportAgent.TransportAgentAdddress, DbType.String);
                     parameters.Add("@IsActive", transportAgent.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", transportAgent.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", transportAgent.BranchId, DbType.Int32);
                   
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(

@@ -16,5 +16,7 @@ namespace BookingSundorbon.Views.DTOs.TransportAgentView
         public DateTime CreationDate { get; set; }
         public string ModifierId { get; set; }
         public DateTime ModificationDate { get; set; }
+        public int BranchId { get; set; }
+        public string BranchName { get; set; }
     }
 }
