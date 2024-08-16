@@ -47,7 +47,7 @@ using BookingSundorbon.Features.Repositories.DiscountedOfferDetailRepository;
 using BookingSundorbon.Features.Repositories.ExtraPackagingRepository;
 using BookingSundorbon.Features.Repositories.FunctionRepository;
 using BookingSundorbon.Features.Repositories.ItemCategoryRepository;
-using BookingSundorbon.Features.Repositories.ScanningPersonRepository;
+using BookingSundorbon.Features.Repositories.ScanningPointRepository;
 using BookingSundorbon.Features.Repositories.BarcodeStatusRepository;
 using BookingSundorbon.Features.Repositories.BarcodeStatusDetailRepository;
 using BookingSundorbon.Features.Repositories.AgentRequisitionRepository;
@@ -55,6 +55,9 @@ using BookingSundorbon.Features.Repositories.IssueRepository;
 using BookingSundorbon.Features.Repositories.ReceiveRepository;
 using BookingSundorbon.Features.Repositories.PaymentTypeMethodRepository;
 using BookingSundorbon.Features.Repositories.AgentBoxAssignRepository;
+using BookingSundorbon.Features.Repositories.ParcelStatusRepository;
+using BookingSundorbon.Features.Repositories.TransportAgentRepository;
+using BookingSundorbon.Features.Repositories.TransportAgentCostRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -122,6 +125,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IParcelBookingInformationRepository, ParcelBookingInformationRepository>();
             services.AddScoped<IPickupRepository, PickupRepository>();
             services.AddScoped<IPaymentTypeMethodRepository, PaymentTypeMethodRepository>();
+            services.AddScoped<IParcelStatusRepository, ParcelStatusRepository>();
             #endregion
 
             #region "R"
@@ -136,11 +140,13 @@ namespace BookingSundorbon.Features
             services.AddScoped<IShippingServiceRepository, ShippingServiceRepository>();
             services.AddScoped<IScreenRepository, ScreenRepository>();
             services.AddScoped<IScreenFunctionRepository, ScreenFunctionRepository>();
-            services.AddScoped<IScanningPersonRepository, ScanningPersonRepository>();
+            services.AddScoped<IScanningPointRepository, ScanningPointRepository>();
             
             #endregion
             #region "T"
             services.AddScoped<ITransitionCostRepository, TransitionCostRepository>();
+            services.AddScoped<ITransportAgentRepository, TransportAgentRepository>();
+            services.AddScoped<ITransportAgentCostRepository, TransportAgentCostRepository>();
             #endregion
             #region "U"
             services.AddScoped<IUnitOfWork, UnitOfWork>();
