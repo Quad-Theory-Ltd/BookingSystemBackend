@@ -12,7 +12,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelStatusRepository
         Task<int> CreateParcelStatusAsync(ParcelStatusView parcelStatus);
         Task<ParcelStatusView> GetParcelStatusAsync(int id);
         Task<IEnumerable<ParcelStatusView>> GetAllActiveParcelStatusAsync();
-        //Task UpdateParcelStatusAsync(ParcelStatusView parcelStatus);
+        Task UpdateParcelStatusAsync(ParcelStatusView parcelStatus);
         //Task DeleteParcelStatusAsync(int id);
     }
 }

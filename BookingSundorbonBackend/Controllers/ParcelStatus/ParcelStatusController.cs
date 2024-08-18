@@ -50,21 +50,21 @@ namespace BookingSundorbonBackend.Controllers.ParcelStatus
         }
 
 
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> UpdateParcelStatus(int id, [FromBody] ParcelStatusView parcelStatus)
-        //{
-        //    if (parcelStatus == null || parcelStatus.Id != id)
-        //    {
-        //        return BadRequest(" ParcelStatus Id is Invalid!");
-        //    }
-        //    var existingParcelStatus = await _parcelStatusRepository.GetParcelStatusAsync(id);
-        //    if (existingParcelStatus == null)
-        //    {
-        //        return BadRequest(" ParcelStatus Not Found!");
-        //    }
-        //    await _parcelStatusRepository.UpdateParcelStatusAsync(parcelStatus);
-        //    return NoContent();
-        //}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateParcelStatus(int id, [FromBody] ParcelStatusView parcelStatus)
+        {
+            if (parcelStatus == null || parcelStatus.Id != id)
+            {
+                return BadRequest(" ParcelStatus Id is Invalid!");
+            }
+            var existingParcelStatus = await _parcelStatusRepository.GetParcelStatusAsync(id);
+            if (existingParcelStatus == null)
+            {
+                return BadRequest(" ParcelStatus Not Found!");
+            }
+            await _parcelStatusRepository.UpdateParcelStatusAsync(parcelStatus);
+            return NoContent();
+        }
 
 
         //[HttpDelete("{id}")]
