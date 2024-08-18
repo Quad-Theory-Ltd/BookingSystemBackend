@@ -29,8 +29,8 @@ namespace BookingSundorbonBackend.Controllers.Receive
             }
             var receiveId = await _receiveRepository.CreateReceiveAsync(receive);
 
-            //return CreatedAtAction(nameof(GetReceive), new { id = receiveId }, receiveId);
-            return Created("","Receive Created");
+            return CreatedAtAction(nameof(GetReceiveByReceiveNo), new { receiveNo = receiveId }, receiveId);
+           
         }
 
         [HttpGet("GetAllReceive")]
