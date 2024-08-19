@@ -59,6 +59,7 @@ using BookingSundorbon.Features.Repositories.ParcelStatusRepository;
 using BookingSundorbon.Features.Repositories.TransportAgentRepository;
 using BookingSundorbon.Features.Repositories.TransportAgentCostRepository;
 using BookingSundorbon.Features.Repositories.SenderDetailsRepository;
+using BookingSundorbon.Features.Repositories.BarcodeScanRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -78,6 +79,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IBranchRepository, BranchRepository>();
             services.AddScoped<IBarcodeStatusRepository, BarcodeStatusRepository>();
             services.AddScoped<IBarcodeStatusDetailRepository, BarcodeStatusDetailRepository>();
+            services.AddScoped<IBarcodeScanRepository, BarcodeScanRepository>();
             #endregion
 
             #region "C"
