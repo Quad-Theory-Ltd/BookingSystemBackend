@@ -50,21 +50,21 @@ namespace BookingSundorbonBackend.Controllers.TransportAgentCost
         }
 
 
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> UpdateTransportAgentCost(int id, [FromBody] TransportAgentCostView transportAgentCost)
-        //{
-        //    if (transportAgentCost == null || transportAgentCost.Id != id)
-        //    {
-        //        return BadRequest(" TransportAgentCost Id is Invalid!");
-        //    }
-        //    var existingTransportAgentCost = await _transportAgentCostRepository.GetTransportAgentCostAsync(id);
-        //    if (existingTransportAgentCost == null)
-        //    {
-        //        return BadRequest(" TransportAgentCost Not Found!");
-        //    }
-        //    await _transportAgentCostRepository.UpdateTransportAgentCostAsync(transportAgentCost);
-        //    return NoContent();
-        //}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateTransportAgentCost(int id, [FromBody] TransportAgentCostView transportAgentCost)
+        {
+            if (transportAgentCost == null || transportAgentCost.Id != id)
+            {
+                return BadRequest(" TransportAgentCost Id is Invalid!");
+            }
+            var existingTransportAgentCost = await _transportAgentCostRepository.GetTransportAgentCostAsync(id);
+            if (existingTransportAgentCost == null)
+            {
+                return BadRequest(" TransportAgentCost Not Found!");
+            }
+            await _transportAgentCostRepository.UpdateTransportAgentCostAsync(transportAgentCost);
+            return NoContent();
+        }
 
 
         //[HttpDelete("{id}")]
