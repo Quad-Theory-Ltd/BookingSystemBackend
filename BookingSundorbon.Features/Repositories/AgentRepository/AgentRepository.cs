@@ -43,7 +43,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                     parameters.Add("@IsActive", agent.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", agent.CreatorId, DbType.String);
                     parameters.Add("@BranchId", agent.BranchId, DbType.Int32);
-                    parameters.Add("@userId", agent.UserId, DbType.Int32);
+                    parameters.Add("@UserId", agent.UserId, DbType.Int32);
 
 
                     await dbConnection.ExecuteScalarAsync<int>(
@@ -58,14 +58,14 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
             }
         }
 
-        public async Task<AgentView> GetAgentAsync(int id)
+        public async Task<AgentView> GetAgentAsync(int userId)
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@Id", id, DbType.Int32);
+                    parameters.Add("@UserId", userId, DbType.Int32);
 
                     var agent = await dbConnection.QueryFirstOrDefaultAsync<AgentView>(
                         "[dbo].[SP_GetAgentDetailsById]", parameters, commandType: CommandType.StoredProcedure);
@@ -104,7 +104,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@Id", agent.Id, DbType.String);
+   
                     parameters.Add("@CompanyId", agent.CompanyId, DbType.Int32);
                     parameters.Add("@Name", agent.Name, DbType.String);
                     parameters.Add("@Address", agent.Address, DbType.String);
@@ -130,14 +130,14 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
             }
         }
 
-        public async Task DeleteAgentAsync(int id)
+        public async Task DeleteAgentAsync(int userId)
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@Id", id, DbType.String);
+                    parameters.Add("@UserId", userId, DbType.String);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_DeleteAgent]", parameters, commandType: CommandType.StoredProcedure);
