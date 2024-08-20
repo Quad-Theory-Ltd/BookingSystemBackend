@@ -1,4 +1,5 @@
-﻿using BookingSundorbon.Features.Repositories.SenderDetailsRepository;
+﻿using BookingSundorbon.Features.Repositories.IssueRepository;
+using BookingSundorbon.Features.Repositories.SenderDetailsRepository;
 using BookingSundorbon.Views.DTOs.SenderDetails;
 using BookingSundorbon.Views.DTOs.SenderDetailsView;
 using Microsoft.AspNetCore.Http;
@@ -11,11 +12,11 @@ namespace BookingSundorbonBackend.Controllers.SenderDetails
     public class SenderDetailsController : ControllerBase
     {
 
-        private readonly ISenderDetailsRepository _deviceRepository;
+        private readonly ISenderDetailsRepository _senderDetailsRepository;
 
-        public SenderDetailsController(ISenderDetailsRepository deviceRepository)
+        public SenderDetailsController(ISenderDetailsRepository senderDetailsRepository)
         {
-            _deviceRepository = deviceRepository;
+            _senderDetailsRepository = senderDetailsRepository;
         }
 
         [HttpPost("GetPickupAndDeliveryPoint")]
@@ -27,7 +28,7 @@ namespace BookingSundorbonBackend.Controllers.SenderDetails
 
             foreach(var parcelOrderId in parcelOrderIds)
             {
-                var point = await _deviceRepository.GetPickupAndDeliveryPointAsync(parcelOrderId);
+                var point = await _senderDetailsRepository.GetPickupAndDeliveryPointAsync(parcelOrderId);
                 if (point == null)
                 {
                     return NotFound("Not found.");
@@ -39,6 +40,17 @@ namespace BookingSundorbonBackend.Controllers.SenderDetails
             return Ok(allPoints);
         }
 
+        [HttpGet("GetAllParcelNo")]
+
+        public async Task<IActionResult> GetAllParcelOrderNo()
+        {
+            var parcelNo = await _senderDetailsRepository.GetAllParcelOrderNo();
+            if (parcelNo == null)
+            {
+                return NotFound("Parcel Order  No not found.");
+            }
+            return Ok(parcelNo);
+        }
 
 
     }

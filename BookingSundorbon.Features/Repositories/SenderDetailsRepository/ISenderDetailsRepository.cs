@@ -12,6 +12,6 @@ namespace BookingSundorbon.Features.Repositories.SenderDetailsRepository
     {
  
         Task<PickUpAndDeliveryInfoView> GetPickupAndDeliveryPointAsync(int parcelOrderId);
-
+        Task<IEnumerable<int>> GetAllParcelOrderNo();
     }
 }
