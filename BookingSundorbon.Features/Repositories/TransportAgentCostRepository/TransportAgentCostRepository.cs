@@ -85,24 +85,29 @@ namespace BookingSundorbon.Features.Repositories.TransportAgentCostRepository
             }
         }
 
-        //public async Task UpdateTransportAgentCostAsync(TransportAgentCostView transportAgentCost)
-        //{
-        //    try
-        //    {
-        //        using (IDbConnection dbConnection = new SqlConnection(_connectionString))
-        //        {
-        //            DynamicParameters parameters = new();
-        //            // parameters ......... 
+        public async Task UpdateTransportAgentCostAsync(TransportAgentCostView transportAgentCost)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", transportAgentCost.Id, DbType.Int32);
+                    parameters.Add("@ParcelNo", transportAgentCost.parcelNo, DbType.Int32);
+                    parameters.Add("@PickUpPoint", transportAgentCost.PickUpPoint, DbType.String);
+                    parameters.Add("@DeliveryPoint", transportAgentCost.DeliveryPoint, DbType.String);
+                    parameters.Add("@TransportAgentId", transportAgentCost.TransportAgentId, DbType.Int32);
+                    parameters.Add("@Cost", transportAgentCost.Cost, DbType.Decimal);
 
-        //            await dbConnection.ExecuteAsync(
-        //                "[dbo].[SP_UpdateTransportAgentCost]", parameters, commandType: CommandType.StoredProcedure);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw;
-        //    }
-        //}
+                    await dbConnection.ExecuteAsync(
+                        "[dbo].[SP_UpdateTransportAgentCost]", parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
 
 

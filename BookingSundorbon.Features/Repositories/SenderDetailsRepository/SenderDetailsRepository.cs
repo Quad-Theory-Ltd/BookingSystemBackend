@@ -42,8 +42,26 @@ namespace BookingSundorbon.Features.Repositories.SenderDetailsRepository
             }
         }
 
-      
+        public async Task<IEnumerable<int>> GetAllParcelOrderNo()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var parcelNo = await dbConnection.QueryAsync<int>(
+                        "[dbo].[SP_GetAllParcelNo]", commandType: CommandType.StoredProcedure);
 
-    
+                    return parcelNo;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+
+
     }
 }

@@ -30,6 +30,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelStatusRepository
                     parameters.Add("@ParcelStatusName", parcelStatus.ParcelStatusName, DbType.String);                 
                     parameters.Add("@IsActive", parcelStatus.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", parcelStatus.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", parcelStatus.BranchId, DbType.Int32);
            
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
@@ -52,6 +53,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelStatusRepository
                 {
                     DynamicParameters parameters = new();
                     parameters.Add("@Id", id, DbType.Int32);
+
 
                     var parcelStatus = await dbConnection.QueryFirstOrDefaultAsync<ParcelStatusView>(
                         "[dbo].[SP_GetParcelStatusDetailsById]", parameters, commandType: CommandType.StoredProcedure);
@@ -83,24 +85,29 @@ namespace BookingSundorbon.Features.Repositories.ParcelStatusRepository
             }
         }
 
-        //public async Task UpdateParcelStatusAsync(ParcelStatusView parcelStatus)
-        //{
-        //    try
-        //    {
-        //        using (IDbConnection dbConnection = new SqlConnection(_connectionString))
-        //        {
-        //            DynamicParameters parameters = new();
-                 
+        public async Task UpdateParcelStatusAsync(ParcelStatusView parcelStatus)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", parcelStatus.Id, DbType.Int32);
+                    parameters.Add("@ParcelStatusName", parcelStatus.ParcelStatusName, DbType.String);
+                    parameters.Add("@IsActive", parcelStatus.IsActive, DbType.Boolean);
+                    parameters.Add("@ModifierId", parcelStatus.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", parcelStatus.BranchId, DbType.Int32);
 
-        //            await dbConnection.ExecuteAsync(
-        //                "[dbo].[SP_UpdateParcelStatus]", parameters, commandType: CommandType.StoredProcedure);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw;
-        //    }
-        //}
+
+                    await dbConnection.ExecuteAsync(
+                        "[dbo].[SP_UpdateParcelStatus]", parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
 
 
