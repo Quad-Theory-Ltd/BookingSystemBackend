@@ -40,17 +40,17 @@ namespace BookingSundorbonBackend.Controllers.SenderDetails
             return Ok(allPoints);
         }
 
-        [HttpGet("GetAllParcelNo")]
+        //[HttpGet("GetAllParcelNo")]
 
-        public async Task<IActionResult> GetAllParcelOrderNo()
-        {
-            var parcelNo = await _senderDetailsRepository.GetAllParcelOrderNo();
-            if (parcelNo == null)
-            {
-                return NotFound("Parcel Order  No not found.");
-            }
-            return Ok(parcelNo);
-        }
+        //public async Task<IActionResult> GetAllParcelOrderNo()
+        //{
+        //    var parcelNo = await _senderDetailsRepository.GetAllParcelOrderNo();
+        //    if (parcelNo == null)
+        //    {
+        //        return NotFound("Parcel Order  No not found.");
+        //    }
+        //    return Ok(parcelNo);
+        //}
 
 
     }

@@ -60,6 +60,7 @@ using BookingSundorbon.Features.Repositories.TransportAgentRepository;
 using BookingSundorbon.Features.Repositories.TransportAgentCostRepository;
 using BookingSundorbon.Features.Repositories.SenderDetailsRepository;
 using BookingSundorbon.Features.Repositories.BarcodeScanRepository;
+using BookingSundorbon.Features.Repositories.ParcelRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -129,6 +130,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IPickupRepository, PickupRepository>();
             services.AddScoped<IPaymentTypeMethodRepository, PaymentTypeMethodRepository>();
             services.AddScoped<IParcelStatusRepository, ParcelStatusRepository>();
+            services.AddScoped<IParcelRepository, ParcelRepository>();
             #endregion
 
             #region "R"
