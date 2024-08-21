@@ -36,6 +36,7 @@ namespace BookingSundorbon.Features.Repositories.ScanningPointRepository
                     parameters.Add("@IsActive", scanningPoint.IsActive, DbType.Boolean);                   
                     parameters.Add("@CreatorId", scanningPoint.CreatorId, DbType.String);
                     parameters.Add("@BranchId", scanningPoint.BranchId, DbType.Int32);
+                    parameters.Add("@SubBranchId", scanningPoint.SubBranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoScanningPoint]", parameters, commandType: CommandType.StoredProcedure);
@@ -105,6 +106,7 @@ namespace BookingSundorbon.Features.Repositories.ScanningPointRepository
                     parameters.Add("@IsActive", scanningPoint.IsActive, DbType.Boolean);
                     parameters.Add("@@ModifierId", scanningPoint.CreatorId, DbType.String);
                     parameters.Add("@BranchId", scanningPoint.BranchId, DbType.Int32);
+                    parameters.Add("@SubBranchId", scanningPoint.SubBranchId, DbType.Int32);
 
 
                     await dbConnection.ExecuteAsync(
