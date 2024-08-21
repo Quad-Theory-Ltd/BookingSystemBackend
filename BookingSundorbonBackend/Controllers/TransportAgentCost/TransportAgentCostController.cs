@@ -26,15 +26,22 @@ namespace BookingSundorbonBackend.Controllers.TransportAgentCost
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateTransportAgentCost([FromBody] TransportAgentCostView transportAgentCost)
+        public async Task<IActionResult> CreateTransportAgentCost([FromBody] List<TransportAgentCostView> transportAgentCosts)
         {
-            if (transportAgentCost == null)
+            if (transportAgentCosts == null || !transportAgentCosts.Any())
             {
-                return BadRequest("TransportAgentCost is Null");
+                return BadRequest("TransportAgentCosts is Null or Empty");
             }
-            var transportAgentCostId = await _transportAgentCostRepository.CreateTransportAgentCostAsync(transportAgentCost);
 
-            return CreatedAtAction(nameof(GetTransportAgentCost), new { id = transportAgentCostId }, transportAgentCostId);
+            var createdIds = new List<int>();
+
+            foreach (var transportAgentCost in transportAgentCosts)
+            {
+                var transportAgentCostId = await _transportAgentCostRepository.CreateTransportAgentCostAsync(transportAgentCost);
+                createdIds.Add(transportAgentCostId);
+            }
+
+            return Created("", "Transport Agent Cost Created");
         }
 
         [HttpGet("{id}")]
