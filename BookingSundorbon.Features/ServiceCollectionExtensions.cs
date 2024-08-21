@@ -61,6 +61,8 @@ using BookingSundorbon.Features.Repositories.TransportAgentCostRepository;
 using BookingSundorbon.Features.Repositories.SenderDetailsRepository;
 using BookingSundorbon.Features.Repositories.BarcodeScanRepository;
 using BookingSundorbon.Features.Repositories.ParcelRepository;
+using BookingSundorbon.Features.Repositories.UserRepository;
+using BookingSundorbon.Features.Repositories.SubBranchRepository;
 using BookingSundorbon.Features.Repositories.ParcelNumbersWithBarcodeRepository;
 using BookingSundorbon.Features.Repositories.AgentBoxAssignmentRepository;
 
@@ -151,6 +153,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IScreenFunctionRepository, ScreenFunctionRepository>();
             services.AddScoped<IScanningPointRepository, ScanningPointRepository>();
             services.AddScoped<ISenderDetailsRepository, SenderDetailsRepository>();
+            services.AddScoped<ISubBranchRepository, SubBranchRepository>();
             
             #endregion
             #region "T"
@@ -160,6 +163,7 @@ namespace BookingSundorbon.Features
             #endregion
             #region "U"
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserRepository, UserRepository>();
             #endregion
 
             #region "V"

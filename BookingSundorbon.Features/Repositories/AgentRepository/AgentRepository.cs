@@ -45,6 +45,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                     parameters.Add("@CreatorId", agent.CreatorId, DbType.String);
                     parameters.Add("@BranchId", agent.BranchId, DbType.Int32);
                     parameters.Add("@UserId", agent.UserId, DbType.Int32);
+                    parameters.Add("@SubBranchId", agent.SubBranchId, DbType.Int32);
 
 
                     await dbConnection.ExecuteScalarAsync<int>(
@@ -121,6 +122,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                     parameters.Add("@ModifierId", agent.ModifierId, DbType.String);
                     parameters.Add("@BranchId", agent.BranchId, DbType.Int32);
                     parameters.Add("@UserId", agent.UserId, DbType.Int32);
+                    parameters.Add("@SubBranchId", agent.SubBranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateAgent]", parameters, commandType: CommandType.StoredProcedure);

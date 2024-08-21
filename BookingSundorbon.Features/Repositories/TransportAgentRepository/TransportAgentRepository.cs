@@ -32,6 +32,7 @@ namespace BookingSundorbon.Features.Repositories.TransportAgentRepository
                     parameters.Add("@IsActive", transportAgent.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", transportAgent.CreatorId, DbType.String);
                     parameters.Add("@BranchId", transportAgent.BranchId, DbType.Int32);
+                    parameters.Add("@SubBranchId",transportAgent.SubBranchId, DbType.Int32);
                   
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
@@ -98,7 +99,8 @@ namespace BookingSundorbon.Features.Repositories.TransportAgentRepository
                     parameters.Add("@IsActive", transportAgent.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", transportAgent.ModifierId, DbType.String);
                     parameters.Add("@BranchId", transportAgent.BranchId, DbType.Int32);
-                   
+                    parameters.Add("@SubBranchId", transportAgent.SubBranchId, DbType.Int32);
+
 
 
                     await dbConnection.ExecuteAsync(
