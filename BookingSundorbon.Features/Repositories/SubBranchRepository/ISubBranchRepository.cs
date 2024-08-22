@@ -9,7 +9,7 @@ namespace BookingSundorbon.Features.Repositories.SubBranchRepository
 {
     public interface ISubBranchRepository
     {
-        Task<int> CreateSubBranchAsync(SubBranchView subBranch);
+        Task<int> CreateSubBranchAsync(SubBranchCreateView subBranch);
         Task<SubBranchView> GetSubBranchAsync(int id);
         Task<IEnumerable<SubBranchView>> GetAllActiveSubBranchsAsync();
         Task UpdateSubBranchAsync(SubBranchView subBranch);
