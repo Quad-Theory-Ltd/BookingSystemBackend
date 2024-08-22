@@ -80,5 +80,18 @@ namespace BookingSundorbonBackend.Controllers.ScanningPoint
             return NoContent();
         }
 
+
+        [HttpGet("GetScanningPointByUserId/{userId}")]
+
+        public async Task<IActionResult> GetScanningPointByUserId(int userId)
+        {
+            var scanningPoint = await _scanningPointRepository.GetScanningPointByUserIdAsync(userId);
+            if (scanningPoint == null)
+            {
+                return NotFound("ScanningPoint not found.");
+            }
+            return Ok(scanningPoint);
+        }
+
     }
 }

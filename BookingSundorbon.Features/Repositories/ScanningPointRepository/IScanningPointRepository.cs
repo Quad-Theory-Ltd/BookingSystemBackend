@@ -14,5 +14,7 @@ namespace BookingSundorbon.Features.Repositories.ScanningPointRepository
         Task<IEnumerable<ScanningPointView>> GetAllActiveScanningPointsAsync();
         Task UpdateScanningPointAsync(ScanningPointView scanningPoint);
         Task DeleteScanningPointAsync(int id);
+        Task<ScanningPointView> GetScanningPointByUserIdAsync(int userId);
+
     }
 }
