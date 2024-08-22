@@ -72,7 +72,16 @@ namespace BookingSundorbonBackend.Controllers.TransportAgentCost
             await _transportAgentCostRepository.UpdateTransportAgentCostAsync(transportAgentCost);
             return NoContent();
         }
-
+        [HttpGet("GetCostByTransportAgentId")]
+        public async Task<IActionResult> GetCostByTransportAgentId(int transportAgentId)
+        {
+            var cost = await _transportAgentCostRepository.GetCostByTransportAgentIdAsync(transportAgentId);
+            if (cost == null)
+            {
+                return NotFound("Agent not found.");
+            }
+            return Ok(cost);
+        }
 
         //[HttpDelete("{id}")]
         //public async Task<IActionResult> DeleteTransportAgentCost(int id)
