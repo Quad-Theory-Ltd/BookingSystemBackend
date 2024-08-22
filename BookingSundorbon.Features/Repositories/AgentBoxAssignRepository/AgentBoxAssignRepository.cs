@@ -29,10 +29,10 @@ namespace BookingSundorbon.Features.Repositories.AgentBoxAssignRepository
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-
+                    string boxSerialNo = $"{agentBoxAssign.DimensionId}~{Guid.NewGuid()}";
                     parameters.Add("@AgentId", agentBoxAssign.AgentId, DbType.Int32);
                     parameters.Add("@DimensionId", agentBoxAssign.DimensionId, DbType.Int32);
-                    parameters.Add("@BoxSerialNo", agentBoxAssign.BoxSerialNo, DbType.String);
+                    parameters.Add("@BoxSerialNo", boxSerialNo, DbType.String);
                     parameters.Add("@BoxQty", agentBoxAssign.BoxQty);
                     parameters.Add("@SubBranchId", agentBoxAssign.SubBranchId, DbType.Int32);
                     parameters.Add("@IsActive", agentBoxAssign.IsActive, DbType.Boolean);
