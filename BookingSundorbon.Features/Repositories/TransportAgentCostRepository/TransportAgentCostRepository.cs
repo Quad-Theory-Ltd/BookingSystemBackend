@@ -109,6 +109,27 @@ namespace BookingSundorbon.Features.Repositories.TransportAgentCostRepository
             }
         }
 
+        public async Task<decimal> GetCostByTransportAgentIdAsync(int transportAgentId)
+        {
+               try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@TransportAgentId", transportAgentId, DbType.Int32);
+
+                    var transportAgentCost = await dbConnection.ExecuteScalarAsync<decimal>(
+                        "[dbo].[SP_GetCostByTransportAgentId]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return transportAgentCost;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
 
 
         //public async Task DeleteTransportAgentCostAsync(int id)

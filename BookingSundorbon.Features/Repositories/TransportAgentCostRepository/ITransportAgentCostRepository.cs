@@ -13,6 +13,7 @@ namespace BookingSundorbon.Features.Repositories.TransportAgentCostRepository
         Task<TransportAgentCostView> GetTransportAgentCostAsync(int id);
         Task<IEnumerable<TransportAgentCostView>> GetAllTransportAgentCostsAsync();
         Task UpdateTransportAgentCostAsync(TransportAgentCostView transportAgentCost);
+        Task<decimal> GetCostByTransportAgentIdAsync(int transportAgentId);
         //Task DeleteTransportAgentCostAsync(int id);
     }
 }

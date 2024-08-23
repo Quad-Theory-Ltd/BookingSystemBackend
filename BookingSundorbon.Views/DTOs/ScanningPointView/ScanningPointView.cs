@@ -24,6 +24,7 @@ namespace BookingSundorbon.Views.DTOs.ScanningPointView
         public string BranchName { get; set; }
         public int SubBranchId { get; set; }
         public string SubBranchName { get; set; }
+        public string UserName { get; set; }
 
     }
 }

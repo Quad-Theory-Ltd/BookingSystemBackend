@@ -26,13 +26,18 @@ namespace BookingSundorbonBackend.Controllers.SubBranch
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateSubBranch([FromBody] SubBranchView subBranch)
+        public async Task<IActionResult> CreateSubBranch([FromBody] SubBranchCreateView subBranch)
         {
             if (subBranch == null)
             {
                 return BadRequest("SubBranch is Null");
             }
             var subBranchId = await _subBranchRepository.CreateSubBranchAsync(subBranch);
+
+            if(subBranchId == -1)
+            {
+                return BadRequest("AgentId or Employee Id Required");
+            }
 
             return CreatedAtAction(nameof(GetSubBranch), new { id = subBranchId }, subBranchId);
         }

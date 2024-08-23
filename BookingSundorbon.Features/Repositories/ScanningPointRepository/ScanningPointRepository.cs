@@ -137,5 +137,26 @@ namespace BookingSundorbon.Features.Repositories.ScanningPointRepository
                 throw;
             }
         }
+
+        public async Task<ScanningPointView> GetScanningPointByUserIdAsync(int userId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@UserId", userId, DbType.Int32);
+
+                    var scanningPoint = await dbConnection.QueryFirstOrDefaultAsync<ScanningPointView>(
+                        "[dbo].[SP_GetScanningPointDetailsByUserId]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return scanningPoint;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

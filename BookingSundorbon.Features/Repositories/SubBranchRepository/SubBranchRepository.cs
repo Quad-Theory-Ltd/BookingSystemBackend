@@ -20,29 +20,49 @@ namespace BookingSundorbon.Features.Repositories.SubBranchRepository
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<int> CreateSubBranchAsync(SubBranchView subBranch)
+        public async Task<int> CreateSubBranchAsync(SubBranchCreateView subBranch)
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
+                
                     DynamicParameters parameters = new();
                     parameters.Add("@SubBranchName", subBranch.SubBranchName, DbType.String);
                     parameters.Add("@IsHub", subBranch.IsHub, DbType.Boolean);
-                    parameters.Add("@IsOffice", subBranch.IsOffice, DbType.Boolean);
-                    parameters.Add("@IsAgent", subBranch.IsAgent, DbType.Boolean);
-                    parameters.Add("@AgentId", subBranch.AgentId, DbType.Int32);
-                    parameters.Add("@EmployeId", subBranch.EmployeId, DbType.Int32);
+                    parameters.Add("@IsOffice", subBranch.IsOffice, DbType.Boolean);                   
                     parameters.Add("@CountryId", subBranch.CountryId, DbType.Int32);
-                    parameters.Add("@CityId", subBranch.CityId, DbType.Int32); 
+                    parameters.Add("@CityId", subBranch.CityId, DbType.Int32);
                     parameters.Add("@Address", subBranch.Address, DbType.String);
                     parameters.Add("@IsActive", subBranch.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", subBranch.CreatorId, DbType.String);
-                    
 
+                    int newId = -1; 
 
-                    var newId = await dbConnection.ExecuteScalarAsync<int>(
-                        "[dbo].[SP_InsertIntoSubBranch]", parameters, commandType: CommandType.StoredProcedure);
+                    if (subBranch.AgentId.Count > 0)
+                    {
+                        foreach (var agentId in subBranch.AgentId)
+                        {
+                            parameters.Add("@IsAgent", true , DbType.Boolean);
+                            parameters.Add("@AgentId", agentId, DbType.Int32);
+                            parameters.Add("@EmployeId", 0 , DbType.Int32); 
+                            newId = await dbConnection.ExecuteScalarAsync<int>(
+                                "[dbo].[SP_InsertIntoSubBranch]", parameters, commandType: CommandType.StoredProcedure);
+                            
+                        }
+                    }
+                    else if (subBranch.EmployeId.Count > 0)
+                    {
+                        foreach (var employeeId in subBranch.EmployeId)
+                        {
+                            parameters.Add("@IsAgent", false, DbType.Boolean);
+                            parameters.Add("@EmployeId", employeeId, DbType.Int32);
+                            parameters.Add("@AgentId", 0 , DbType.Int32); 
+                            newId = await dbConnection.ExecuteScalarAsync<int>(
+                                "[dbo].[SP_InsertIntoSubBranch]", parameters, commandType: CommandType.StoredProcedure);
+                         
+                        }
+                    }
 
                     return newId;
                 }
@@ -52,6 +72,7 @@ namespace BookingSundorbon.Features.Repositories.SubBranchRepository
                 throw;
             }
         }
+
 
         public async Task<SubBranchView> GetSubBranchAsync(int id)
         {
