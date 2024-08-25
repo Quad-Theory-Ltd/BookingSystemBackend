@@ -72,7 +72,7 @@ namespace BookingSundorbonBackend.Controllers.TransportAgentCost
             await _transportAgentCostRepository.UpdateTransportAgentCostAsync(transportAgentCost);
             return NoContent();
         }
-        [HttpGet("GetCostByTransportAgentId")]
+        [HttpGet("GetCostByTransportAgentId/{transportAgentId}")]
         public async Task<IActionResult> GetCostByTransportAgentId(int transportAgentId)
         {
             var cost = await _transportAgentCostRepository.GetCostByTransportAgentIdAsync(transportAgentId);
