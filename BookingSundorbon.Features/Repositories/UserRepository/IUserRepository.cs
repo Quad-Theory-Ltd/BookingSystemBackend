@@ -10,5 +10,6 @@ namespace BookingSundorbon.Features.Repositories.UserRepository
     public interface IUserRepository
     {
         Task<IEnumerable<EmployeeView>> GetAllEmployeeAsync();
+        Task<IEnumerable<UserView>> GetAllUsersAsync();
     }
 }

@@ -20,9 +20,23 @@ namespace BookingSundorbon.Features.Repositories.UserRepository
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-      
+        public async Task<IEnumerable<UserView>> GetAllUsersAsync()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var users = await dbConnection.QueryAsync<UserView>(
+                        "[dbo].[SP_GetAllUsers]", commandType: CommandType.StoredProcedure);
 
-     
+                    return users;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         public async Task<IEnumerable<EmployeeView>> GetAllEmployeeAsync()
         {
@@ -30,10 +44,10 @@ namespace BookingSundorbon.Features.Repositories.UserRepository
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
-                    var devicees = await dbConnection.QueryAsync<EmployeeView>(
+                    var employees = await dbConnection.QueryAsync<EmployeeView>(
                         "[dbo].[SP_GetAllEmployee]", commandType: CommandType.StoredProcedure);
 
-                    return devicees;
+                    return employees;
                 }
             }
             catch (Exception ex)

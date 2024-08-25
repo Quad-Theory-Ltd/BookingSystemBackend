@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace BookingSundorbon.Views.DTOs.S_UserView
 {
-    public class S_UserView
+    public class UserView
     {
-        public int UserId { get; set; }
+        public int Id { get; set; }
         public int RoleId { get; set; }
+        public string RoleName { get; set; }
         public string UserName { get; set; }
         public bool IsEmailConfirmed { get; set; }
         public string UserEamil { get; set; }
@@ -20,5 +21,6 @@ namespace BookingSundorbon.Views.DTOs.S_UserView
         public DateTime CreationDate { get; set; }
         public string ModifierId { get; set; }
         public DateTime ModificationDate { get; set; }
+       
     }
 }
