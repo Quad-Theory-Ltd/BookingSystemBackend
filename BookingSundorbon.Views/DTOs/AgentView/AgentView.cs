@@ -24,10 +24,12 @@ namespace BookingSundorbon.Views.DTOs.AgentView
         public int SubBranchId { get; set; }
         public string SubBranchName { get; set; }        
         public int UserId { get; set; }
+        public string Password { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }
         public string ModifierId { get; set; }
         public DateTime ModificationDate { get; set; }
+        
     }
 }
