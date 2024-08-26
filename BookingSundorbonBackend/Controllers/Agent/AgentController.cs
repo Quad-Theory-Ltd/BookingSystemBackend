@@ -32,12 +32,7 @@ namespace BookingSundorbonBackend.Controllers.Agent
             {
                 return BadRequest("Agent is Null");
             }
-            var isAgentIdExist = await _agentRepository.GetAgentAsync(agent.UserId);
-
-            if (isAgentIdExist != null) {
-                return BadRequest("This User is Already an Agent");
-            }
-
+    
             await _agentRepository.CreateAgentAsync(agent);
 
             return Created("", "Created");
