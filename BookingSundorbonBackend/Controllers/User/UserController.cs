@@ -23,8 +23,14 @@ namespace BookingSundorbonBackend.Controllers.User
             return Ok(user);
         }
 
+        [HttpGet("GetAllUsers")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var user = await _userRepository.GetAllUsersAsync();
+            return Ok(user);
+        }
 
- 
+
 
     }
 }

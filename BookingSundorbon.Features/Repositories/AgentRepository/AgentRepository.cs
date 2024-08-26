@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.Design;
 using System.Net;
+using System.Security.Cryptography;
 
 namespace BookingSundorbon.Features.Repositories.AgentRepository
 {
@@ -21,7 +22,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
-
+        
         public async Task CreateAgentAsync(AgentView agent)
         {
             try
@@ -46,6 +47,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                     parameters.Add("@BranchId", agent.BranchId, DbType.Int32);
                     parameters.Add("@UserId", agent.UserId, DbType.Int32);
                     parameters.Add("@SubBranchId", agent.SubBranchId, DbType.Int32);
+                    parameters.Add("@Password", agent.Password , DbType.String);
 
 
                     await dbConnection.ExecuteScalarAsync<int>(
