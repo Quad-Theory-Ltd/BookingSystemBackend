@@ -44,8 +44,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                     parameters.Add("@FixedCommisionAmount", agent.FixedCommisionAmount, DbType.Decimal);
                     parameters.Add("@IsActive", agent.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", agent.CreatorId, DbType.String);
-                    parameters.Add("@BranchId", agent.BranchId, DbType.Int32);
-                    parameters.Add("@UserId", agent.UserId, DbType.Int32);
+                    parameters.Add("@BranchId", agent.BranchId, DbType.Int32);                   
                     parameters.Add("@SubBranchId", agent.SubBranchId, DbType.Int32);
                     parameters.Add("@Password", agent.Password , DbType.String);
 
@@ -122,8 +121,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                     parameters.Add("@FixedCommisionAmount", agent.FixedCommisionAmount, DbType.Decimal);
                     parameters.Add("@IsActive", agent.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", agent.ModifierId, DbType.String);
-                    parameters.Add("@BranchId", agent.BranchId, DbType.Int32);
-                    parameters.Add("@UserId", agent.UserId, DbType.Int32);
+                    parameters.Add("@BranchId", agent.BranchId, DbType.Int32);                    
                     parameters.Add("@SubBranchId", agent.SubBranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
