@@ -147,7 +147,7 @@ namespace BookingSundorbon.Features.Repositories.AgentBoxAssignRepository
                     parameters.Add("@Id", id, DbType.Int32);
 
                     var agentBox = await dbConnection.QueryFirstOrDefaultAsync<AgentBoxAssignView>(
-                        "[dbo].[SP_AgentBoxAssignDetailsById]", parameters, commandType: CommandType.StoredProcedure);
+                        "[dbo].[SP_GetAgentBoxAssignDetailsById]", parameters, commandType: CommandType.StoredProcedure);
 
                     return agentBox;
                 }
