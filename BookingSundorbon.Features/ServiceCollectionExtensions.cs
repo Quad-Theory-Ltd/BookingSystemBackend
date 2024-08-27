@@ -63,6 +63,7 @@ using BookingSundorbon.Features.Repositories.BarcodeScanRepository;
 using BookingSundorbon.Features.Repositories.ParcelRepository;
 using BookingSundorbon.Features.Repositories.UserRepository;
 using BookingSundorbon.Features.Repositories.SubBranchRepository;
+using BookingSundorbon.Features.Repositories.BoxCurrentStockRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -83,6 +84,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IBarcodeStatusRepository, BarcodeStatusRepository>();
             services.AddScoped<IBarcodeStatusDetailRepository, BarcodeStatusDetailRepository>();
             services.AddScoped<IBarcodeScanRepository, BarcodeScanRepository>();
+            services.AddScoped<IBoxCurrentStockRepository, BoxCurrentStockRepository>();
             #endregion
 
             #region "C"
