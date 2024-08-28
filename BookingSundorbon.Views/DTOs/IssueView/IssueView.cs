@@ -16,11 +16,12 @@ namespace BookingSundorbon.Views.DTOs.IssueView
         public string ModifierId { get; set; }
         public DateTime ModificationDate { get; set; }
 
-        public string IssuedBy { get; set; }
+        public int IssuedBy { get; set; }
         public decimal IssuedPrice { get; set; }
         public string Remarks { get; set; }
         public int DimensionId { get; set; }
         public int IssuedQty { get; set; }
         public string BoxName { get; set; }
+        public string RecordSerialNo { get; set; }
     }
 }
