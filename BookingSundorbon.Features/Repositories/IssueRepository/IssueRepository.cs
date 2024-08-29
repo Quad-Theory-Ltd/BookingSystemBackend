@@ -33,8 +33,9 @@ namespace BookingSundorbon.Features.Repositories.IssueRepository
                     parameters.Add("@IssueDate", issue.IssueDate, DbType.DateTime);
                     parameters.Add ("@AgentRequisitionNo" , issue.AgentRequisitionNo, DbType.Int32);
                     parameters.Add("@CreatorId", issue.CreatorId, DbType.String);
+                    parameters.Add("@RecordSerialNo", issue.RecordSerialNo, DbType.String);
 
-                    parameters.Add("@IssuedBy", issue.IssuedBy, DbType.String);
+                    parameters.Add("@IssuedBy", issue.IssuedBy, DbType.Int32);
                     parameters.Add("@IssuedPrice", issue.IssuedPrice, DbType.Decimal);
                     parameters.Add("@Remarks", issue.Remarks, DbType.String);
                     parameters.Add("@DimensionId", issue.DimensionId, DbType.Int32);
@@ -111,16 +112,16 @@ namespace BookingSundorbon.Features.Repositories.IssueRepository
             }
         }
 
-        public async Task<int> GetNextIssueNoAsync()
+        public async Task<string> GetNextIssueNoAsync()
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
-                    var requisitionNumber = await dbConnection.ExecuteScalarAsync<int>(
+                    var requisitionNumber = await dbConnection.ExecuteScalarAsync<string>(
                         "[dbo].[SP_GetLastIssueNo]", commandType: CommandType.StoredProcedure);
 
-                    return requisitionNumber + 1;
+                    return requisitionNumber;
                 }
             }
             catch (Exception ex)

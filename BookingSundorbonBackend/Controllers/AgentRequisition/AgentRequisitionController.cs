@@ -76,7 +76,7 @@ namespace BookingSundorbonBackend.Controllers.AgentRequisition
         public async Task<IActionResult> GetNextRequisitionNo()
         {
             var requisitionNo = await _agentRequisitionRepository.GetNextRequisitionNoAsync();
-            if (requisitionNo == 0)
+            if (requisitionNo == null)
             {
                 return NotFound("Requisition No Not found.");
             }

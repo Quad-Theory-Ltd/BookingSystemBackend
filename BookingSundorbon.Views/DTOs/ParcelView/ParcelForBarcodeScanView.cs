@@ -14,5 +14,6 @@ namespace BookingSundorbon.Views.DTOs.ParcelView
         public string  BranchName { get; set; }
         public string CargoTypeName { get; set; }
         public string RouteName { get; set; }
+        public string RecordSerialNo { get; set; }
     }
 }

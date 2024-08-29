@@ -111,6 +111,10 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     parameters.Add("@IsAgent", createParcelBookingView.IsAgent, DbType.Boolean);
                     parameters.Add("@AgentId", createParcelBookingView.AgentId, DbType.Int32);
 
+                    parameters.Add("@BranchId", createParcelBookingView.BranchId, DbType.Int32);
+                    parameters.Add("@RecordSerialNo", createParcelBookingView.RecordSerialNo, DbType.String);
+                
+
 
 
                     if (!createParcelBookingView.IsAgent)

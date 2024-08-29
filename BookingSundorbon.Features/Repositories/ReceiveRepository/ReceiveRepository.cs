@@ -33,8 +33,9 @@ namespace BookingSundorbon.Features.Repositories.ReceiveRepository
                     parameters.Add("@ReceiveDate", receive.ReceiveDate, DbType.DateTime);
                     parameters.Add ("@IssueNo" , receive.IssueNo, DbType.Int32);
                     parameters.Add("@CreatorId", receive.CreatorId, DbType.String);
+                    parameters.Add("@RecordSerialNo", receive.RecordSerialNo, DbType.String);
+                 
 
-                    
                     parameters.Add("@ReceivedBy", receive.ReceivedBy, DbType.Int32);
                     parameters.Add("@ReceivedPrice", receive.ReceivedPrice, DbType.Decimal);
                     parameters.Add("@Remarks", receive.Remarks, DbType.String);
@@ -94,16 +95,16 @@ namespace BookingSundorbon.Features.Repositories.ReceiveRepository
             }
         }
 
-        public async Task<int> GetNextReceiveNoAsync()
+        public async Task<string> GetNextReceiveNoAsync()
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
-                    var requisitionNumber = await dbConnection.ExecuteScalarAsync<int>(
+                    var requisitionNumber = await dbConnection.ExecuteScalarAsync<string>(
                         "[dbo].[SP_GetLastReceiveNo]", commandType: CommandType.StoredProcedure);
 
-                    return requisitionNumber + 1;
+                    return requisitionNumber;
                 }
             }
             catch (Exception ex)

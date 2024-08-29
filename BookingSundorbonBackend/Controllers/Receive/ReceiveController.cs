@@ -55,7 +55,7 @@ namespace BookingSundorbonBackend.Controllers.Receive
         public async Task<IActionResult> GetNextReceiveNo()
         {
             var receiveNo = await _receiveRepository.GetNextReceiveNoAsync();
-            if (receiveNo == 0)
+            if (receiveNo == null)
             {
                 return NotFound("Receive No Not found.");
             }
