@@ -39,8 +39,7 @@ namespace BookingSundorbon.Features.Repositories.IssueRepository
                     parameters.Add("@Remarks", issue.Remarks, DbType.String);
                     parameters.Add("@DimensionId", issue.DimensionId, DbType.Int32);
                     parameters.Add("@IssuedQty", issue.IssuedQty, DbType.Int32);
-                    parameters.Add("@RecordSerialNo", issue.RecordSerialNo, DbType.String);
-
+                    
 
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(

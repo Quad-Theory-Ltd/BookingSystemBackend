@@ -37,7 +37,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRequisitionRepository
                     parameters.Add("@RequestedQty", agentRequisition.RequestedQty, DbType.Int32);
                     parameters.Add("@DimensionId", agentRequisition.DimensionId, DbType.Int32);
                     parameters.Add("@Remarks", agentRequisition.Remarks, DbType.String);
-                    parameters.Add("@RecordSerialNo", agentRequisition.RecordSerialNo, DbType.String);
+               
                     
 
 
