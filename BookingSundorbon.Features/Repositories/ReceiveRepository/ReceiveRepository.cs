@@ -33,6 +33,7 @@ namespace BookingSundorbon.Features.Repositories.ReceiveRepository
                     parameters.Add("@ReceiveDate", receive.ReceiveDate, DbType.DateTime);
                     parameters.Add ("@IssueNo" , receive.IssueNo, DbType.Int32);
                     parameters.Add("@CreatorId", receive.CreatorId, DbType.String);
+                    parameters.Add("@RecordSerialNo", receive.RecordSerialNo, DbType.String);
                  
 
                     parameters.Add("@ReceivedBy", receive.ReceivedBy, DbType.Int32);
