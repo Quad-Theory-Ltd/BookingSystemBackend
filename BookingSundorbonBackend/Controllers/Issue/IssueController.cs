@@ -67,7 +67,7 @@ namespace BookingSundorbonBackend.Controllers.Issue
         public async Task<IActionResult> GetNextIssueNo()
         {
             var issueNo = await _issueRepository.GetNextIssueNoAsync();
-            if (issueNo == 0)
+            if (issueNo == null)
             {
                 return NotFound("Issue No Not found.");
             }

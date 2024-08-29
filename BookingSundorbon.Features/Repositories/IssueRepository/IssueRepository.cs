@@ -112,16 +112,16 @@ namespace BookingSundorbon.Features.Repositories.IssueRepository
             }
         }
 
-        public async Task<int> GetNextIssueNoAsync()
+        public async Task<string> GetNextIssueNoAsync()
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
-                    var requisitionNumber = await dbConnection.ExecuteScalarAsync<int>(
+                    var requisitionNumber = await dbConnection.ExecuteScalarAsync<string>(
                         "[dbo].[SP_GetLastIssueNo]", commandType: CommandType.StoredProcedure);
 
-                    return requisitionNumber + 1;
+                    return requisitionNumber;
                 }
             }
             catch (Exception ex)

@@ -134,16 +134,16 @@ namespace BookingSundorbon.Features.Repositories.AgentRequisitionRepository
 
      
 
-        public async Task<int> GetNextRequisitionNoAsync()
+        public async Task<string> GetNextRequisitionNoAsync()
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
-                    var requisitionNumber = await dbConnection.ExecuteScalarAsync<int>(
+                    var requisitionNumber = await dbConnection.ExecuteScalarAsync<string>(
                         "[dbo].[SP_GetLastAgentRequisitionNo]", commandType: CommandType.StoredProcedure);
 
-                    return requisitionNumber + 1 ;
+                    return requisitionNumber;
                 }
             }
             catch (Exception ex)
