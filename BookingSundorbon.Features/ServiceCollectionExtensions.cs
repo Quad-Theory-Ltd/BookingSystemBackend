@@ -64,6 +64,7 @@ using BookingSundorbon.Features.Repositories.ParcelRepository;
 using BookingSundorbon.Features.Repositories.UserRepository;
 using BookingSundorbon.Features.Repositories.SubBranchRepository;
 using BookingSundorbon.Features.Repositories.BoxCurrentStockRepository;
+using BookingSundorbon.Features.Repositories.CurrentStockCurierServiceRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -92,6 +93,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<ICargoTypeRepository, CargoTypeRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
+            services.AddScoped<ICurrentStockCurierServiceRepository, CurrentStockCurierServiceRepository>();
             #endregion
 
             #region "D"
