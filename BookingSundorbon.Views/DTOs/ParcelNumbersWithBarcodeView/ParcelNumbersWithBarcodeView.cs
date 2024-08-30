@@ -16,6 +16,7 @@ namespace BookingSundorbon.Views.DTOs.ParcelNumbersWithBarcodeView
         public string ReceiverName { get; set; }
 
         public string ReceiverAddress { get; set; }
+        public string RecordSerialNoWithParcelNo { get; set; }
 
     }
 }
