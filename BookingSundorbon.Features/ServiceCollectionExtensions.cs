@@ -65,6 +65,7 @@ using BookingSundorbon.Features.Repositories.UserRepository;
 using BookingSundorbon.Features.Repositories.SubBranchRepository;
 using BookingSundorbon.Features.Repositories.BoxCurrentStockRepository;
 using BookingSundorbon.Features.Repositories.CurrentStockCurierServiceRepository;
+using BookingSundorbon.Features.Repositories.PaymentRepository;
 
 namespace BookingSundorbon.Features
 {
@@ -137,6 +138,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IPaymentTypeMethodRepository, PaymentTypeMethodRepository>();
             services.AddScoped<IParcelStatusRepository, ParcelStatusRepository>();
             services.AddScoped<IParcelRepository, ParcelRepository>();
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
             #endregion
 
             #region "R"
