@@ -16,5 +16,6 @@ namespace BookingSundorbon.Views.DTOs.AgentBoxAssignView
         public int LimitPreviousMonth { get; set; }
         public int LimitCurrentMonth { get; set; }
         public decimal CurrentStock { get; set; }
+        public decimal IssueQty { get; set; }
     }
 }
