@@ -64,6 +64,9 @@ using BookingSundorbon.Features.Repositories.ParcelRepository;
 using BookingSundorbon.Features.Repositories.UserRepository;
 using BookingSundorbon.Features.Repositories.SubBranchRepository;
 using BookingSundorbon.Features.Repositories.BoxCurrentStockRepository;
+using BookingSundorbon.Features.Repositories.CurrentStockCurierServiceRepository;
+using BookingSundorbon.Features.Repositories.PaymentRepository;
+using BookingSundorbon.Features.Repositories.ParcelDetailsRepository;
 using BookingSundorbon.Features.Repositories.ParcelNumbersWithBarcodeRepository;
 using BookingSundorbon.Features.Repositories.AgentBoxAssignmentRepository;
 
@@ -95,6 +98,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<ICargoTypeRepository, CargoTypeRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
+            services.AddScoped<ICurrentStockCurierServiceRepository, CurrentStockCurierServiceRepository>();
             #endregion
 
             #region "D"
@@ -138,6 +142,8 @@ namespace BookingSundorbon.Features
             services.AddScoped<IPaymentTypeMethodRepository, PaymentTypeMethodRepository>();
             services.AddScoped<IParcelStatusRepository, ParcelStatusRepository>();
             services.AddScoped<IParcelRepository, ParcelRepository>();
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
+            services.AddScoped<IParcelDetailsRepository, ParcelDetailsRepository>();
             services.AddScoped<IParcelNumbersWithBarcodeRepository, ParcelNumbersWithBarcodeRepository>();
             #endregion
 

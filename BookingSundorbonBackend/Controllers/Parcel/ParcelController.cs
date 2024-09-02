@@ -53,6 +53,16 @@ namespace BookingSundorbonBackend.Controllers.Parcel
             return Ok(person);
         }
 
+        [HttpGet("GetLastParcelRecordSerialNo")]
+        public async Task<IActionResult> GetLastParcelRecordSerialNo()
+        {
+            var slNo = await _parcelRepository.GetLastParcelRecordSerialNoAsync();
+            if (slNo == null)
+            {
+                return NotFound("RecordSerialNo not found");
+            }
+            return Ok(slNo);
+        }
 
 
 

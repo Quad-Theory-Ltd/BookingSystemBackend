@@ -56,6 +56,24 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
             }
         }
 
+        public async Task<string> GetLastParcelRecordSerialNoAsync()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var lastParcelSerialNo = await dbConnection.ExecuteScalarAsync<string>(
+                        "[dbo].[SP_LastParcelRecordSerialNo]", commandType: CommandType.StoredProcedure);
+
+                    return lastParcelSerialNo;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public async Task<ParcelForBarcodeScanView> GetParcelInfoByIdAsync(int id)
         {
             try
