@@ -22,7 +22,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelDetailsRepository
 
   
 
-        public async Task<ParcelDetailsView> GetParcelDetailsByParcelNoAsync(int parcelNo)
+        public async Task<ParcelDetailsForPayment> GetParcelDetailsByParcelNoAsync(int parcelNo)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelDetailsRepository
                     DynamicParameters parameters = new();
                     parameters.Add("@ParcelId", parcelNo, DbType.Int32);
 
-                    var parcel = await dbConnection.QueryFirstOrDefaultAsync<ParcelDetailsView>(
+                    var parcel = await dbConnection.QueryFirstOrDefaultAsync<ParcelDetailsForPayment>(
                         "[dbo].[SP_GetParcelDetailsByParcelNo]", parameters, commandType: CommandType.StoredProcedure);
 
                     return parcel;
