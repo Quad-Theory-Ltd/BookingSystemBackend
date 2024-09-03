@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace BookingSundorbon.Views.DTOs.ParcelDetailsView
 {
-    public  class ParcelDetailsForPayment
+    public  class ParcelDetailsForPaymentView
     {
         public int ParcelOrderNo { get; set; }
         public decimal OrderAmount { get; set; }
         public string Description { get; set; }
+        public int PaymentTypeMethodId { get; set; }
+        public string PaymentMethodName { get; set; }
 
     }
 }
