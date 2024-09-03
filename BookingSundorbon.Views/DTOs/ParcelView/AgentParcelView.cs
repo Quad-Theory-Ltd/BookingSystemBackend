@@ -12,10 +12,14 @@ namespace BookingSundorbon.Views.DTOs.ParcelView
         public string AgentName { get; set; }
         public int ParcelNo { get; set; }
         public string RecordSerialNo { get; set; }
+        public decimal OrderPayableAmount { get; set; }
+        public int PaymentTypeMethodId { get; set; }
+        public string PaymentMethod { get; set; }
+        public string UniqItemDescription { get; set; }
         public string recordSerialNoWithParcelNo { get; set; }
         public string Barcode { get; set; }
         public string RouteName { get; set; }
         public string ReceiverName { get; set; }
-        public string ReciverAddress { get; set; }
+        public string ReceiverAddress { get; set; }
     }
 }
