@@ -19,5 +19,8 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
         Task<ParcelForBarcodeScanView> GetParcelInfoByIdAsync(int id);
         Task<IEnumerable<ScanningPersonView>> GetAllScanningPersonsAsync();
         Task<string> GetLastParcelRecordSerialNoAsync();
+        Task<IEnumerable<AgentParcelView>> GetAllAgentParcelAsync();
+
+
     }
 }
