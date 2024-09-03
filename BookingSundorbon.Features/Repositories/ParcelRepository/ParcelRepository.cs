@@ -113,6 +113,27 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
             }
         }
 
+        public async Task<IEnumerable<AgentParcelView>> GetAgentParcelByAgentIdAsync(int agentId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@AgentId", agentId, DbType.Int32);
+
+                    var parcels = await dbConnection.QueryAsync<AgentParcelView>(
+                        "[dbo].[Sp_GetAgentParcelsByAgentId]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return parcels;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
 
 
 
