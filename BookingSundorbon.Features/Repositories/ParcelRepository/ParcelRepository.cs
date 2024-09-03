@@ -73,6 +73,24 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
                 throw;
             }
         }
+        public async Task<IEnumerable<AgentParcelView>> GetAllAgentParcelAsync()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var parcels = await dbConnection.QueryAsync<AgentParcelView>(
+                        "[dbo].[Sp_GetAgentParcels]", commandType: CommandType.StoredProcedure);
+
+                    return parcels;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
 
         public async Task<ParcelForBarcodeScanView> GetParcelInfoByIdAsync(int id)
         {
@@ -87,6 +105,27 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
                         "[dbo].[SP_GetParcelInfoById]", parameters, commandType: CommandType.StoredProcedure);
 
                     return parcel;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<AgentParcelView>> GetAgentParcelByAgentIdAsync(int agentId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@AgentId", agentId, DbType.Int32);
+
+                    var parcels = await dbConnection.QueryAsync<AgentParcelView>(
+                        "[dbo].[Sp_GetAgentParcelsByAgentId]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return parcels;
                 }
             }
             catch (Exception ex)
