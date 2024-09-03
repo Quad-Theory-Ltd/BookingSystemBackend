@@ -9,6 +9,7 @@ namespace BookingSundorbon.Views.DTOs.PaymentView
     public class PaymentView
     {
         public int Id { get; set; }
+        public DateTime PaymentDate { get; set; }
         public int PaymentMethodId { get; set; }
         public string PaymentMethodName { get; set; }
         public string ParcelOderNo { get; set; }
