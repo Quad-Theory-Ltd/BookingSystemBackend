@@ -20,8 +20,11 @@ namespace BookingSundorbon.Views.DTOs.BarcodeScanView
         // BarcodeScan Details 
         public int BarcodeScanId { get; set; }
         public int ScanningPointId { get; set; }
+        public string ScanningPointName { get; set; }
         public int ScanningPersonId { get; set; }
+        public string ScanningPersonName { get; set; }
         public int ParcelStatusId { get; set; }
+        public string ParcelStatusName { get; set; }
 
     }
 }
