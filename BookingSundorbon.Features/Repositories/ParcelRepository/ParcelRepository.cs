@@ -134,7 +134,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
             }
         }
 
-        public async Task<CheckParcelBarcode> ChackParcelBarcodeAsync(string barcode)
+        public async Task<CheckParcelBarcode> CheckParcelBarcodeAsync(string barcode)
         {
             try
             {
