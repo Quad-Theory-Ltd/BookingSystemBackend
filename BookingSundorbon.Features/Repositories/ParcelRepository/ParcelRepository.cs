@@ -134,6 +134,27 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
             }
         }
 
+        public async Task<string> ChackParcelBarcodeAsync(string barcode)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Barcode", barcode, DbType.String);
+
+                    var isBarcodeMatched = await dbConnection.ExecuteScalarAsync<string>(
+                        "[dbo].[Sp_GetIsBarcodeMatch]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return isBarcodeMatched;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
 
 
 

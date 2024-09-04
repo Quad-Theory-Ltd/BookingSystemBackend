@@ -12,7 +12,8 @@ namespace BookingSundorbon.Views.DTOs.ScanningPointView
         public int UserId { get; set; }
         public string Name { get; set; }
         public string ScanningPointName { get; set; }
-        public int ParcelStatusId { get; set; }     
+        public int ParcelStatusId { get; set; }
+        public string  ParcelStatusName { get; set; }
         public int DeviceId { get; set; }
         public bool IsAgent { get; set; }
         public bool IsActive { get; set; }
