@@ -56,6 +56,42 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
             }
         }
 
+        public async Task<string> GetLastParcelRecordSerialNoAsync()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var lastParcelSerialNo = await dbConnection.ExecuteScalarAsync<string>(
+                        "[dbo].[SP_LastParcelRecordSerialNo]", commandType: CommandType.StoredProcedure);
+
+                    return lastParcelSerialNo;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<IEnumerable<AgentParcelView>> GetAllAgentParcelAsync()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var parcels = await dbConnection.QueryAsync<AgentParcelView>(
+                        "[dbo].[Sp_GetAgentParcels]", commandType: CommandType.StoredProcedure);
+
+                    return parcels;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
         public async Task<ParcelForBarcodeScanView> GetParcelInfoByIdAsync(int id)
         {
             try
@@ -69,6 +105,27 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
                         "[dbo].[SP_GetParcelInfoById]", parameters, commandType: CommandType.StoredProcedure);
 
                     return parcel;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<AgentParcelView>> GetAgentParcelByAgentIdAsync(int agentId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@AgentId", agentId, DbType.Int32);
+
+                    var parcels = await dbConnection.QueryAsync<AgentParcelView>(
+                        "[dbo].[Sp_GetAgentParcelsByAgentId]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return parcels;
                 }
             }
             catch (Exception ex)
