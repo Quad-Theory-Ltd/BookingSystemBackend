@@ -132,5 +132,28 @@ namespace BookingSundorbon.Features.Repositories.PaymentRepository
                 throw;
             }
         }
+
+        public async Task<PaymentView> GetPaymentAsyncByParcelNoAsync(string parcelId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@ParcelId", parcelId, DbType.Int32);
+
+                    var payment = await dbConnection.QueryFirstOrDefaultAsync<PaymentView>(
+                        "[dbo].[SP_GetPaymentByparcelId]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return payment;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
     }
 }

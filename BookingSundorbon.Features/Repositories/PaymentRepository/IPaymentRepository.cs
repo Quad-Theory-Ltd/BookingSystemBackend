@@ -14,5 +14,6 @@ namespace BookingSundorbon.Features.Repositories.PaymentRepository
         Task<IEnumerable<PaymentView>> GetAllPaymentsAsync();
         Task UpdatePaymentAsync(PaymentView payment);
         Task DeletePaymentAsync(int id);
+        Task<PaymentView> GetPaymentAsyncByParcelNoAsync(string parcelNo);
     }
 }

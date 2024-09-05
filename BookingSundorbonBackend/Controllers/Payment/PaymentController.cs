@@ -32,6 +32,11 @@ namespace BookingSundorbonBackend.Controllers.Payment
             {
                 return BadRequest("Payment is Null");
             }
+            var parcelExist = await _paymentRepository.GetPaymentAsyncByParcelNoAsync(payment.ParcelOderNo);
+
+            if (parcelExist != null) {
+                return BadRequest("Already Exits");
+            }
             var paymentId = await _paymentRepository.CreatePaymentAsync(payment);
 
             return CreatedAtAction(nameof(GetPayment), new { id = paymentId }, paymentId);
@@ -79,6 +84,9 @@ namespace BookingSundorbonBackend.Controllers.Payment
             await _paymentRepository.DeletePaymentAsync(id);
             return NoContent();
         }
+
+   
+
 
     }
 }
