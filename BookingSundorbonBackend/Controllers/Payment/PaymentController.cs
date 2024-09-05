@@ -35,7 +35,7 @@ namespace BookingSundorbonBackend.Controllers.Payment
             var parcelExist = await _paymentRepository.GetPaymentAsyncByParcelNoAsync(payment.ParcelOderNo);
 
             if (parcelExist != null) {
-                return BadRequest("Already Exits");
+                return Ok("Already Exits!");
             }
             var paymentId = await _paymentRepository.CreatePaymentAsync(payment);
 
