@@ -11,6 +11,7 @@ namespace BookingSundorbon.Views.DTOs.AgentBoxAssignmentView
         public int AgentId { get; set; }
         public int DimensionId { get; set; }
         public string BoxSerialNo { get; set; }
+        public string BarcodeSerialNoWithAgentName { get; set; }
         public int BoxQty { get; set; }
         
         public bool IsActive { get; set; }

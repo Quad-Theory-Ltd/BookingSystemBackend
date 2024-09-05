@@ -14,6 +14,7 @@ namespace BookingSundorbon.Views.DTOs.AgentBoxAssignView
         public int DimensionId { get; set; }
         public string BoxName { get; set; }
         public string BoxSerialNo { get; set; }
+        public string BarcodeSerialNoWithAgentName { get; set; }
         public int BoxQty { get; set; }
         public int SubBranchId { get; set; }
         public string SubBranchName { get; set; }
