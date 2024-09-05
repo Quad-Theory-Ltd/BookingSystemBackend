@@ -76,6 +76,19 @@ namespace BookingSundorbonBackend.Controllers.Parcel
             return Ok(parcel);
         }
 
+        [HttpGet("GetAllParcel")]
+
+        public async Task<IActionResult> GetAllParcel()
+        {
+            var parcel = await _parcelRepository.GetAllParcelAsync();
+            if (parcel == null)
+            {
+                return NotFound("Agent Parcel not found.");
+            }
+            return Ok(parcel);
+        }
+
+
         [HttpGet("GetAgentParcelByAgentId/{agentId}")]
 
         public async Task<IActionResult> GetAgentParcelByAgentId(int agentId)
