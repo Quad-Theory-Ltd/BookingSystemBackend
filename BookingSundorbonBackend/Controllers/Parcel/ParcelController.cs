@@ -88,5 +88,14 @@ namespace BookingSundorbonBackend.Controllers.Parcel
             return Ok(parcel);
         }
 
+        [HttpGet("CheckParcelBarcode/{barcode}")]
+
+        public async Task<IActionResult> ChackParcelBarcode(string barcode)
+        {
+            var isMatched = await _parcelRepository.CheckParcelBarcodeAsync(barcode);
+            
+            return Ok(isMatched);
+        }
+
     }
 }

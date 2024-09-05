@@ -29,7 +29,7 @@ namespace BookingSundorbon.Features.Repositories.BarcodeScanRepository
                     DynamicParameters parameters = new();
                     parameters.Add("@ParcelNo",barcodeScan.ParcelNo, DbType.Int32);
                     parameters.Add("@BarcodeNo", barcodeScan.BarcodeNo, DbType.String);                   
-                    parameters.Add("@IsActive", barcodeScan.IsActive, DbType.Boolean);
+                    parameters.Add("@IsActive", 1, DbType.Boolean);
                     parameters.Add("@CreatorId", barcodeScan.CreatorId, DbType.String);
                     parameters.Add("@ScanningPointId", barcodeScan.ScanningPointId, DbType.Int32);
                     parameters.Add("@ScanningPersonId", barcodeScan.ScanningPersonId, DbType.Int32);
