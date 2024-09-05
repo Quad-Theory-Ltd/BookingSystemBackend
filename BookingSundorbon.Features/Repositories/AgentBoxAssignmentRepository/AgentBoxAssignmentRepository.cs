@@ -28,8 +28,14 @@ namespace BookingSundorbon.Features.Repositories.AgentBoxAssignmentRepository
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
+                    DynamicParameters agentId = new();
+
+                    agentId.Add("@AgentId", agentBoxAssignment.AgentId, DbType.String);
+                    var agent = await dbConnection.ExecuteScalarAsync<string>(
+                       "[dbo].[SP_GetAgentNameById]", agentId, commandType: CommandType.StoredProcedure);
+
                     DynamicParameters parameters = new();
-                    string boxSerialNo = $"{agentBoxAssignment.DimensionId}~{Guid.NewGuid()}";
+                    string boxSerialNo = $"{agentBoxAssignment.DimensionId}~{agent}~{Guid.NewGuid()}";
 
                     parameters.Add("@AgentId", agentBoxAssignment.AgentId, DbType.Int32);
                     parameters.Add("@DimensionId", agentBoxAssignment.DimensionId, DbType.Int32);
