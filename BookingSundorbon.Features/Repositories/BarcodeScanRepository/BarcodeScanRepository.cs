@@ -73,6 +73,7 @@ namespace BookingSundorbon.Features.Repositories.BarcodeScanRepository
         {
             try
             {
+
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     var barcodeScanes = await dbConnection.QueryAsync<BarcodeScanView>(
@@ -86,6 +87,28 @@ namespace BookingSundorbon.Features.Repositories.BarcodeScanRepository
                 throw;
             }
         }
+
+
+        public async Task<IEnumerable<BarcodeScanView>> GetAgentBarcodeScanAsync(int userId)
+        {
+            try
+            {
+                DynamicParameters parameters = new();
+                parameters.Add("@UserId", userId, DbType.Int32);
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var barcodeScanes = await dbConnection.QueryAsync<BarcodeScanView>(
+                        "[dbo].[SP_GetAgentBarcodeScans]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return barcodeScanes;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
 
         //public async Task UpdateBarcodeScanAsync(BarcodeScanView barcodeScan)
         //{

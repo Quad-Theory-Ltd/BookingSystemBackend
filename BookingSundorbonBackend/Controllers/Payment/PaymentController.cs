@@ -85,7 +85,19 @@ namespace BookingSundorbonBackend.Controllers.Payment
             return NoContent();
         }
 
-   
+
+        [HttpGet("GetAgentPayments/{userId}")]
+
+        public async Task<IActionResult> GetAgentPayments(int userId)
+        {
+            var payment = await _paymentRepository.GetAgentPaymentsAsync(userId);
+            if (payment == null)
+            {
+                return NotFound("Payment not found.");
+            }
+            return Ok(payment);
+        }
+
 
 
     }
