@@ -49,6 +49,18 @@ namespace BookingSundorbonBackend.Controllers.BarcodeScan
             return Ok(barcodeScan);
         }
 
+        [HttpGet("GetAgentBarcodeScan/{userId}")]
+        public async Task<IActionResult> GetAgentBarcodeScan(int userId)
+        {
+            var barcodeScan = await _barcodeScanRepository.GetAgentBarcodeScanAsync(userId);
+            if (barcodeScan == null)
+            {
+
+                return NotFound("BarcodeScan not found.");
+            }
+            return Ok(barcodeScan);
+        }
+
 
         //[HttpPut("{id}")]
         //public async Task<IActionResult> UpdateBarcodeScan(int id, [FromBody] BarcodeScanView barcodeScan)
