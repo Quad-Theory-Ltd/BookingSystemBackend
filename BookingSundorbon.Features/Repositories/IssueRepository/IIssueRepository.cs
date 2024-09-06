@@ -12,7 +12,7 @@ namespace BookingSundorbon.Features.Repositories.IssueRepository
         Task<int> CreateIssueAsync(IssueView issue);
         Task<IssueView> GetIssueAsync(int issueNo);
         Task<IEnumerable<IssueView>> GetAllIssueAsync();
-        Task<IEnumerable<int>> GetAllIssueNo();
+        Task<IEnumerable<string>> GetAllIssueNo();
         Task<string> GetNextIssueNoAsync();
         //Task UpdateIssueAsync(IssueView issue);
         //Task DeleteIssueAsync(int id);

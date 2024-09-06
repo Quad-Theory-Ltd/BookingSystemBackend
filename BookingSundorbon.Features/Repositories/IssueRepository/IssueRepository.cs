@@ -73,13 +73,13 @@ namespace BookingSundorbon.Features.Repositories.IssueRepository
             }
         }
 
-        public async Task<IEnumerable<int>> GetAllIssueNo()
+        public async Task<IEnumerable<string>> GetAllIssueNo()
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
-                    var issueNo = await dbConnection.QueryAsync<int>(
+                    var issueNo = await dbConnection.QueryAsync<string>(
                         "[dbo].[SP_GetAllIssueNo]", commandType: CommandType.StoredProcedure);
 
                     return issueNo;
