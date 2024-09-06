@@ -13,6 +13,7 @@ namespace BookingSundorbon.Features.Repositories.ReceiveRepository
         Task<ReceiveView> GetReceiveAsync(int receiveNo);
         Task<IEnumerable<ReceiveView>> GetAllReceiveAsync();
         Task<string> GetNextReceiveNoAsync();
+        Task<IEnumerable<ReceiveView>> GetReceivesByUserIdAsync(int userId);
         //Task UpdateReceiveAsync(ReceiveView receive);
         //Task DeleteReceiveAsync(int id);
     }

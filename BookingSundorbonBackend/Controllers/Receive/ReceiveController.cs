@@ -62,5 +62,12 @@ namespace BookingSundorbonBackend.Controllers.Receive
             return Ok(receiveNo);
         }
 
+        [HttpGet("GetReceivesByUserId/{userId}")]
+        public async Task<IActionResult> GetReceivesByUserId(int userId)
+        {
+            var receive = await _receiveRepository.GetReceivesByUserIdAsync(userId);
+            return Ok(receive);
+        }
+
     }
 }

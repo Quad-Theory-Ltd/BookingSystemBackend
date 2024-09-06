@@ -112,5 +112,26 @@ namespace BookingSundorbon.Features.Repositories.ReceiveRepository
                 throw;
             }
         }
+
+        public async Task<IEnumerable<ReceiveView>> GetReceivesByUserIdAsync(int userId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@UserId", userId, DbType.Int32);
+                    var receive = await dbConnection.QueryAsync<ReceiveView>(
+                        "[dbo].[SP_ReceivesByUserId]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return receive;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }
