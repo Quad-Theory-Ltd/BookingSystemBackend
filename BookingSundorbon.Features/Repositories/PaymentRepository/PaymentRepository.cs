@@ -29,7 +29,7 @@ namespace BookingSundorbon.Features.Repositories.PaymentRepository
                     DynamicParameters parameters = new();
 
                     parameters.Add("@PaymentMethodId", payment.PaymentMethodId, DbType.Int32);
-                    parameters.Add("@ParcelOderNo", payment.ParcelOderNo, DbType.String);
+                    parameters.Add("@ParcelOderNo", payment.ParcelOderNo, DbType.Int32);
                     parameters.Add("@OrderAmount", payment.OrderAmount, DbType.Decimal);
                     parameters.Add("@Description", payment.Description, DbType.String);                    
                     parameters.Add("@CreatorId", payment.CreatorId, DbType.String);
@@ -97,7 +97,7 @@ namespace BookingSundorbon.Features.Repositories.PaymentRepository
                     DynamicParameters parameters = new();
                     parameters.Add("@Id", payment.Id, DbType.Int32);
                     parameters.Add("@PaymentMethodId", payment.PaymentMethodId, DbType.Int32);
-                    parameters.Add("@ParcelOderNo", payment.ParcelOderNo, DbType.String);
+                    parameters.Add("@ParcelOderNo", payment.ParcelOderNo, DbType.Int32);
                     parameters.Add("@OrderAmount", payment.OrderAmount, DbType.Decimal);
                     parameters.Add("@Description", payment.Description, DbType.String);
                     parameters.Add("@ModifierId", payment.ModifierId, DbType.String);
@@ -133,7 +133,7 @@ namespace BookingSundorbon.Features.Repositories.PaymentRepository
             }
         }
 
-        public async Task<PaymentView> GetPaymentAsyncByParcelNoAsync(string parcelId)
+        public async Task<PaymentView> GetPaymentAsyncByParcelNoAsync(int parcelId)
         {
             try
             {
@@ -163,7 +163,7 @@ namespace BookingSundorbon.Features.Repositories.PaymentRepository
                     DynamicParameters parameters = new();
                     parameters.Add("@UserId", userId, DbType.Int32);
                     var paymentes = await dbConnection.QueryAsync<PaymentView>(
-                        "[dbo].[SP_GetAgentPayments]", commandType: CommandType.StoredProcedure);
+                        "[dbo].[SP_GetAgentPaymentsByUserId]", parameters, commandType: CommandType.StoredProcedure);
 
                     return paymentes;
                 }
