@@ -12,6 +12,6 @@ namespace BookingSundorbon.Features.Repositories.ParcelNumbersWithBarcodeReposit
     {
         Task<IEnumerable<ParcelNumbersWithBarcodeView>> GetAllParcelNumbersWithBarcodes();
 
-        Task<IEnumerable<ParcelNumbersWithBarcodeView>> GetAgentParcelNumberrsWithBarcodes();
+        Task<IEnumerable<ParcelNumbersWithBarcodeView>> GetAgentParcelNumberrsWithBarcodes(int userId);
     }
 }
