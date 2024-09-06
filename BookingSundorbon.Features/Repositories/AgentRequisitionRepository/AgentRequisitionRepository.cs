@@ -152,6 +152,26 @@ namespace BookingSundorbon.Features.Repositories.AgentRequisitionRepository
                 throw;
             }
         }
+
+        public async Task<IEnumerable<AgentRequisitionView>> GetAgentRequisitionByUserIdAsync(int userId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@UserId", userId, DbType.Int32);
+                    var agenteRequisition = await dbConnection.QueryAsync<AgentRequisitionView>(
+                        "[dbo].[SP_GetAgentRequisitionByUserId]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return agenteRequisition;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }
 

@@ -18,6 +18,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRequisitionRepository
 
         Task<IEnumerable<int>> GetAllAgentRequisitionNo();
         Task<string> GetNextRequisitionNoAsync();
+        Task<IEnumerable<AgentRequisitionView>> GetAgentRequisitionByUserIdAsync(int userId);
 
 
     }

@@ -82,6 +82,14 @@ namespace BookingSundorbonBackend.Controllers.AgentRequisition
             }
             return Ok(requisitionNo);
         }
+        //GetAgentRequisitionByUserId
+
+        [HttpGet("GetAgentRequisitionByUserId/{userId}")]
+        public async Task<IActionResult> GetAgentRequisitionByUserId(int userId)
+        {
+            var agentRequisition = await _agentRequisitionRepository.GetAgentRequisitionByUserIdAsync(userId);
+            return Ok(agentRequisition);
+        }
 
 
 
