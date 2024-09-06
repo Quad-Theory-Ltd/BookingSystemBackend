@@ -33,9 +33,14 @@ namespace BookingSundorbonBackend.Controllers.Agent
                 return BadRequest("Agent is Null");
             }
     
-            await _agentRepository.CreateAgentAsync(agent);
+            var res= await _agentRepository.CreateAgentAsync(agent);
 
-            return Created("", "Created");
+            if (res== "User Created")
+            {
+                return Created("",res);
+            }
+            return Ok(res);
+           
 
            // return CreatedAtAction(nameof(GetAgent), new { id = agentId }, agentId);
         }

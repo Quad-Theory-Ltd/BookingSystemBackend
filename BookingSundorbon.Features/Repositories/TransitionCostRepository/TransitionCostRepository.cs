@@ -12,6 +12,7 @@ using System.Data.Common;
 using BookingSundorbon.Views.DTOs.GetTransitionCostView;
 using BookingSundorbon.Views.DTOs.TransitionCostView;
 using System.Text.Json;
+using BookingSundorbon.Features.Helpers;
 
 namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
 {
@@ -121,7 +122,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     if (!createParcelBookingView.IsAgent)
                     {
                          userId = createParcelBookingView.SenderName;
-                         password = GenerateRandomPassword();
+                         password = PasswordGenerator.GenerateRandomPassword();
 
                         var user = new
                         {

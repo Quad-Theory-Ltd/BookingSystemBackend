@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace BookingSundorbon.Views.DTOs.ParcelView
 {
-    public class AgentParcelView
+    public class ParcelInfoForPaymentView
     {
-        public int AgentId { get; set; }
-        public string AgentName { get; set; }
+
         public int ParcelNo { get; set; }
         public string RecordSerialNo { get; set; }
         public decimal OrderPayableAmount { get; set; }
