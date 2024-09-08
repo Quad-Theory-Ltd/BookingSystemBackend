@@ -13,6 +13,7 @@ namespace BookingSundorbon.Views.DTOs.TransportAgentCostView
         public string PickUpPoint { get; set; }
         public string DeliveryPoint { get; set; }
         public int TransportAgentId { get; set; }
+        public string AgentName { get; set; }
         public decimal Cost { get; set; }
 
     }
