@@ -56,9 +56,9 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                 {
                     try
                     {
-                        //httpClient.BaseAddress = new Uri("https://localhost:7187");
+                        httpClient.BaseAddress = new Uri("https://localhost:7187");
 
-                        httpClient.BaseAddress = new Uri("https://bookingrolesandpermissions.azurewebsites.net");
+                        //httpClient.BaseAddress = new Uri("https://bookingrolesandpermissions.azurewebsites.net");
 
                         string jsonData = JsonSerializer.Serialize(user);
                         StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");

@@ -136,9 +136,11 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                             PhoneNo = string.IsNullOrEmpty(createParcelBookingView.SenderMobileNo) ? "N/A" : createParcelBookingView.SenderMobileNo,
                             Address = string.IsNullOrEmpty(createParcelBookingView.SenderAdditionalAddressInfo) ? "N/A" : createParcelBookingView.SenderAdditionalAddressInfo,
                             IsActive = true,
-                            CreatorId = createParcelBookingView.CreatorId,
+                            //CreatorId = createParcelBookingView.CreatorId,
+                            CreatorId=string.IsNullOrEmpty(createParcelBookingView.CreatorId) ? "N/A" : createParcelBookingView.CreatorId,
                             CreationDate = DateTime.UtcNow,
-                            ModifierId = createParcelBookingView.ModifierId,
+                            //ModifierId = createParcelBookingView.ModifierId,
+                            ModifierId = string.IsNullOrEmpty(createParcelBookingView.ModifierId) ? "N/A" : createParcelBookingView.ModifierId,
                             ModificationDate = DateTime.UtcNow,
                             RoleName = ""
                         };
@@ -147,9 +149,9 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                         {
                             try
                             {
-                                ////httpClient.BaseAddress = new Uri("https://localhost:7187");
+                                httpClient.BaseAddress = new Uri("https://localhost:7187");
 
-                                httpClient.BaseAddress = new Uri("https://bookingrolesandpermissions.azurewebsites.net");
+                                //httpClient.BaseAddress = new Uri("https://bookingrolesandpermissions.azurewebsites.net");
 
                                 string jsonData = JsonSerializer.Serialize(user);
                                 StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
