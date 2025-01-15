@@ -80,6 +80,8 @@ namespace BookingSundorbon.Views.DTOs.TransitionCostView
         public string RecordSerialNo { get; set; }
         public int PaymentTypeMethodId { get; set; }
 
+        public string BookedById { get; set; }
+
 
     }
 }

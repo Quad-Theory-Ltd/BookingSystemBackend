@@ -115,7 +115,8 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     parameters.Add("@BranchId", createParcelBookingView.BranchId, DbType.Int32);
                     parameters.Add("@RecordSerialNo", createParcelBookingView.RecordSerialNo, DbType.String);
                     parameters.Add("@PaymentTypeMethodId", createParcelBookingView.PaymentTypeMethodId, DbType.Int32);
-                
+                    parameters.Add("@BookedById", createParcelBookingView.BookedById, DbType.String);
+
 
 
 
