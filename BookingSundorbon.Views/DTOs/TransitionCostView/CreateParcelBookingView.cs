@@ -82,6 +82,7 @@ namespace BookingSundorbon.Views.DTOs.TransitionCostView
 
         public string BookedById { get; set; }
 
+        public int ProductQty {  get; set; }
 
     }
 }
