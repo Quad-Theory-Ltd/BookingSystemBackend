@@ -27,7 +27,7 @@ namespace BookingSundorbon.Features.Repositories.ScanningPointRepository
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@UserId", scanningPoint.UserId, DbType.Int32);
+                    parameters.Add("@UserId", scanningPoint.UserId, DbType.String);
                     parameters.Add("@Name", scanningPoint.Name, DbType.String);
                     parameters.Add("@ScanningPointName", scanningPoint.ScanningPointName, DbType.String);
                     parameters.Add("@ParcelStatusId", scanningPoint.ParcelStatusId, DbType.Int32);
@@ -97,7 +97,7 @@ namespace BookingSundorbon.Features.Repositories.ScanningPointRepository
                 {
                     DynamicParameters parameters = new();
                     parameters.Add("@Id", scanningPoint.Id, DbType.Int32);
-                    parameters.Add("@UserId", scanningPoint.UserId, DbType.Int32);
+                    parameters.Add("@UserId", scanningPoint.UserId, DbType.String);
                     parameters.Add("@Name", scanningPoint.Name, DbType.String);
                     parameters.Add("@ScanningPointName", scanningPoint.ScanningPointName, DbType.String);
                     parameters.Add("@ParcelStatusId", scanningPoint.ParcelStatusId, DbType.Int32);
@@ -138,14 +138,14 @@ namespace BookingSundorbon.Features.Repositories.ScanningPointRepository
             }
         }
 
-        public async Task<ScanningPointView> GetScanningPointByUserIdAsync(int userId)
+        public async Task<ScanningPointView> GetScanningPointByUserIdAsync(string userId)
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@UserId", userId, DbType.Int32);
+                    parameters.Add("@UserId", userId, DbType.String);
 
                     var scanningPoint = await dbConnection.QueryFirstOrDefaultAsync<ScanningPointView>(
                         "[dbo].[SP_GetScanningPointDetailsByUserId]", parameters, commandType: CommandType.StoredProcedure);

@@ -29,7 +29,7 @@ namespace BookingSundorbon.Features.Repositories.BarcodeStatusRepository
                     DynamicParameters parameters = new();
                     parameters.Add("@BarcodeNumber", barcodeStatus.BarcodeNumber, DbType.String);
                     parameters.Add("@IsActive", barcodeStatus.IsActive, DbType.Boolean);
-                    parameters.Add("@UserId", barcodeStatus.UserId, DbType.Int32);
+                    parameters.Add("@UserId", barcodeStatus.UserId, DbType.String);
                     parameters.Add("@CreatorId", barcodeStatus.CreatorId, DbType.String);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
@@ -93,7 +93,7 @@ namespace BookingSundorbon.Features.Repositories.BarcodeStatusRepository
                     parameters.Add("@Id", barcodeStatus.Id, DbType.Int32);
                     parameters.Add("@BarcodeNumber", barcodeStatus.BarcodeNumber, DbType.String);
                     parameters.Add("@IsActive", barcodeStatus.IsActive, DbType.Boolean);
-                    parameters.Add("@UserId", barcodeStatus.UserId, DbType.Int32);
+                    parameters.Add("@UserId", barcodeStatus.UserId, DbType.String);
                     parameters.Add("@ModifierId", barcodeStatus.ModifierId, DbType.String);
 
                     await dbConnection.ExecuteAsync(

@@ -83,7 +83,7 @@ namespace BookingSundorbonBackend.Controllers.ScanningPoint
 
         [HttpGet("GetScanningPointByUserId/{userId}")]
 
-        public async Task<IActionResult> GetScanningPointByUserId(int userId)
+        public async Task<IActionResult> GetScanningPointByUserId(string userId)
         {
             var scanningPoint = await _scanningPointRepository.GetScanningPointByUserIdAsync(userId);
             if (scanningPoint == null)

@@ -11,7 +11,7 @@ namespace BookingSundorbon.Views.DTOs.BarcodeStatusView
         public int Id { get; set; }
         public string BarcodeNumber { get; set; }
         public bool IsActive { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }
         public string ModifierId { get; set; }

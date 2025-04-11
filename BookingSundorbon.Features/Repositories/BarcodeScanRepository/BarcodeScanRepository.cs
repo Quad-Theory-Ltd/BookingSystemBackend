@@ -32,7 +32,7 @@ namespace BookingSundorbon.Features.Repositories.BarcodeScanRepository
                     parameters.Add("@IsActive", 1, DbType.Boolean);
                     parameters.Add("@CreatorId", barcodeScan.CreatorId, DbType.String);
                     parameters.Add("@ScanningPointId", barcodeScan.ScanningPointId, DbType.Int32);
-                    parameters.Add("@ScanningPersonId", barcodeScan.ScanningPersonId, DbType.Int32);
+                    parameters.Add("@ScanningPersonId", barcodeScan.ScanningPersonId, DbType.String);
                     parameters.Add("@ParcelStatusId",barcodeScan.ParcelStatusId, DbType.Int32);
 
 
@@ -89,12 +89,12 @@ namespace BookingSundorbon.Features.Repositories.BarcodeScanRepository
         }
 
 
-        public async Task<IEnumerable<BarcodeScanView>> GetAgentBarcodeScanAsync(int userId)
+        public async Task<IEnumerable<BarcodeScanView>> GetAgentBarcodeScanAsync(string userId)
         {
             try
             {
                 DynamicParameters parameters = new();
-                parameters.Add("@UserId", userId, DbType.Int32);
+                parameters.Add("@UserId", userId, DbType.String);
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     var barcodeScanes = await dbConnection.QueryAsync<BarcodeScanView>(

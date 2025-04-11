@@ -8,7 +8,7 @@ namespace BookingSundorbon.Core.Models
 {
     public class S_UserModel
     {
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public int RoleId { get; set; }
         public string UserName { get; set; }
         public bool IsEmailConfirmed { get; set; }

@@ -45,7 +45,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelNumbersWithBarcodeReposit
         }
 
 
-        public async Task<IEnumerable<ParcelNumbersWithBarcodeView>> GetAgentParcelNumberrsWithBarcodes(int userId)
+        public async Task<IEnumerable<ParcelNumbersWithBarcodeView>> GetAgentParcelNumberrsWithBarcodes(string userId)
         {
             try
             {

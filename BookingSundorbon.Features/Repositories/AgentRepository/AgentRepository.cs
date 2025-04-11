@@ -31,7 +31,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
             try
             {
 
-                int userId = 0;
+                string userId = "0";
 
                 var user = new
                 {
@@ -67,7 +67,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                         var httpResult = await response.Content.ReadAsStringAsync();
                         try
                         {
-                            userId=int.Parse(httpResult);
+                            userId=(httpResult);
                         }
                         catch (Exception ex)
                         {
@@ -90,7 +90,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                     DynamicParameters parameters = new();
 
                     parameters.Add("@CompanyId", agent.CompanyId, DbType.Int32);
-                    parameters.Add("@UserId", userId, DbType.Int32);
+                    parameters.Add("@UserId", userId, DbType.String);
                     parameters.Add("@Name", agent.Name, DbType.String);
                     parameters.Add("@Address", agent.Address, DbType.String);
                     parameters.Add("@Email", agent.Email, DbType.String);
@@ -122,14 +122,14 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
             }
         }
 
-        public async Task<AgentView> GetAgentAsync(int userId)
+        public async Task<AgentView> GetAgentAsync(string userId)
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@UserId", userId, DbType.Int32);
+                    parameters.Add("@UserId", userId, DbType.String);
 
                     var agent = await dbConnection.QueryFirstOrDefaultAsync<AgentView>(
                         "[dbo].[SP_GetAgentDetailsById]", parameters, commandType: CommandType.StoredProcedure);
@@ -169,7 +169,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
                 {
                     DynamicParameters parameters = new();
 
-                    parameters.Add("@CompanyId", agent.CompanyId, DbType.Int32);
+                    parameters.Add("@CompanyId", agent.CompanyId, DbType.String);
                     parameters.Add("@UserId", agent.UserId, DbType.Int32);
                     parameters.Add("@Name", agent.Name, DbType.String);
                     parameters.Add("@Address", agent.Address, DbType.String);
@@ -195,7 +195,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
             }
         }
 
-        public async Task DeleteAgentAsync(int userId)
+        public async Task DeleteAgentAsync(string userId)
         {
             try
             {
@@ -214,14 +214,14 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
             }
         }
 
-        public Task<AgentView> GetAgentAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<AgentView> GetAgentAsync(string id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task DeleteAgentAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task DeleteAgentAsync(string id)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

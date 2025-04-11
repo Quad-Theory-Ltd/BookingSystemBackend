@@ -88,7 +88,7 @@ namespace BookingSundorbonBackend.Controllers.Payment
 
         [HttpGet("GetAgentPayments/{userId}")]
 
-        public async Task<IActionResult> GetAgentPayments(int userId)
+        public async Task<IActionResult> GetAgentPayments(string userId)
         {
             var payment = await _paymentRepository.GetAgentPaymentsAsync(userId);
             if (payment == null)

@@ -85,7 +85,7 @@ namespace BookingSundorbonBackend.Controllers.AgentRequisition
         //GetAgentRequisitionByUserId
 
         [HttpGet("GetAgentRequisitionByUserId/{userId}")]
-        public async Task<IActionResult> GetAgentRequisitionByUserId(int userId)
+        public async Task<IActionResult> GetAgentRequisitionByUserId(string userId)
         {
             var agentRequisition = await _agentRequisitionRepository.GetAgentRequisitionByUserIdAsync(userId);
             return Ok(agentRequisition);

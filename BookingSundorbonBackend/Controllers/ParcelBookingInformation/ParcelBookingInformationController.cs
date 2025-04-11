@@ -17,7 +17,7 @@ namespace BookingSundorbonBackend.Controllers.ParcelBookingInformation
 
 
         [HttpGet("{userId}")]
-        public async Task<IActionResult> GetParcelInfoByUserId(int userId)
+        public async Task<IActionResult> GetParcelInfoByUserId(string userId)
         {
             var count = await _parcelBookingInformationRepository.GetParcelInfoByUserIdAsync(userId);
             if (count == null)

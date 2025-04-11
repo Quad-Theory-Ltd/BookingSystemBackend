@@ -13,9 +13,9 @@ namespace BookingSundorbon.Views.DTOs.SubBranchView
         public bool IsHub { get; set; }
         public bool IsOffice { get; set; }
         public bool IsAgent { get; set; }
-        public int? AgentId { get; set; }
+        public string? AgentId { get; set; }
         public string? AgentName { get; set; }
-        public int? EmployeId { get; set; }
+        public string? EmployeId { get; set; }
         public string? EmployeName { get; set; }
         public int CountryId { get; set; }
         public string CountryName { get; set; } 

@@ -8,7 +8,7 @@ namespace BookingSundorbon.Views.DTOs.S_UserView
 {
     public class EmployeeView
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string UserName { get; set; }
     }
 }

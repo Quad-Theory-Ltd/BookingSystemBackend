@@ -154,14 +154,14 @@ namespace BookingSundorbon.Features.Repositories.PaymentRepository
             }
         }
 
-        public async Task<IEnumerable<PaymentView>> GetAgentPaymentsAsync(int userId)
+        public async Task<IEnumerable<PaymentView>> GetAgentPaymentsAsync(string userId)
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@UserId", userId, DbType.Int32);
+                    parameters.Add("@UserId", userId, DbType.String);
                     var paymentes = await dbConnection.QueryAsync<PaymentView>(
                         "[dbo].[SP_GetAgentPaymentsByUserId]", parameters, commandType: CommandType.StoredProcedure);
 

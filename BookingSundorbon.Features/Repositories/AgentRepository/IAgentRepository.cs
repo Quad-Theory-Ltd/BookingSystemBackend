@@ -10,9 +10,9 @@ namespace BookingSundorbon.Features.Repositories.AgentRepository
     public interface IAgentRepository
     {
         Task<string> CreateAgentAsync(AgentView agent);
-        Task<AgentView> GetAgentAsync(int Userid);
+        Task<AgentView> GetAgentAsync(string Userid);
         Task<IEnumerable<AgentView>> GetAllActiveAgentAsync();
         Task UpdateAgentAsync(AgentView agent);
-        Task DeleteAgentAsync(int Userid);
+        Task DeleteAgentAsync(string Userid);
     }
 }

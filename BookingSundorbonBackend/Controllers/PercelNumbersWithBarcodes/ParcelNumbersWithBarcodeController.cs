@@ -23,7 +23,7 @@ namespace BookingSundorbonBackend.Controllers.PercelNumbersWithBarcodes
         }
 
         [HttpGet("AgentParcelBarcodes/{userId}")]
-        public async Task<IActionResult> GetAgentParcelNumberrsWithBarcodes(int userId)
+        public async Task<IActionResult> GetAgentParcelNumberrsWithBarcodes(string userId)
         {
             var parcelNumberrsWithBarcodes = await _numbersWithBarcodeRepository.GetAgentParcelNumberrsWithBarcodes(userId);
             return Ok(parcelNumberrsWithBarcodes);

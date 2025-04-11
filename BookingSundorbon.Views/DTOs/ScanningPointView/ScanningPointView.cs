@@ -9,7 +9,7 @@ namespace BookingSundorbon.Views.DTOs.ScanningPointView
     public class ScanningPointView
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public string Name { get; set; }
         public string ScanningPointName { get; set; }
         public int ParcelStatusId { get; set; }
@@ -22,10 +22,10 @@ namespace BookingSundorbon.Views.DTOs.ScanningPointView
         public string ModifierId { get; set; }
         public DateTime ModificationDate { get; set; }
         public int BranchId { get; set; }
-        public string BranchName { get; set; }
+        public string? BranchName { get; set; }
         public int SubBranchId { get; set; }
-        public string SubBranchName { get; set; }
-        public string UserName { get; set; }
+        public string? SubBranchName { get; set; }
+        public string? UserName { get; set; }
 
     }
 }

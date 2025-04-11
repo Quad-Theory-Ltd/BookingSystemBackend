@@ -47,7 +47,7 @@ namespace BookingSundorbonBackend.Controllers.Agent
 
         [HttpGet("{userId}")]
 
-        public async Task<IActionResult> GetAgent(int userId)
+        public async Task<IActionResult> GetAgent(string userId)
         {
             var agent = await _agentRepository.GetAgentAsync(userId);
             if (agent == null)
@@ -59,7 +59,7 @@ namespace BookingSundorbonBackend.Controllers.Agent
 
 
         [HttpPut("{userId}")]
-        public async Task<IActionResult> UpdateAgent(int userId, [FromBody] AgentView agent)
+        public async Task<IActionResult> UpdateAgent(string userId, [FromBody] AgentView agent)
         {
             if (agent == null || agent.UserId != userId)
             {
@@ -76,7 +76,7 @@ namespace BookingSundorbonBackend.Controllers.Agent
 
 
         [HttpDelete("{userId}")]
-        public async Task<IActionResult> DeleteAgent(int userId)
+        public async Task<IActionResult> DeleteAgent(string userId)
         {
             var agent = await _agentRepository.GetAgentAsync(userId);
             if (agent == null)

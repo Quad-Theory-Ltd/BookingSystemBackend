@@ -50,7 +50,7 @@ namespace BookingSundorbonBackend.Controllers.BarcodeScan
         }
 
         [HttpGet("GetAgentBarcodeScan/{userId}")]
-        public async Task<IActionResult> GetAgentBarcodeScan(int userId)
+        public async Task<IActionResult> GetAgentBarcodeScan(string userId)
         {
             var barcodeScan = await _barcodeScanRepository.GetAgentBarcodeScanAsync(userId);
             if (barcodeScan == null)

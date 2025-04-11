@@ -25,7 +25,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationReposit
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<IEnumerable<ParcelBookingHistoryView>> GetParcelInfoByUserIdAsync(int userId)
+        public async Task<IEnumerable<ParcelBookingHistoryView>> GetParcelInfoByUserIdAsync(string userId)
         {
             try
             {

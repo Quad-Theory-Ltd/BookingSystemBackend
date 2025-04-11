@@ -44,8 +44,8 @@ namespace BookingSundorbon.Features.Repositories.SubBranchRepository
                         foreach (var agentId in subBranch.AgentId)
                         {
                             parameters.Add("@IsAgent", true , DbType.Boolean);
-                            parameters.Add("@AgentId", agentId, DbType.Int32);
-                            parameters.Add("@EmployeId", 0 , DbType.Int32); 
+                            parameters.Add("@AgentId", agentId, DbType.String);
+                            parameters.Add("@EmployeId",'0' , DbType.String); 
                             newId = await dbConnection.ExecuteScalarAsync<int>(
                                 "[dbo].[SP_InsertIntoSubBranch]", parameters, commandType: CommandType.StoredProcedure);
                             
@@ -56,8 +56,8 @@ namespace BookingSundorbon.Features.Repositories.SubBranchRepository
                         foreach (var employeeId in subBranch.EmployeId)
                         {
                             parameters.Add("@IsAgent", false, DbType.Boolean);
-                            parameters.Add("@EmployeId", employeeId, DbType.Int32);
-                            parameters.Add("@AgentId", 0 , DbType.Int32); 
+                            parameters.Add("@EmployeId", employeeId, DbType.String);
+                            parameters.Add("@AgentId", "0" , DbType.String); 
                             newId = await dbConnection.ExecuteScalarAsync<int>(
                                 "[dbo].[SP_InsertIntoSubBranch]", parameters, commandType: CommandType.StoredProcedure);
                          
