@@ -28,7 +28,7 @@ namespace BookingSundorbon.Features.Repositories.BranchRepository
                 {
                     DynamicParameters parameters = new();
                     parameters.Add("@BranchName", branch.BranchName, DbType.String);
-                    parameters.Add("@SubBranchId", branch.SubBranchId, DbType.Int32);
+                   // parameters.Add("@SubBranchId", branch.SubBranchId, DbType.Int32);
                     parameters.Add("@AddressLine", branch.AddressLine, DbType.String);
                     parameters.Add("@CompanyId", branch.CompanyId, DbType.Int32);
                     parameters.Add("@IsActive", branch.IsActive, DbType.Boolean);
@@ -97,7 +97,7 @@ namespace BookingSundorbon.Features.Repositories.BranchRepository
                     DynamicParameters parameters = new();
                     parameters.Add("@Id", branch.Id, DbType.Int32);
                     parameters.Add("@BranchName", branch.BranchName, DbType.String);
-                    parameters.Add("@SubBranchId", branch.SubBranchId, DbType.Int32);
+                   // parameters.Add("@SubBranchId", branch.SubBranchId, DbType.Int32);
                     parameters.Add("@AddressLine", branch.AddressLine, DbType.String);
                     parameters.Add("@CompanyId", branch.CompanyId, DbType.Int32);
                     parameters.Add("@IsActive", branch.IsActive, DbType.Boolean);

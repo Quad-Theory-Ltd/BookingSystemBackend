@@ -124,9 +124,9 @@ namespace BookingSundorbon.Features.Repositories.SubBranchRepository
                     parameters.Add("@SubBranchName", subBranch.SubBranchName, DbType.String);
                     parameters.Add("@IsHub", subBranch.IsHub, DbType.Boolean);
                     parameters.Add("@IsOffice", subBranch.IsOffice, DbType.Boolean);
-                    parameters.Add("@AgentId", subBranch.AgentId, DbType.Int32);
+                    parameters.Add("@AgentId", subBranch.AgentId, DbType.String);
                     parameters.Add("@IsAgent", subBranch.IsAgent, DbType.Boolean);
-                    parameters.Add("@EmployeId", subBranch.EmployeId, DbType.Int32);
+                    parameters.Add("@EmployeId", subBranch.EmployeId, DbType.String);
                     parameters.Add("@CountryId", subBranch.CountryId, DbType.Int32);
                     parameters.Add("@CityId", subBranch.CityId, DbType.Int32);
                     parameters.Add("@Address", subBranch.Address, DbType.String);
