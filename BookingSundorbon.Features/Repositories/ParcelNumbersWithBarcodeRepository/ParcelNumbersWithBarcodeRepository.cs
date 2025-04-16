@@ -52,7 +52,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelNumbersWithBarcodeReposit
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@UserId", userId, DbType.Int32);
+                    parameters.Add("@UserId", userId, DbType.String);
                     var parcelContents = await dbConnection.QueryAsync<ParcelNumbersWithBarcodeView>(
                         "[dbo].[SP_GetAgentParcelNumbersWithBarcodes]", parameters, commandType: CommandType.StoredProcedure);
 

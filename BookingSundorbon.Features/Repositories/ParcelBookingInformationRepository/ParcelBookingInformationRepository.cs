@@ -32,7 +32,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationReposit
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@UserId", userId, DbType.Int32);
+                    parameters.Add("@UserId", userId, DbType.String);
 
                     var result = await dbConnection.QueryAsync<ParcelBookingHistoryView>(
                         "[dbo].[SP_GetAgentBookingDetailsByUserId]", parameters, commandType: CommandType.StoredProcedure);

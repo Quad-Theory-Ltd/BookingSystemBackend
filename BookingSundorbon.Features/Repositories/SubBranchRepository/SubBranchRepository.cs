@@ -36,6 +36,7 @@ namespace BookingSundorbon.Features.Repositories.SubBranchRepository
                     parameters.Add("@Address", subBranch.Address, DbType.String);
                     parameters.Add("@IsActive", subBranch.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", subBranch.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", subBranch.BranchId, DbType.Int32);
 
                     int newId = -1; 
 
@@ -132,7 +133,8 @@ namespace BookingSundorbon.Features.Repositories.SubBranchRepository
                     parameters.Add("@Address", subBranch.Address, DbType.String);
                     parameters.Add("@IsActive", subBranch.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", subBranch.ModifierId, DbType.String);
-                 
+                    parameters.Add("@BranchId", subBranch.BranchId, DbType.Int32);
+
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateSubBranch]", parameters, commandType: CommandType.StoredProcedure);
