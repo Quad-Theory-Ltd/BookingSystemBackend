@@ -70,7 +70,17 @@ namespace BookingSundorbonBackend.Controllers.Payment
             await _paymentRepository.UpdatePaymentAsync(payment);
             return NoContent();
         }
-
+        //[HttpPut("UpdatePayment")]
+        //public async Task<IActionResult> UpdatePayment([FromBody] PaymentView payment)
+        //{
+        //    if (payment == null)
+        //    {
+        //        return BadRequest(" Payment is Invalid!");
+        //    }
+            
+        //    await _paymentRepository.UpdatePaymentAsync(payment);
+        //    return NoContent();
+        //}
 
         [HttpDelete("DeletePayment/{id}")]
         public async Task<IActionResult> DeletePayment(int id)
@@ -98,6 +108,13 @@ namespace BookingSundorbonBackend.Controllers.Payment
             return Ok(payment);
         }
 
+
+        [HttpGet("GetAllPaymentStatus")]
+        public async Task<IActionResult> GetAllActivePaymentStatus()
+        {
+            var paymentstatus = await _paymentRepository.GetAllActivePaymentStatus();
+            return Ok(paymentstatus);
+        }
 
 
     }

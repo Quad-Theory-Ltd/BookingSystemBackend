@@ -35,6 +35,7 @@ namespace BookingSundorbon.Features.Repositories.PaymentRepository
                     parameters.Add("@CreatorId", payment.CreatorId, DbType.String);
                     parameters.Add("@PaymentInvoiceNo", payment.PaymentInvoiceNo, DbType.String);
                     parameters.Add("@PaymentDate", payment.PaymentDate, DbType.DateTime);
+                    parameters.Add("@PaymentStatusId", payment.PaymentStatusId, DbType.Int32);
        
 
         var newId = await dbConnection.ExecuteScalarAsync<int>(
@@ -88,6 +89,26 @@ namespace BookingSundorbon.Features.Repositories.PaymentRepository
             }
         }
 
+
+        public async Task<IEnumerable<PaymentStatusView>> GetAllActivePaymentStatus()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var paymentestatus = await dbConnection.QueryAsync<PaymentStatusView>(
+                        "[dbo].[sp_GetAllActivePaymentstatus]", commandType: CommandType.StoredProcedure);
+
+                    return paymentestatus;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
         public async Task UpdatePaymentAsync(PaymentView payment)
         {
             try
@@ -103,7 +124,7 @@ namespace BookingSundorbon.Features.Repositories.PaymentRepository
                     parameters.Add("@ModifierId", payment.ModifierId, DbType.String);
                     parameters.Add("@PaymentInvoiceNo", payment.PaymentInvoiceNo, DbType.String);
                     parameters.Add("@PaymentDate", payment.PaymentDate, DbType.DateTime);
-
+                    parameters.Add("@PaymentStatusId", payment.PaymentStatusId, DbType.Int32);
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdatePayment]", parameters, commandType: CommandType.StoredProcedure);
                 }

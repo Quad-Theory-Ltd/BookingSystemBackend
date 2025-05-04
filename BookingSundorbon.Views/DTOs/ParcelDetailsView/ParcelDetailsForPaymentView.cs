@@ -13,6 +13,8 @@ namespace BookingSundorbon.Views.DTOs.ParcelDetailsView
         public string Description { get; set; }
         public int PaymentTypeMethodId { get; set; }
         public string PaymentMethodName { get; set; }
-
+        public int PaymentId {  get; set; }
+        public int PaymentStatusId {  get; set; }
+        public string StatusName { get; set; }
     }
 }

@@ -22,7 +22,8 @@ namespace BookingSundorbon.Views.DTOs.PaymentView
         public DateTime ModificationDate { get; set; }
         public string RecordSerialNo { get; set; }
         public string ParcelNoWithRecordSerialNo { get; set; }
-
+        public int PaymentStatusId { get; set; }
+        public string? StatusName { get; set; }
 
     }
 }
