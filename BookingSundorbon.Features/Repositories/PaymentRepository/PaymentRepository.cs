@@ -36,9 +36,10 @@ namespace BookingSundorbon.Features.Repositories.PaymentRepository
                     parameters.Add("@PaymentInvoiceNo", payment.PaymentInvoiceNo, DbType.String);
                     parameters.Add("@PaymentDate", payment.PaymentDate, DbType.DateTime);
                     parameters.Add("@PaymentStatusId", payment.PaymentStatusId, DbType.Int32);
-       
+                    parameters.Add("@CurrencyTypeId", payment.CurrencyTypeId, DbType.Int32);
 
-        var newId = await dbConnection.ExecuteScalarAsync<int>(
+
+                    var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoPayment]", parameters, commandType: CommandType.StoredProcedure);
 
                     return newId;
@@ -125,6 +126,7 @@ namespace BookingSundorbon.Features.Repositories.PaymentRepository
                     parameters.Add("@PaymentInvoiceNo", payment.PaymentInvoiceNo, DbType.String);
                     parameters.Add("@PaymentDate", payment.PaymentDate, DbType.DateTime);
                     parameters.Add("@PaymentStatusId", payment.PaymentStatusId, DbType.Int32);
+                    parameters.Add("@CurrencyTypeId", payment.CurrencyTypeId, DbType.Int32);
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdatePayment]", parameters, commandType: CommandType.StoredProcedure);
                 }
