@@ -41,5 +41,23 @@ namespace BookingSundorbon.Features.Repositories.CurrencyRepository
         }
 
 
+
+        public async Task<IEnumerable<CurrencyExchangeRateView>> GetAllCurrencyExchangeRateAsync()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var result = await dbConnection.QueryAsync<CurrencyExchangeRateView>("Sp_GetAllCurrencyRate");
+
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

@@ -22,5 +22,13 @@ namespace BookingSundorbonBackend.Controllers.Currency
             return Ok(currency); 
         }
 
+
+        [HttpGet("GetAllCurrencyExchangeRate")]
+        public async Task<IActionResult> GetAllCurrencyExchangeRateAsync()
+        {
+            var currencyrate = await _currencyRepository.GetAllCurrencyExchangeRateAsync();
+            return Ok(currencyrate);
+        }
+
     }
 }

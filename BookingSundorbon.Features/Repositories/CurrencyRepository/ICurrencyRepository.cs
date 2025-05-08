@@ -11,6 +11,6 @@ namespace BookingSundorbon.Features.Repositories.CurrencyRepository
     {
 
         Task<IEnumerable<CurrencyView>> GetAllActiveCurrencyAsync();
-
+        Task<IEnumerable<CurrencyExchangeRateView>> GetAllCurrencyExchangeRateAsync();
     }
 }
