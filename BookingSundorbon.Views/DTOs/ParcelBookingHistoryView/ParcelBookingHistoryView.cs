@@ -29,5 +29,7 @@ namespace BookingSundorbon.Views.DTOs.ParcelBookingHistoryView
         public decimal? FixedCommisionAmount { get; set; }
         public decimal? AgentCommisionPayable { get; set; }
         public decimal SubTotal { get; set; }
+        public string CurrentStatus { get; set; }
+        public string PaymentStatus { get; set; }
     }
 }

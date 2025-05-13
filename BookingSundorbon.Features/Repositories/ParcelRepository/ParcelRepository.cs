@@ -152,7 +152,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
             }
         }
 
-        public async Task<CheckParcelBarcode> CheckParcelBarcodeAsync(string barcode)
+        public async Task<CheckParcelBarcode> CheckParcelBarcodeAsync(string barcode, string creatorId)
         {
             try
             {
@@ -160,6 +160,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
                 {
                     DynamicParameters parameters = new();
                     parameters.Add("@Barcode", barcode, DbType.String);
+                    parameters.Add("@CreatorId", creatorId, DbType.String);
 
                     var isBarcodeMatched = await dbConnection.QueryFirstOrDefaultAsync<CheckParcelBarcode>(
                         "[dbo].[Sp_GetIsBarcodeMatch]", parameters, commandType: CommandType.StoredProcedure);

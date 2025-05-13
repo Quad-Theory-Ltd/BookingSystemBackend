@@ -20,7 +20,16 @@ builder.Services.AddCors(
     options =>
     {
         options.AddPolicy(name: "sundorbonBookingCors",
-            policy => policy.WithOrigins("*")
+            policy => policy.WithOrigins("http://www.sundarbancargoservicesltd.uk",
+            "http://www.sundarbancargoservicesltd.uk/",
+            "https://www.sundarbancargoservicesltd.uk/",
+            "http://www.sundarbancargoservicesltd.uk/api",
+            "http://www.sundarbancargoservicesltd.uk/api/",
+            "https://www.sundarbancargoservicesltd.uk/api/", 
+            "http://localhost:3000",
+            "https://localhost:3000",
+            "https://localhost:3000",
+            "http://localhost:3000")
             .AllowAnyHeader()
             .AllowAnyMethod()
             );

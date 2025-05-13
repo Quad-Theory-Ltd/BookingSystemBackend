@@ -32,7 +32,7 @@ namespace BookingSundorbon.Features.Repositories.AgentRequisitionRepository
                     DynamicParameters parameters = new();
 
                     parameters.Add("@requisitionDate", agentRequisition.RequisitionDate, DbType.DateTime);
-                    parameters.Add("@agentId", agentRequisition.AgentId, DbType.Int32);
+                    parameters.Add("@agentId", agentRequisition.AgentId, DbType.String);
                     parameters.Add("@CreatorId", agentRequisition.CreatorId, DbType.String);
                     parameters.Add("@RequestedQty", agentRequisition.RequestedQty, DbType.Int32);
                     parameters.Add("@DimensionId", agentRequisition.DimensionId, DbType.Int32);

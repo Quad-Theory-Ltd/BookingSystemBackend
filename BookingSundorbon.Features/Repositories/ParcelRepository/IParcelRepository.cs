@@ -22,7 +22,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
         Task<IEnumerable<ParcelInfoForPaymentView>> GetAllAgentParcelAsync();
         Task<IEnumerable<ParcelInfoForPaymentView>> GetAllParcelAsync();
         Task<IEnumerable<ParcelInfoForPaymentView>> GetAgentParcelByAgentIdAsync(int agentId);
-        Task<CheckParcelBarcode> CheckParcelBarcodeAsync(string barcode);
+        Task<CheckParcelBarcode> CheckParcelBarcodeAsync(string barcode, string creatorId);
 
 
     }
