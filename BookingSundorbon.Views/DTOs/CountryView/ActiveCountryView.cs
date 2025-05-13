@@ -16,5 +16,7 @@ namespace BookingSundorbon.Views.DTOs.CountryView
         public DateTime CreationDate { get; set; }
         public string ModifierId { get; set; }
         public DateTime ModificationDate { get; set; }
+        public int CurrencyTypeId {  get; set; }
+        public string? CurrencyType {  get; set; }
     }
 }

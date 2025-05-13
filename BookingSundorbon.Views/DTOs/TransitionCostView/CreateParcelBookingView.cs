@@ -84,5 +84,6 @@ namespace BookingSundorbon.Views.DTOs.TransitionCostView
 
         public int ProductQty {  get; set; }
 
+        public int CurrencyTypeId { get; set; }
     }
 }

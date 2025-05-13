@@ -280,6 +280,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                         parameters.Add("@BookedById", createParcelBookingView.BookedById, DbType.String);
 
                         parameters.Add("@ProductQty", createParcelBookingView.ProductQty, DbType.Int32);
+                        parameters.Add("@CurrencyTypeId", createParcelBookingView.CurrencyTypeId, DbType.Int32);
 
                         if (!createParcelBookingView.IsAgent)
                         {

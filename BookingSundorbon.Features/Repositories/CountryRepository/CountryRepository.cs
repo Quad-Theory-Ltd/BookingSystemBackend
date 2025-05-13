@@ -32,7 +32,7 @@ namespace BookingSundorbon.Features.Repositories.CountryRepository
                     parameters.Add("@Name", country.Name, DbType.String);
                     parameters.Add("@IsActive", country.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", country.CreatorId, DbType.String);
-
+                    parameters.Add("@CurrencyTypeId", country.CurrencyTypeId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoCountry]", parameters, commandType: CommandType.StoredProcedure);
@@ -97,6 +97,7 @@ namespace BookingSundorbon.Features.Repositories.CountryRepository
                     parameters.Add("@Name", country.Name, DbType.String);
                     parameters.Add("@IsActive", country.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", country.ModifierId, DbType.String);
+                    parameters.Add("@CurrencyTypeId", country.CurrencyTypeId, DbType.Int32);
                   
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateCountry]", parameters, commandType: CommandType.StoredProcedure);

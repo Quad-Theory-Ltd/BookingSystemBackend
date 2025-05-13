@@ -69,7 +69,7 @@ using BookingSundorbon.Features.Repositories.PaymentRepository;
 using BookingSundorbon.Features.Repositories.ParcelDetailsRepository;
 using BookingSundorbon.Features.Repositories.ParcelNumbersWithBarcodeRepository;
 using BookingSundorbon.Features.Repositories.AgentBoxAssignmentRepository;
-
+using BookingSundorbon.Features.Repositories.CurrencyRepository;
 namespace BookingSundorbon.Features
 {
     public static class ServiceCollectionExtensions
@@ -99,6 +99,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<ICargoTypeRepository, CargoTypeRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<ICurrentStockCurierServiceRepository, CurrentStockCurierServiceRepository>();
+            services.AddScoped<ICurrencyRepository, CurrencyRepository>();
             #endregion
 
             #region "D"

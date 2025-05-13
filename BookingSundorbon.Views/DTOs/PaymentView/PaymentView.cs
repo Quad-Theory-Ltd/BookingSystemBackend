@@ -15,6 +15,9 @@ namespace BookingSundorbon.Views.DTOs.PaymentView
         public int ParcelOderNo { get; set; }
         public string PaymentInvoiceNo { get; set; }
         public decimal OrderAmount { get; set; }
+        public int CurrencyTypeId { get; set; }
+        public string? CurrencyType { get; set; }
+        public string? CurrencySymbol { get; set; }
         public string Description { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }
