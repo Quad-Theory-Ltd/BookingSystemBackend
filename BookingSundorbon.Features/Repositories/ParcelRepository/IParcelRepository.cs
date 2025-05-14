@@ -1,4 +1,5 @@
 ﻿using BookingSundorbon.Features.Services.EmailService;
+using BookingSundorbon.Views.DTOs.ExchangeView;
 using BookingSundorbon.Views.DTOs.ParcelView;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,8 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
         Task<IEnumerable<ParcelInfoForPaymentView>> GetAllParcelAsync();
         Task<IEnumerable<ParcelInfoForPaymentView>> GetAgentParcelByAgentIdAsync(int agentId);
         Task<CheckParcelBarcode> CheckParcelBarcodeAsync(string barcode, string creatorId);
+        Task<IEnumerable<ParcelInfoForPaymentView>> GetAllParcelsNotScannedByUserId(string userId);
 
-
+        Task<bool> SetExchangeRate(ExchangeRateResponse exchangeRateResponse);
     }
 }

@@ -1,7 +1,9 @@
 ﻿using BookingSundorbon.Features.Repositories.ParcelRepository;
+using BookingSundorbon.Views.DTOs.ExchangeView;
 using BookingSundorbon.Views.DTOs.ParcelView;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace BookingSundorbonBackend.Controllers.Parcel
 {
@@ -88,6 +90,17 @@ namespace BookingSundorbonBackend.Controllers.Parcel
             return Ok(parcel);
         }
 
+        [HttpGet("GetAllParcelsNotScannedByUserId/{userId}")]
+
+        public async Task<IActionResult> GetAllParcelsNotScannedByUserId(string userId)
+        {
+            var parcel = await _parcelRepository.GetAllParcelsNotScannedByUserId(userId);
+            if (parcel == null)
+            {
+                return NotFound("Agent Parcel not found.");
+            }
+            return Ok(parcel);
+        }
 
         [HttpGet("GetAgentParcelByAgentId/{agentId}")]
 
@@ -103,11 +116,24 @@ namespace BookingSundorbonBackend.Controllers.Parcel
 
         [HttpGet("CheckParcelBarcode/{barcode}/{creatorId}")]
 
-        public async Task<IActionResult> ChackParcelBarcode(string barcode,string creatorId)
+        public async Task<IActionResult> ChackParcelBarcode(string barcode, string creatorId)
         {
             var isMatched = await _parcelRepository.CheckParcelBarcodeAsync(barcode, creatorId);
-            
+
             return Ok(isMatched);
+        }
+
+        [HttpPost("ReceiveRates")]
+        public async Task<IActionResult> ReceiveRates([FromBody] ExchangeRateResponse exchangeRate)
+        {
+            if (exchangeRate == null || exchangeRate.Data == null)
+            {
+                return BadRequest("Invalid data received.");
+            }
+
+            var res = await _parcelRepository.SetExchangeRate(exchangeRate);
+
+            return Ok(new { message = "Exchange rates received successfully" });
         }
 
     }

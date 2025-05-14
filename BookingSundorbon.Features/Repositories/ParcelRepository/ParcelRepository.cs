@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookingSundorbon.Views.DTOs.ExchangeView;
 
 namespace BookingSundorbon.Features.Repositories.ParcelRepository
 {
@@ -109,6 +110,27 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
             }
         }
 
+        public async Task<IEnumerable<ParcelInfoForPaymentView>> GetAllParcelsNotScannedByUserId(string userId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters dynamicParameters = new();
+                    dynamicParameters.Add("@userId", userId, DbType.String);
+
+                    var parcels = await dbConnection.QueryAsync<ParcelInfoForPaymentView>(
+                        "[dbo].[Sp_GetAllParcelsNotScannedByUserId]", dynamicParameters, commandType: CommandType.StoredProcedure);
+
+                    return parcels;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
 
         public async Task<ParcelForBarcodeScanView> GetParcelInfoByIdAsync(int id)
         {
@@ -173,6 +195,41 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
                 throw;
             }
         }
+
+        public async Task<bool> SetExchangeRate(ExchangeRateResponse exchangeRateResponse)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    foreach (var rate in exchangeRateResponse.Data)
+                    {
+                        var targetCurrency = rate.Key;
+                        var rateValue = rate.Value.Value;
+
+                        var parameters = new DynamicParameters();
+                        parameters.Add("@BaseCurrency", "BDT", DbType.String);
+                        parameters.Add("@TargetCurrency", targetCurrency, DbType.String);
+                        parameters.Add("@Rate", rateValue, DbType.Decimal);
+                        parameters.Add("@CreationDate", DateTime.UtcNow, DbType.DateTime);
+                        parameters.Add("@ModificationDate", DateTime.UtcNow, DbType.DateTime);
+
+                        await dbConnection.ExecuteAsync(
+                            "sp_InsertCurrencyExchangeRate",
+                            parameters,
+                            commandType: CommandType.StoredProcedure);
+                    }
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or rethrow
+                throw;
+            }
+        }
+
 
 
 
