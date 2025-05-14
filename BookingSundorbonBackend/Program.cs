@@ -29,7 +29,9 @@ builder.Services.AddCors(
             "http://localhost:3000",
             "https://localhost:3000",
             "https://localhost:3000",
-            "http://localhost:3000")
+            "http://localhost:3000", "http://202.126.122.82:33", "http://202.126.122.82:33/api"
+            , "http://sundarbancargo.com", "http://sundarbancargo.com/api"
+            , "https://sundarbancargo.com", "https://sundarbancargo.com/api")
             .AllowAnyHeader()
             .AllowAnyMethod()
             );
