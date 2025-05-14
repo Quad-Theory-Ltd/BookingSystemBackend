@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BookingSundorbon.Views.DTOs.ParcelDetailsView
+{
+    public  class ParcelDetailsForPaymentView
+    {
+        public int ParcelOrderNo { get; set; }
+        public decimal OrderAmount { get; set; }
+        public string Description { get; set; }
+        public int PaymentTypeMethodId { get; set; }
+        public string PaymentMethodName { get; set; }
+        public int PaymentId {  get; set; }
+        public int PaymentStatusId {  get; set; }
+        public string StatusName { get; set; }
+        public int CurrencyTypeId { get; set; }
+        public string CurrencyType { get; set; }
+    }
+}

@@ -14,6 +14,7 @@ namespace BookingSundorbon.Views.DTOs.LoginView
         public string UserType { get; set; }
         public int ParcelId { get; set; }
         public int AgentId { get; set; }
+        public int BranchId { get; set; }
         public DateTime CreationDate { get; set; }
         public string Message { get; set; }
 

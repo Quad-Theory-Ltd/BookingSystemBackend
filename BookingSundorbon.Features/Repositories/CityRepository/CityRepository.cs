@@ -31,8 +31,11 @@ namespace BookingSundorbon.Features.Repositories.CityRepository
                     DynamicParameters parameters = new();
                     parameters.Add("@CompanyId", city.CompanyId, DbType.Int32);
                     parameters.Add("@Name", city.Name, DbType.String);
+                    parameters.Add("@CountryId", city.CountryId, DbType.Int32);
                     parameters.Add("@IsActive", city.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", city.CreatorId, DbType.String);
+                    
+                    //  parameters.Add("@BranchId", city.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoCity]", parameters, commandType: CommandType.StoredProcedure);
@@ -95,8 +98,10 @@ namespace BookingSundorbon.Features.Repositories.CityRepository
                     parameters.Add("@Id", city.Id, DbType.Int32);
                     parameters.Add("@CompanyId", city.CompanyId, DbType.Int32);
                     parameters.Add("@Name", city.Name, DbType.String);
+                    parameters.Add("@CountryId", city.CountryId, DbType.Int32);
                     parameters.Add("@IsActive", city.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", city.ModifierId, DbType.String);
+                    //parameters.Add("@BranchId", city.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateCity]", parameters, commandType: CommandType.StoredProcedure);

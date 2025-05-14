@@ -35,6 +35,7 @@ namespace BookingSundorbon.Features.Repositories.RouteRepository
                     parameters.Add("@RouteCost", routeType.RouteCost, DbType.Decimal);
                     parameters.Add("@IsActive", routeType.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", routeType.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", routeType.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoRoutingType]", parameters, commandType: CommandType.StoredProcedure);
@@ -122,6 +123,7 @@ namespace BookingSundorbon.Features.Repositories.RouteRepository
                     parameters.Add("@RouteCost", route.RouteCost, DbType.Decimal);
                     parameters.Add("@IsActive", route.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", route.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", route.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateRoutingType]", parameters, commandType: CommandType.StoredProcedure);

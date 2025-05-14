@@ -37,6 +37,7 @@ namespace BookingSundorbon.Features.Repositories.DimensionRepository
                     parameters.Add("@Price", dimension.Price, DbType.Decimal);
                     parameters.Add("@IsActive", dimension.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", dimension.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", dimension.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoDimension]", parameters, commandType: CommandType.StoredProcedure);
@@ -106,6 +107,7 @@ namespace BookingSundorbon.Features.Repositories.DimensionRepository
                     parameters.Add("@Price", dimension.Price, DbType.Decimal);
                     parameters.Add("@IsActive", dimension.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", dimension.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", dimension.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateDimension]", parameters, commandType: CommandType.StoredProcedure);
@@ -128,6 +130,27 @@ namespace BookingSundorbon.Features.Repositories.DimensionRepository
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_DeleteDimension]", parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<decimal> GetDimensionPriceByIdAsync(int id)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@Id", id, DbType.Int32);
+
+                    var price = await dbConnection.QueryFirstOrDefaultAsync<decimal>(
+                        "[dbo].[SP_GetDimensionPriceById]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return price;
                 }
             }
             catch (Exception ex)

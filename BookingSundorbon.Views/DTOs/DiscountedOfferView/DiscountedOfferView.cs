@@ -14,6 +14,8 @@ namespace BookingSundorbon.Views.DTOs.DiscountedOfferView
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string DiscontDescription { get; set; }
+        public int BranchId { get; set; }
+        public string BranchName { get; set; } 
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }

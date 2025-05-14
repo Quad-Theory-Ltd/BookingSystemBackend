@@ -34,6 +34,7 @@ namespace BookingSundorbon.Features.Repositories.CompanyRepository
                     parameters.Add("@VATRegNo", company.VATRegNo, DbType.String);
                     parameters.Add("@IsActive", company.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", company.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", company.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoCompany]", parameters, commandType: CommandType.StoredProcedure);
@@ -101,6 +102,7 @@ namespace BookingSundorbon.Features.Repositories.CompanyRepository
                     parameters.Add("@VATRegNo", company.VATRegNo, DbType.String);
                     parameters.Add("@IsActive", company.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", company.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", company.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateCompany]", parameters, commandType: CommandType.StoredProcedure);

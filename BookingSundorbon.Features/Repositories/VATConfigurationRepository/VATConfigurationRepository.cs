@@ -31,6 +31,7 @@ namespace BookingSundorbon.Features.Repositories.VATConfigurationRepository
                     parameters.Add("@ConfigurationAmount", vatConfiguration.ConfigurationAmount, DbType.Decimal);
                     parameters.Add("@IsActive", vatConfiguration.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", vatConfiguration.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", vatConfiguration.BranchId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoVATConfiguration]", parameters, commandType: CommandType.StoredProcedure);
@@ -117,6 +118,7 @@ namespace BookingSundorbon.Features.Repositories.VATConfigurationRepository
                     parameters.Add("@ConfigurationAmount", vatconfiguration.ConfigurationAmount, DbType.Decimal);
                     parameters.Add("@IsActive", vatconfiguration.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", vatconfiguration.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", vatconfiguration.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateVATconfiguration]", parameters, commandType: CommandType.StoredProcedure);

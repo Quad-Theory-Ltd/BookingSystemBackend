@@ -33,6 +33,7 @@ namespace BookingSundorbon.Features.Repositories.FunctionRepository
                     parameters.Add("@FunctionName", function.FunctionName, DbType.String);                    
                     parameters.Add("@IsActive", function.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", function.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", function.BranchId, DbType.Int32);
    
                     await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoFunction]", parameters, commandType: CommandType.StoredProcedure);
@@ -95,6 +96,7 @@ namespace BookingSundorbon.Features.Repositories.FunctionRepository
                     parameters.Add("@FunctionName", function.FunctionName, DbType.String);
                     parameters.Add("@IsActive", function.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", function.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", function.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateFunction]", parameters, commandType: CommandType.StoredProcedure);

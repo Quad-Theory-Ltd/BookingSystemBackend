@@ -75,8 +75,9 @@ namespace BookingSundorbon.Features.Repositories.LoginRepository
                     parameters.Add("@UserType", login.UserType, DbType.String);
                     parameters.Add("@ParcelId", login.ParcelId, DbType.Int32);
                     parameters.Add("@AgentId", login.AgentId, DbType.Int32);
+                    parameters.Add("@BranchId", login.BranchId, DbType.Int32);
 
-                   var newId =  await dbConnection.ExecuteScalarAsync<int>(
+                    var newId =  await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoLogin]", parameters, commandType: CommandType.StoredProcedure);
 
                     return newId;
@@ -102,6 +103,7 @@ namespace BookingSundorbon.Features.Repositories.LoginRepository
                     parameters.Add("@UserType", login.UserType, DbType.String);
                     parameters.Add("@ParcelId", login.ParcelId, DbType.Int32);
                     parameters.Add("@AgentId", login.AgentId, DbType.Int32);
+                    parameters.Add("@BranchId", login.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateLogin]", parameters, commandType: CommandType.StoredProcedure);

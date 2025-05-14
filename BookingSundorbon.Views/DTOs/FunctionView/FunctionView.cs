@@ -10,6 +10,8 @@ namespace BookingSundorbon.Views.DTOs.FunctionView
     {
         public string Id { get; set; }
         public string FunctionName { get; set; }
+        public int BranchId { get; set; }
+        public string BranchName { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }

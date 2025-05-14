@@ -1,5 +1,6 @@
 ﻿using BookingSundorbon.Features.Repositories.RouteRepository;
 using BookingSundorbon.Views.DTOs.RouteView;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,7 @@ namespace BookingSundorbonBackend.Controllers.Route
             _routeRepository = routeRepository;
         }
         [HttpGet]
+        //[Authorize(Policy = "RequireAdminRole")]
         public async Task<IActionResult> GetAllActiveRoutes()
         {
             var routes = await _routeRepository.GetAllActiveRoutesAsync();

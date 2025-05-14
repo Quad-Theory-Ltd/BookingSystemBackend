@@ -31,6 +31,8 @@ namespace BookingSundorbon.Features.Repositories.AdditionalCostRepository
                     parameters.Add("@Cost", additionalCost.Cost, DbType.Decimal);
                     parameters.Add("@IsActive", additionalCost.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", additionalCost.CreatorId, DbType.String);
+                    parameters.Add("@BranchId", additionalCost.BranchId, DbType.Int32);
+
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoAdditionalCost]", parameters, commandType: CommandType.StoredProcedure);
@@ -95,6 +97,7 @@ namespace BookingSundorbon.Features.Repositories.AdditionalCostRepository
                     parameters.Add("@Cost", additionalCost.Cost, DbType.Decimal);
                     parameters.Add("@IsActive", additionalCost.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", additionalCost.ModifierId, DbType.String);
+                    parameters.Add("@BranchId", additionalCost.BranchId, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateAdditionalCost]", parameters, commandType: CommandType.StoredProcedure);

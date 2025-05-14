@@ -71,12 +71,19 @@ namespace BookingSundorbon.Views.DTOs.TransitionCostView
         public decimal DiscountedOfferId { get;set; }
         public decimal DiscountAmount { get;set; }
         public string? CreatorId { get; set; }
-        public string ModifierId { get; set; }
+        public string? ModifierId { get; set; }
         public bool? IsActive { get; set; }
         public string? Barcode { get; set; }
         public bool IsAgent { get; set; }
-        public string? AgentId { get; set; }
+        public int AgentId { get; set; }
+        public int BranchId { get; set; }
+        public string RecordSerialNo { get; set; }
+        public int PaymentTypeMethodId { get; set; }
 
+        public string BookedById { get; set; }
 
+        public int ProductQty {  get; set; }
+
+        public int CurrencyTypeId { get; set; }
     }
 }

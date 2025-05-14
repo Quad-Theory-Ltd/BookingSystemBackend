@@ -74,7 +74,7 @@ namespace BookingSundorbonBackend.Controllers.Login
             }
             var loginId =  await _loginRepository.CreateLoginAsync(login);
 
-            return Ok(loginId);
+            return Created("",loginId);
 
             // return CreatedAtAction(nameof(GetLoginId), new { id = loginId }, loginId);
         }

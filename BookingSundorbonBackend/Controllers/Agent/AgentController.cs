@@ -32,18 +32,24 @@ namespace BookingSundorbonBackend.Controllers.Agent
             {
                 return BadRequest("Agent is Null");
             }
-            await _agentRepository.CreateAgentAsync(agent);
+    
+            var res= await _agentRepository.CreateAgentAsync(agent);
 
-            return NoContent();
+            if (res== "User Created")
+            {
+                return Created("",res);
+            }
+            return Ok(res);
+           
 
            // return CreatedAtAction(nameof(GetAgent), new { id = agentId }, agentId);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{userId}")]
 
-        public async Task<IActionResult> GetAgent(string id)
+        public async Task<IActionResult> GetAgent(string userId)
         {
-            var agent = await _agentRepository.GetAgentAsync(id);
+            var agent = await _agentRepository.GetAgentAsync(userId);
             if (agent == null)
             {
                 return NotFound("Agent not found.");
@@ -52,14 +58,14 @@ namespace BookingSundorbonBackend.Controllers.Agent
         }
 
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAgent(string id, [FromBody] AgentView agent)
+        [HttpPut("{userId}")]
+        public async Task<IActionResult> UpdateAgent(string userId, [FromBody] AgentView agent)
         {
-            if (agent == null || agent.Id != id)
+            if (agent == null || agent.UserId != userId)
             {
-                return BadRequest("Agent Id is Invalid!");
+                return BadRequest("userId is Invalid!");
             }
-            var existingAgent = await _agentRepository.GetAgentAsync(id);
+            var existingAgent = await _agentRepository.GetAgentAsync(userId);
             if (existingAgent == null)
             {
                 return BadRequest("Agent Not Found!");
@@ -69,16 +75,16 @@ namespace BookingSundorbonBackend.Controllers.Agent
         }
 
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAgent(string id)
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> DeleteAgent(string userId)
         {
-            var agent = await _agentRepository.GetAgentAsync(id);
+            var agent = await _agentRepository.GetAgentAsync(userId);
             if (agent == null)
             {
                 return NotFound("Agent not found.");
             }
 
-            await _agentRepository.DeleteAgentAsync(id);
+            await _agentRepository.DeleteAgentAsync(userId);
             return NoContent();
         }
 

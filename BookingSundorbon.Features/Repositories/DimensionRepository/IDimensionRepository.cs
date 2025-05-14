@@ -14,5 +14,6 @@ namespace BookingSundorbon.Features.Repositories.DimensionRepository
         Task<IEnumerable<DimensionView>> GetAllActiveDimensionsAsync();
         Task UpdateDimensionAsync(DimensionView dimension);
         Task DeleteDimensionAsync(int id);
+        Task<decimal> GetDimensionPriceByIdAsync(int id);
     }
 }

@@ -44,5 +44,26 @@ namespace BookingSundorbon.Features.Repositories.ParcelNumbersWithBarcodeReposit
             }
         }
 
+
+        public async Task<IEnumerable<ParcelNumbersWithBarcodeView>> GetAgentParcelNumberrsWithBarcodes(string userId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@UserId", userId, DbType.String);
+                    var parcelContents = await dbConnection.QueryAsync<ParcelNumbersWithBarcodeView>(
+                        "[dbo].[SP_GetAgentParcelNumbersWithBarcodes]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return parcelContents;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

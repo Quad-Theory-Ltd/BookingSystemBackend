@@ -47,11 +47,29 @@ using BookingSundorbon.Features.Repositories.DiscountedOfferDetailRepository;
 using BookingSundorbon.Features.Repositories.ExtraPackagingRepository;
 using BookingSundorbon.Features.Repositories.FunctionRepository;
 using BookingSundorbon.Features.Repositories.ItemCategoryRepository;
-using BookingSundorbon.Features.Repositories.ScanningPersonRepository;
+using BookingSundorbon.Features.Repositories.ScanningPointRepository;
 using BookingSundorbon.Features.Repositories.BarcodeStatusRepository;
 using BookingSundorbon.Features.Repositories.BarcodeStatusDetailRepository;
+using BookingSundorbon.Features.Repositories.AgentRequisitionRepository;
+using BookingSundorbon.Features.Repositories.IssueRepository;
+using BookingSundorbon.Features.Repositories.ReceiveRepository;
+using BookingSundorbon.Features.Repositories.PaymentTypeMethodRepository;
+using BookingSundorbon.Features.Repositories.AgentBoxAssignRepository;
+using BookingSundorbon.Features.Repositories.ParcelStatusRepository;
+using BookingSundorbon.Features.Repositories.TransportAgentRepository;
+using BookingSundorbon.Features.Repositories.TransportAgentCostRepository;
+using BookingSundorbon.Features.Repositories.SenderDetailsRepository;
+using BookingSundorbon.Features.Repositories.BarcodeScanRepository;
+using BookingSundorbon.Features.Repositories.ParcelRepository;
+using BookingSundorbon.Features.Repositories.UserRepository;
+using BookingSundorbon.Features.Repositories.SubBranchRepository;
+using BookingSundorbon.Features.Repositories.BoxCurrentStockRepository;
+using BookingSundorbon.Features.Repositories.CurrentStockCurierServiceRepository;
+using BookingSundorbon.Features.Repositories.PaymentRepository;
+using BookingSundorbon.Features.Repositories.ParcelDetailsRepository;
 using BookingSundorbon.Features.Repositories.ParcelNumbersWithBarcodeRepository;
-
+using BookingSundorbon.Features.Repositories.AgentBoxAssignmentRepository;
+using BookingSundorbon.Features.Repositories.CurrencyRepository;
 namespace BookingSundorbon.Features
 {
     public static class ServiceCollectionExtensions
@@ -62,12 +80,17 @@ namespace BookingSundorbon.Features
             services.AddScoped<IAgentBookingRepository, AgentBookingRepository>();
             services.AddScoped<IAdditionalCostRepository, AdditionalCostRepository>();
             services.AddScoped<IAgentRepository, AgentRepository>();
+            services.AddScoped<IAgentRequisitionRepository, AgentRequisitionRepository>();
+            services.AddScoped<IAgentBoxAssignRepository, AgentBoxAssignRepository>();
+            services.AddScoped<IAgentBoxAssignmentRepository, AgentBoxAssignmentRepository>();
             #endregion
 
             #region "B"
             services.AddScoped<IBranchRepository, BranchRepository>();
             services.AddScoped<IBarcodeStatusRepository, BarcodeStatusRepository>();
             services.AddScoped<IBarcodeStatusDetailRepository, BarcodeStatusDetailRepository>();
+            services.AddScoped<IBarcodeScanRepository, BarcodeScanRepository>();
+            services.AddScoped<IBoxCurrentStockRepository, BoxCurrentStockRepository>();
             #endregion
 
             #region "C"
@@ -75,6 +98,8 @@ namespace BookingSundorbon.Features
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<ICargoTypeRepository, CargoTypeRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
+            services.AddScoped<ICurrentStockCurierServiceRepository, CurrentStockCurierServiceRepository>();
+            services.AddScoped<ICurrencyRepository, CurrencyRepository>();
             #endregion
 
             #region "D"
@@ -99,6 +124,7 @@ namespace BookingSundorbon.Features
             #region "I"
             services.AddScoped<IItemTypeRepository, ItemTypeRepository>();
             services.AddScoped<IItemCategoryRepository, ItemCategoryRepository>();
+            services.AddScoped<IIssueRepository, IssueRepository>();
             #endregion
 
             #region "L"
@@ -114,6 +140,11 @@ namespace BookingSundorbon.Features
             services.AddScoped<IProhibitedItemRepository, ProhibitedItemRepository>();
             services.AddScoped<IParcelBookingInformationRepository, ParcelBookingInformationRepository>();
             services.AddScoped<IPickupRepository, PickupRepository>();
+            services.AddScoped<IPaymentTypeMethodRepository, PaymentTypeMethodRepository>();
+            services.AddScoped<IParcelStatusRepository, ParcelStatusRepository>();
+            services.AddScoped<IParcelRepository, ParcelRepository>();
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
+            services.AddScoped<IParcelDetailsRepository, ParcelDetailsRepository>();
             services.AddScoped<IParcelNumbersWithBarcodeRepository, ParcelNumbersWithBarcodeRepository>();
             #endregion
 
@@ -121,6 +152,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IReceiverRepository, ReceiverRepository>();
             services.AddScoped<IRouteRepository, RouteRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IReceiveRepository, ReceiveRepository>();
             #endregion
 
             #region "S"
@@ -128,14 +160,19 @@ namespace BookingSundorbon.Features
             services.AddScoped<IShippingServiceRepository, ShippingServiceRepository>();
             services.AddScoped<IScreenRepository, ScreenRepository>();
             services.AddScoped<IScreenFunctionRepository, ScreenFunctionRepository>();
-            services.AddScoped<IScanningPersonRepository, ScanningPersonRepository>();
+            services.AddScoped<IScanningPointRepository, ScanningPointRepository>();
+            services.AddScoped<ISenderDetailsRepository, SenderDetailsRepository>();
+            services.AddScoped<ISubBranchRepository, SubBranchRepository>();
             
             #endregion
             #region "T"
             services.AddScoped<ITransitionCostRepository, TransitionCostRepository>();
+            services.AddScoped<ITransportAgentRepository, TransportAgentRepository>();
+            services.AddScoped<ITransportAgentCostRepository, TransportAgentCostRepository>();
             #endregion
             #region "U"
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserRepository, UserRepository>();
             #endregion
 
             #region "V"

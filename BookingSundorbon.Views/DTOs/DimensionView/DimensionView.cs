@@ -16,6 +16,8 @@ namespace BookingSundorbon.Views.DTOs.DimensionView
         public decimal Height { get; set; }
         public int MeasurementUnitId { get; set; }
         public decimal Price { get; set; }
+        public int BranchId { get; set; }
+        public string BranchName { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
         public DateTime CreationDate { get; set; }

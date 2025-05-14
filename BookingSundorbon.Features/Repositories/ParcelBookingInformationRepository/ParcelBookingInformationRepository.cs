@@ -8,6 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using BookingSundorbon.Views.DTOs.BranchView;
+using BookingSundorbon.Views.DTOs.ParcelCountView;
+using BookingSundorbon.Views.DTOs.ParcelBoxCountView;
+using BookingSundorbon.Views.DTOs.ParcelBookingHistoryView;
+using System.Data.Common;
 
 namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationRepository
 {
@@ -20,7 +25,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationReposit
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<IEnumerable<ParcelInfoByUserIdView>> GetParcelInfoByUserIdAsync(string userId)
+        public async Task<IEnumerable<ParcelBookingHistoryView>> GetParcelInfoByUserIdAsync(string userId)
         {
             try
             {
@@ -29,8 +34,124 @@ namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationReposit
                     DynamicParameters parameters = new();
                     parameters.Add("@UserId", userId, DbType.String);
 
-                    var result = await dbConnection.QueryAsync<ParcelInfoByUserIdView>(
-                        "[dbo].[SP_GetParcelInfoByUserId]", parameters, commandType: CommandType.StoredProcedure);
+                    var result = await dbConnection.QueryAsync<ParcelBookingHistoryView>(
+                        "[dbo].[SP_GetAgentBookingDetailsByUserId]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<ParcelCountView>> GetParcelCounts()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var result = await dbConnection.QueryAsync<ParcelCountView>(
+                        "[dbo].[SP_GetParcelCounts]", commandType: CommandType.StoredProcedure);
+
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<IEnumerable<ParcelBoxCountView>> GetParcelCountsWithDimensions()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var result = await dbConnection.QueryAsync<ParcelBoxCountView>(
+                        "[dbo].[SP_GetParcelCountsWithDimensions]", commandType: CommandType.StoredProcedure);
+
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<ParcelBookingHistoryView>> GetParcelBookingHistory()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var result = await dbConnection.QueryAsync<ParcelBookingHistoryView>(
+                        "[dbo].[SP_GetAllBookingHistory]", commandType: CommandType.StoredProcedure);
+
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<ParcelBookingHistoryView>> GetParcelAgentBookingHistory()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    var result = await dbConnection.QueryAsync<ParcelBookingHistoryView>(
+                        "[dbo].[SP_GetAgentBookingHistory]", commandType: CommandType.StoredProcedure);
+
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<ParcelBookingHistoryView>> GetParcelAgentBookingHistoryByAgentId(int AgentId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    
+                  DynamicParameters parameters = new();
+                    parameters.Add("@AgentUserId", AgentId, DbType.Int32);
+
+                    var result = await dbConnection.QueryAsync<ParcelBookingHistoryView>(
+                        "[dbo].[SP_GetAgentBookingDetailsByAgentId]", parameters,commandType: CommandType.StoredProcedure);
+
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+        public async Task<IEnumerable<ParcelBookingHistoryView>> GetParcelBookingHistoryByUserIdAsync(string userId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@UserId", userId, DbType.String);
+
+                    var result = await dbConnection.QueryAsync<ParcelBookingHistoryView>(
+                        "[dbo].[SP_GetUserBookingDetailsByUserId]", parameters, commandType: CommandType.StoredProcedure);
 
                     return result;
                 }

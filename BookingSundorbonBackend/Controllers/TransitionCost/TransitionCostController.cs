@@ -40,15 +40,16 @@ namespace BookingSundorbonBackend.Controllers.GetTransitionCost
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateParcelBooking([FromBody] CreateParcelBookingView createParcelBookingView)
+        public async Task<IActionResult> CreateParcelBooking([FromBody] List<CreateParcelBookingView> createParcelBookingViews)
         {
-            if (createParcelBookingView == null)
+            if (createParcelBookingViews == null)
             {
                 return BadRequest("Parcel Booking is null.");
             }
 
-            var result = await _getTransitionCostRepository.CreateParcelBookingAsync(createParcelBookingView);
+            var result = await _getTransitionCostRepository.CreateParcelBookingAsync(createParcelBookingViews);
             return Ok(result);
         }
+        
     }
 }

@@ -34,7 +34,7 @@ namespace BookingSundorbonBackend.Controllers.Function
             }
             await _functionRepository.CreateFunctionAsync(function);
 
-            return NoContent();
+            return Created("", "Created");
 
            // return CreatedAtAction(nameof(GetFunction), new { id = functionId }, functionId);
         }
