@@ -80,5 +80,18 @@ namespace BookingSundorbonBackend.Controllers.ParcelStatus
         //    return NoContent();
         //}
 
+
+        [HttpGet("GetAllActiveParcelStatusByRouteId")]
+
+        public async Task<IActionResult> GetAllActiveParcelStatusByRouteId(int routeId)
+        {
+            var parcelStatus = await _parcelStatusRepository.GetAllActiveParcelStatusByRouteId(routeId);
+            if (parcelStatus == null)
+            {
+                return NotFound("ParcelStatus not found.");
+            }
+            return Ok(parcelStatus);
+        }
+
     }
 }

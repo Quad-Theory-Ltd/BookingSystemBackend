@@ -13,6 +13,7 @@ using BookingSundorbon.Views.DTOs.ParcelCountView;
 using BookingSundorbon.Views.DTOs.ParcelBoxCountView;
 using BookingSundorbon.Views.DTOs.ParcelBookingHistoryView;
 using System.Data.Common;
+using BookingSundorbon.Views.DTOs.BarcodeScanView;
 
 namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationRepository
 {
@@ -162,5 +163,29 @@ namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationReposit
                 throw;
             }
         }
+
+
+        public async Task<IEnumerable<ParcelBookingSummaryCountsView>> GetUserBookingSummery(string userId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@UserId", userId, DbType.String);
+
+                    var result = await dbConnection.QueryAsync<ParcelBookingSummaryCountsView>(
+                        "[dbo].[Sp_GetUserBookingSummery]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

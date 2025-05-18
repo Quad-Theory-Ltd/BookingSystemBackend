@@ -35,7 +35,9 @@ namespace BookingSundorbon.Views.DTOs.ParcelBookingHistoryView
 		public string? CurrencyType { get; set; }
 		public string? Symbol { get; set; }
  
-        public string CurrentStatus { get; set; }
-        public string PaymentStatus { get; set; }
+        public string CurrentParcelStatusId { get; set; }
+        public string CurrentParcelStatusName { get; set; }
+
+
     }
 }

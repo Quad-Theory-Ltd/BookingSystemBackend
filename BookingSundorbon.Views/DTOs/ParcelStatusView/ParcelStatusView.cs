@@ -19,5 +19,8 @@ namespace BookingSundorbon.Views.DTOs.ParcelStatusView
         public string BranchName { get; set; }
         public int SubBranchId { get; set; }
         public string SubBranchName { get; set; }
+        public int RouteId { get; set; }
+        public string? RouteName { get; set; }
+        public int Rank { get; set; }
     }
 }
