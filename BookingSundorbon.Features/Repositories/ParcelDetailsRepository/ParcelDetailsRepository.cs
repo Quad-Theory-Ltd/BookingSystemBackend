@@ -43,5 +43,26 @@ namespace BookingSundorbon.Features.Repositories.ParcelDetailsRepository
             }
         }
 
+        public async Task<ParcelCostDetailsView> GetParcelCostDetails(int parcelNo)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@ParcelId", parcelNo, DbType.Int32);
+
+                    var parcel = await dbConnection.QueryFirstOrDefaultAsync<ParcelCostDetailsView>(
+                        "[dbo].[Sp_GetParcelCostDetailsById]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return parcel;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

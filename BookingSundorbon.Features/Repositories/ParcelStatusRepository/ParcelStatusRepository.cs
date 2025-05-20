@@ -154,8 +154,30 @@ namespace BookingSundorbon.Features.Repositories.ParcelStatusRepository
                 throw;
             }
 
+        }
+
+        public async Task<IEnumerable<ParcelStatusRankByParcelIdView>> GetParcelStatusRankByParcelId(int parcelId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@parcelId", parcelId, DbType.Int32);
+
+                    var parcelStatusRank = await dbConnection.QueryAsync<ParcelStatusRankByParcelIdView>(
+                       "[dbo].[Sp_GetParcelStatusRankByParcelId]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return parcelStatusRank;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
 
         }
 
-        }
+
     }
+}

@@ -15,6 +15,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelStatusRepository
         Task UpdateParcelStatusAsync(ParcelStatusView parcelStatus);
 
         Task<IEnumerable<ParcelStatusView>> GetAllActiveParcelStatusByRouteId(int routeId);
+        Task<IEnumerable<ParcelStatusRankByParcelIdView>> GetParcelStatusRankByParcelId(int parcelId);
         //Task DeleteParcelStatusAsync(int id);
     }
 }

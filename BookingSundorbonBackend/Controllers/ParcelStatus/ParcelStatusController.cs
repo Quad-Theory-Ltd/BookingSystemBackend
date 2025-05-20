@@ -93,5 +93,16 @@ namespace BookingSundorbonBackend.Controllers.ParcelStatus
             return Ok(parcelStatus);
         }
 
+        [HttpGet("GetParcelStatusRankByParcelId")]
+
+        public async Task<IActionResult> GetParcelStatusRankByParcelId(int parcelId)
+        {
+            var parcelStatusRank = await _parcelStatusRepository.GetParcelStatusRankByParcelId(parcelId);
+            if (parcelStatusRank == null)
+            {
+                return NotFound("ParcelStatus not found.");
+            }
+            return Ok(parcelStatusRank);
+        }
     }
 }

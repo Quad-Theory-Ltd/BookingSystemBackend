@@ -11,6 +11,8 @@ namespace BookingSundorbon.Features.Repositories.ParcelDetailsRepository
     {
 
         Task<ParcelDetailsForPaymentView> GetParcelDetailsByParcelNoAsync(int parcelNo);
-  
+        Task<ParcelCostDetailsView> GetParcelCostDetails(int parcelNo);
+
+
     }
 }
