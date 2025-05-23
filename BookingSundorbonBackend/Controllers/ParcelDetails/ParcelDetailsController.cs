@@ -33,6 +33,17 @@ namespace BookingSundorbonBackend.Controllers.ParcelDetails
         }
 
 
+        [HttpGet("GetParcelCostDetails")]
+
+        public async Task<IActionResult> GetParcelCostDetails(int parcelNo)
+        {
+            var parcelDetails = await _parcelDetailsRepository.GetParcelCostDetails(parcelNo);
+            if (parcelDetails == null)
+            {
+                return NotFound("Parcel Cost Details not found.");
+            }
+            return Ok(parcelDetails);
+        }
 
     }
 }

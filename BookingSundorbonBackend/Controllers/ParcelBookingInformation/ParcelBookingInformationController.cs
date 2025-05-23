@@ -1,4 +1,5 @@
 ﻿using BookingSundorbon.Features.Repositories.ParcelBookingInformationRepository;
+using BookingSundorbon.Views.DTOs.ParcelBookingHistoryView;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -91,6 +92,17 @@ namespace BookingSundorbonBackend.Controllers.ParcelBookingInformation
             if (count == null)
             {
                 return NotFound("Booking Info not found.");
+            }
+            return Ok(count);
+        }
+
+        [HttpGet("GetUserBookingSummerybyUserId/{userId}")]
+        public async Task<IActionResult> GetUserBookingSummery(string userId)
+        {
+            var count = await _parcelBookingInformationRepository.GetUserBookingSummery(userId);
+            if (count == null)
+            {
+                return NotFound("Booking summary not found.");
             }
             return Ok(count);
         }

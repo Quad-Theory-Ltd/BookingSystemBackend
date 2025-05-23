@@ -281,7 +281,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
 
                         parameters.Add("@ProductQty", createParcelBookingView.ProductQty, DbType.Int32);
                         parameters.Add("@CurrencyTypeId", createParcelBookingView.CurrencyTypeId, DbType.Int32);
-
+                       
                         if (!createParcelBookingView.IsAgent)
                         {
                             userId = createParcelBookingView.SenderName;
@@ -329,7 +329,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                         result.Barcode = barcode;
                         result.UserId = userId;
                         result.Password = password;
-
+                        
                         results.Add(result);
                     }
                 }

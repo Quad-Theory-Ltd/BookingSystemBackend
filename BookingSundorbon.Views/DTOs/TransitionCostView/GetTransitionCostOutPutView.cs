@@ -34,7 +34,7 @@ namespace BookingSundorbon.Views.DTOs.GetTransitionCostView
         public int VatId { get; set; }
         public decimal VATPercentage { get; set; }
         public decimal VATAmount { get; set; }
-        public decimal VATAmountPercentage { get;set; }
+        public decimal VATPercentageAmount { get;set; }
         public decimal TotalCostWithVAT { get; set; }
         public decimal TotalCostWithoutVAT { get; set; }
         

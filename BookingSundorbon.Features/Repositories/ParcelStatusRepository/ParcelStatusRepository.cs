@@ -32,7 +32,8 @@ namespace BookingSundorbon.Features.Repositories.ParcelStatusRepository
                     parameters.Add("@CreatorId", parcelStatus.CreatorId, DbType.String);
                     parameters.Add("@BranchId", parcelStatus.BranchId, DbType.Int32);
                     parameters.Add("@SubBranchId", parcelStatus.SubBranchId, DbType.Int32);
-           
+                    parameters.Add("@RouteId", parcelStatus.RouteId, DbType.Int32);
+                    parameters.Add("@Rank", parcelStatus.Rank, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoParcelStatus]", parameters, commandType: CommandType.StoredProcedure);
@@ -99,7 +100,8 @@ namespace BookingSundorbon.Features.Repositories.ParcelStatusRepository
                     parameters.Add("@ModifierId", parcelStatus.ModifierId, DbType.String);
                     parameters.Add("@BranchId", parcelStatus.BranchId, DbType.Int32);
                     parameters.Add("@SubBranchId", parcelStatus.SubBranchId, DbType.Int32);
-
+                    parameters.Add("@RouteId", parcelStatus.RouteId, DbType.Int32);
+                    parameters.Add("@Rank", parcelStatus.Rank, DbType.Int32);
 
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateParcelStatus]", parameters, commandType: CommandType.StoredProcedure);
@@ -131,5 +133,51 @@ namespace BookingSundorbon.Features.Repositories.ParcelStatusRepository
         //        throw;
         //    }
         //}
+
+        public async Task<IEnumerable<ParcelStatusView>> GetAllActiveParcelStatusByRouteId(int routeId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@RouteId", routeId, DbType.Int32);
+
+                    var parcelStatus = await dbConnection.QueryAsync<ParcelStatusView>(
+                       "[dbo].[SP_GetAllActiveParcelStatusByRouteId]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return parcelStatus;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        public async Task<IEnumerable<ParcelStatusRankByParcelIdView>> GetParcelStatusRankByParcelId(int parcelId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@parcelId", parcelId, DbType.Int32);
+
+                    var parcelStatusRank = await dbConnection.QueryAsync<ParcelStatusRankByParcelIdView>(
+                       "[dbo].[Sp_GetParcelStatusRankByParcelId]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return parcelStatusRank;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+
     }
 }
