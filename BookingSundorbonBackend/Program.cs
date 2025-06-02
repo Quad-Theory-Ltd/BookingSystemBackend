@@ -41,7 +41,7 @@ builder.Services.AddCors(
             , "http://sundarbancargo.com", 
             "http://sundarbancargo.com/api"
             , "https://sundarbancargo.com", 
-            "https://sundarbancargo.com/api", "https://sundarbancargo.com/", "https://sundarbancargo.com/api")
+            "https://sundarbancargo.com/api", "https://sundarbancargo.com/", "https://sundarbancargo.com/api", "https://sundarbancargo.com:500", "https://sundarbancargo.com:500/api")
             .AllowAnyHeader()
             .AllowAnyMethod()
             );
