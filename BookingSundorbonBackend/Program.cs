@@ -20,7 +20,7 @@ builder.Services.AddCors(
     options =>
     {
         options.AddPolicy(name: "sundorbonBookingCors",
-            policy => policy.WithOrigins("http://www.sundarbancargoservicesltd.uk",
+            policy => policy.WithOrigins("http://www.sundarbancargoservicesltd.uk", "https://sundarbancargoservicesltd.uk",
             "http://www.sundarbancargoservicesltd.uk/",
             "https://www.sundarbancargoservicesltd.uk/",
             "http://www.sundarbancargoservicesltd.uk/api",
@@ -41,7 +41,12 @@ builder.Services.AddCors(
             , "http://sundarbancargo.com", 
             "http://sundarbancargo.com/api"
             , "https://sundarbancargo.com", 
-            "https://sundarbancargo.com/api", "https://sundarbancargo.com/", "https://sundarbancargo.com/api", "https://sundarbancargo.com:500", "https://sundarbancargo.com:500/api", "https://sundarbancargo.com:500/api/")
+            "https://sundarbancargo.com/api", 
+            "https://sundarbancargo.com/", 
+            "https://sundarbancargo.com/api", 
+            "https://sundarbancargo.com:500", 
+            "https://sundarbancargo.com:500/api", 
+            "https://sundarbancargo.com:500/api/")
             .AllowAnyHeader()
             .AllowAnyMethod()
             );
