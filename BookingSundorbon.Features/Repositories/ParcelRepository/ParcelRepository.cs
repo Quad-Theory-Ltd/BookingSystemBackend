@@ -208,7 +208,7 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
                         var rateValue = rate.Value.Value;
 
                         var parameters = new DynamicParameters();
-                        parameters.Add("@BaseCurrency", "BDT", DbType.String);
+                        parameters.Add("@BaseCurrency", "GBP", DbType.String);
                         parameters.Add("@TargetCurrency", targetCurrency, DbType.String);
                         parameters.Add("@Rate", rateValue, DbType.Decimal);
                         parameters.Add("@CreationDate", DateTime.UtcNow, DbType.DateTime);
