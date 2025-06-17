@@ -29,6 +29,8 @@ namespace BookingSundorbon.Features.Repositories.ItemCategoryRepository
                     DynamicParameters parameters = new();
                     parameters.Add("@CompanyId", itemCategory.CompanyId, DbType.Int32);
                     parameters.Add("@Name", itemCategory.Name, DbType.String);
+                    parameters.Add("@Cost", itemCategory.Cost, DbType.Decimal);
+                    parameters.Add("@RouteId", itemCategory.RouteId, DbType.Int32);
                     parameters.Add("@IsActive", itemCategory.IsActive, DbType.Boolean);
                     parameters.Add("@CreatorId", itemCategory.CreatorId, DbType.String);
                    // parameters.Add("@BranchId", itemCategory.BranchId, DbType.Int32);
@@ -94,6 +96,8 @@ namespace BookingSundorbon.Features.Repositories.ItemCategoryRepository
                     parameters.Add("@Id", itemCategory.Id, DbType.Int32);
                     parameters.Add("@CompanyId", itemCategory.CompanyId, DbType.Int32);
                     parameters.Add("@Name", itemCategory.Name, DbType.String);
+                    parameters.Add("@Cost", itemCategory.Cost, DbType.Decimal);
+                    parameters.Add("@RouteId", itemCategory.RouteId, DbType.Int32);
                     parameters.Add("@IsActive", itemCategory.IsActive, DbType.Boolean);
                     parameters.Add("@ModifierId", itemCategory.ModifierId, DbType.String);
                   //  parameters.Add("@BranchId", itemCategory.BranchId, DbType.Int32);

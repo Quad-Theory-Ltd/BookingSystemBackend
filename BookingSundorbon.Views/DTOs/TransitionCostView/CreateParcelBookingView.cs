@@ -29,6 +29,7 @@ namespace BookingSundorbon.Views.DTOs.TransitionCostView
         public string ReceiverAdditionalAddressInfo { get; set; }
 
         public int ItemCategoryId { get; set; }
+        public decimal ItemCategoryCost {  get; set; }
         public int ItemTypeId { get; set; }
         public decimal ItemTypeCost { get; set; }
 

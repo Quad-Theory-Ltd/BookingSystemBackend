@@ -224,6 +224,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                         parameters.Add("@ReceiverAdditionalAddressInfo", createParcelBookingView.ReceiverAdditionalAddressInfo, DbType.String);
 
                         parameters.Add("@ItemCategoryId", createParcelBookingView.ItemCategoryId, DbType.Int32);
+                        parameters.Add("@ItemCategoryCost", createParcelBookingView.ItemCategoryCost, DbType.Decimal);
                         parameters.Add("@ItemTypeId", createParcelBookingView.ItemTypeId, DbType.Int32);
                         parameters.Add("@ItemTypeCost", createParcelBookingView.ItemTypeCost, DbType.Decimal);
 
@@ -367,6 +368,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     parameters.Add("@IsExtraPackaging", transitionCostView.IsExtraPackaging, DbType.Boolean);
                     parameters.Add("@IsPickup", transitionCostView.IsPickUp, DbType.Boolean);
                     parameters.Add("@ItemTypeId", transitionCostView.ItemTypeId, DbType.Int32);
+                    parameters.Add("@ItemCategoryId", transitionCostView.ItemCategoryId, DbType.Int32);
                     parameters.Add("@ShipmentArrivalDate", transitionCostView.ShipmentArrivalDate, DbType.DateTime);
 
 
