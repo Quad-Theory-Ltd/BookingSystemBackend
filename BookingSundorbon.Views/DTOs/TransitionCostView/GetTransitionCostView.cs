@@ -18,6 +18,7 @@ namespace BookingSundorbon.Views.DTOs.GetTransitionCostView
         public bool IsExtraPackaging { get; set; }
         public bool IsPickUp { get; set; }
         public int ItemTypeId { get; set; }
+        public int ItemCategoryId { get; set; }
         public DateTime ShipmentArrivalDate { get; set; }
 
     }

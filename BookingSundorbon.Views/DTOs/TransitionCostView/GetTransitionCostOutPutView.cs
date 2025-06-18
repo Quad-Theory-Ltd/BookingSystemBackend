@@ -22,6 +22,7 @@ namespace BookingSundorbon.Views.DTOs.GetTransitionCostView
         public decimal WeightCost { get; set; }
        
         public decimal ExtraPackagingCost { get; set; }
+        public decimal ItemCategoryCost { get; set; }
         public decimal ItemTypeCost {  get; set; }
         public int ShippingServiceId { get; set; }
         public string ShippingServiceName { get; set; }
