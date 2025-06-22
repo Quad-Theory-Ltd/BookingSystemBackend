@@ -37,6 +37,7 @@ namespace BookingSundorbon.Features.Repositories.WeightRepository
                     parameters.Add("@CreatorId", weight.CreatorId, DbType.String);
                     parameters.Add("@BranchId", weight.BranchId, DbType.Int32);
                     parameters.Add("@RouteId", weight.RouteId, DbType.Int32);
+                    parameters.Add("@ItemCategoryId", weight.ItemCategoryId, DbType.Int32);
 
                     var newId = await dbConnection.ExecuteScalarAsync<int>(
                         "[dbo].[SP_InsertIntoWeight]", parameters, commandType: CommandType.StoredProcedure);
@@ -128,6 +129,7 @@ namespace BookingSundorbon.Features.Repositories.WeightRepository
                     parameters.Add("@ModifierId", weight.ModifierId, DbType.String);
                     parameters.Add("@BranchId", weight.BranchId, DbType.Int32);
                     parameters.Add("@RouteId", weight.RouteId, DbType.Int32);
+                    parameters.Add("@ItemCategoryId", weight.ItemCategoryId, DbType.Int32);
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateWeight]", parameters, commandType: CommandType.StoredProcedure);
                 }
