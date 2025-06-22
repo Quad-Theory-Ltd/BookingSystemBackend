@@ -22,6 +22,7 @@ builder.Services.AddCors(
         options.AddPolicy(name: "sundorbonBookingCors",
             policy => policy.WithOrigins("http://www.sundarbancargoservicesltd.uk",
             "https://sundarbancargoservicesltd.uk",
+                                         "https://www.sundarbancargoservicesltd.uk",
             "https://www.sundarbancargoservicesltd.uk",
             "http://www.sundarbancargoservicesltd.uk/",
             "https://www.sundarbancargoservicesltd.uk/",
@@ -108,7 +109,7 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
     options.AddPolicy("RequireUserRole", policy => policy.RequireRole("User"));
     options.AddPolicy("AppUserAndAdmin", policy => policy.RequireRole("User", "Admin"));
-    // Add other policies as needed
+    // Add other policiesÂ asÂ needed
 
 
     //options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
