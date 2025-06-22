@@ -14,7 +14,7 @@ namespace BookingSundorbon.Views.DTOs.TransitionCostView
         public string UserType { get; set; }
         public string  Message { get; set; }
         public string Barcode { get; set; }
-
+        public  string RecordSerialNo { get; set; }
         //public int RouteId { get; set; }
     }
 }

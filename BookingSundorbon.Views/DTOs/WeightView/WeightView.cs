@@ -24,5 +24,7 @@ namespace BookingSundorbon.Views.DTOs.WeightView
         public DateTime ModificationDate { get; set; }
         public int RouteId { get; set; }
         public string? RouteName { get; set; }
+        public int ItemCategoryId {  get; set; }
+        public string? ItemCategoryName { get; set; }
     }
 }
