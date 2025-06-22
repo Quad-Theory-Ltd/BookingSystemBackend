@@ -20,7 +20,9 @@ builder.Services.AddCors(
     options =>
     {
         options.AddPolicy(name: "sundorbonBookingCors",
-            policy => policy.WithOrigins("http://www.sundarbancargoservicesltd.uk", "https://sundarbancargoservicesltd.uk",
+            policy => policy.WithOrigins("http://www.sundarbancargoservicesltd.uk",
+            "https://sundarbancargoservicesltd.uk",
+            "https://www.sundarbancargoservicesltd.uk",
             "http://www.sundarbancargoservicesltd.uk/",
             "https://www.sundarbancargoservicesltd.uk/",
             "http://www.sundarbancargoservicesltd.uk/api",
