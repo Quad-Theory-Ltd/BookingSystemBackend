@@ -15,7 +15,7 @@ namespace BookingSundorbon.Features.Repositories.AgentBoxAssignRepository
         Task<IEnumerable<AgentBoxAssignView>> GetAllActiveAgentBoxAssignsAsync();
         Task UpdateAgentBoxAssignAsync(AgentBoxAssignView agentBoxAssign);
         //Task DeleteAgentBoxAssignAsync(int id);
-        Task<IEnumerable<AgentBoxAssignDetailsView>> AgentBoxAssignDetailsByAgentIdAsync(int id);
+        Task<IEnumerable<AgentBoxAssignDetailsView>> AgentBoxAssignDetailsByAgentIdAsync(string id);
         Task<AgentBoxAssignView> AgentBoxAssignByDetailsByIdAsync(int id);
        
     }
