@@ -16,7 +16,7 @@ namespace BookingSundorbon.Views.DTOs.IssueView
         public string ModifierId { get; set; }
         public DateTime ModificationDate { get; set; }
 
-        public int IssuedBy { get; set; }
+        public string IssuedBy { get; set; }
         public decimal IssuedPrice { get; set; }
         public string Remarks { get; set; }
         public int DimensionId { get; set; }
