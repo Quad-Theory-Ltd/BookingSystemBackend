@@ -26,5 +26,7 @@ namespace BookingSundorbon.Views.DTOs.WeightView
         public string? RouteName { get; set; }
         public int ItemCategoryId {  get; set; }
         public string? ItemCategoryName { get; set; }
+        public int DimensionId { get; set; }
+        public string? DimensionName { get; set; }
     }
 }
