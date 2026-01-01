@@ -131,6 +131,7 @@ namespace BookingSundorbon.Features.Repositories.WeightRepository
                     parameters.Add("@BranchId", weight.BranchId, DbType.Int32);
                     parameters.Add("@RouteId", weight.RouteId, DbType.Int32);
                     parameters.Add("@ItemCategoryId", weight.ItemCategoryId, DbType.Int32);
+                    parameters.Add("@DimensionId", weight.DimensionId, DbType.Int32);
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdateWeight]", parameters, commandType: CommandType.StoredProcedure);
                 }

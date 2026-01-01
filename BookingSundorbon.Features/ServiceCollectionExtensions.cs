@@ -70,6 +70,7 @@ using BookingSundorbon.Features.Repositories.ParcelDetailsRepository;
 using BookingSundorbon.Features.Repositories.ParcelNumbersWithBarcodeRepository;
 using BookingSundorbon.Features.Repositories.AgentBoxAssignmentRepository;
 using BookingSundorbon.Features.Repositories.CurrencyRepository;
+using BookingSundorbon.Features.Repositories.QuotationRepository;
 namespace BookingSundorbon.Features
 {
     public static class ServiceCollectionExtensions
@@ -146,6 +147,10 @@ namespace BookingSundorbon.Features
             services.AddScoped<IPaymentRepository, PaymentRepository>();
             services.AddScoped<IParcelDetailsRepository, ParcelDetailsRepository>();
             services.AddScoped<IParcelNumbersWithBarcodeRepository, ParcelNumbersWithBarcodeRepository>();
+            #endregion
+
+            #region "Q"
+            services.AddScoped<IQuotationRepository, QuotationRepository>();
             #endregion
 
             #region "R"
