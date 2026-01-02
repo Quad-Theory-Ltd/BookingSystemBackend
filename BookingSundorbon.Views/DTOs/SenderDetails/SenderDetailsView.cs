@@ -16,6 +16,9 @@ namespace BookingSundorbon.Views.DTOs.SenderDetailsView
         public string Email { get; set; }
         public string Phone { get; set; }
         public string NearestLandmark { get; set; }
+          
+        
+        public string? PostCode { get; set; }   //Newly Added - Yeameen
         public string AdditionalAddressInfo { get; set; }
         public bool IsActive { get; set; }
         public string CreatorId { get; set; }
