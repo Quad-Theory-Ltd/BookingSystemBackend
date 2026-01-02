@@ -104,7 +104,7 @@ namespace BookingSundorbonBackend.Controllers.Parcel
 
         [HttpGet("GetAgentParcelByAgentId/{agentId}")]
 
-        public async Task<IActionResult> GetAgentParcelByAgentId(int agentId)
+        public async Task<IActionResult> GetAgentParcelByAgentId(string agentId)
         {
             var parcel = await _parcelRepository.GetAgentParcelByAgentIdAsync(agentId);
             if (parcel == null)

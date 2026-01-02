@@ -213,6 +213,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                         parameters.Add("@SenderCountryId", createParcelBookingView.SenderCountryId, DbType.Int32);
                         parameters.Add("@SenderCityId", createParcelBookingView.SenderCityId, DbType.Int32);
                         parameters.Add("@SenderLandmark", createParcelBookingView.SenderLandMark, DbType.String);
+                       // parameters.Add("@SenderPostCode", createParcelBookingView.SenderPostCode, DbType.String);  //Newly Added - Yeameen
                         parameters.Add("@SenderAdditionalAddressInfo", createParcelBookingView.SenderAdditionalAddressInfo, DbType.String);
 
                         parameters.Add("@ReceiverName", createParcelBookingView.ReceiverName, DbType.String);
@@ -221,6 +222,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                         parameters.Add("@ReceiverCountryId", createParcelBookingView.ReceiverCountryId, DbType.Int32);
                         parameters.Add("@ReceiverCityId", createParcelBookingView.ReceiverCityId, DbType.Int32);
                         parameters.Add("@ReceiverLandmark", createParcelBookingView.ReceiverLandMark, DbType.String);
+                       // parameters.Add("@ReceiverPostCode", createParcelBookingView.ReceiverPostCode, DbType.String);  //Newly Added - Yeameen
                         parameters.Add("@ReceiverAdditionalAddressInfo", createParcelBookingView.ReceiverAdditionalAddressInfo, DbType.String);
 
                         parameters.Add("@ItemCategoryId", createParcelBookingView.ItemCategoryId, DbType.Int32);
@@ -273,7 +275,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                         parameters.Add("@Barcode", barcode, DbType.String);
 
                         parameters.Add("@IsAgent", createParcelBookingView.IsAgent, DbType.Boolean);
-                        parameters.Add("@AgentId", createParcelBookingView.AgentId, DbType.Int32);
+                        parameters.Add("@AgentId", createParcelBookingView.AgentId, DbType.String);
 
                         parameters.Add("@BranchId", createParcelBookingView.BranchId, DbType.Int32);
                         parameters.Add("@RecordSerialNo", createParcelBookingView.RecordSerialNo, DbType.String);

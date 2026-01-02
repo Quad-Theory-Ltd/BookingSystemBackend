@@ -18,7 +18,7 @@ namespace BookingSundorbonBackend.Controllers.AgentBooking
 
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAgentBookingCountsByDimension(int id)
+        public async Task<IActionResult> GetAgentBookingCountsByDimension(string id)
         {
             var count = await _agentBookingRepository.GetAgentBookingCountsByDimensionAsync(id);
             if (count == null)

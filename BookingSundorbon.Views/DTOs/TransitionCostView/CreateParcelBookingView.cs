@@ -18,6 +18,8 @@ namespace BookingSundorbon.Views.DTOs.TransitionCostView
         public int SenderCountryId { get; set; }
         public int SenderCityId { get; set; }
         public string SenderLandMark { get; set; }
+
+        public string SenderPostCode { get; set; } //Newly Added - Yeameen
         public string SenderAdditionalAddressInfo { get; set; }
 
         public string ReceiverName { get; set; }
@@ -26,6 +28,9 @@ namespace BookingSundorbon.Views.DTOs.TransitionCostView
         public int ReceiverCountryId { get; set; }
         public int ReceiverCityId { get; set; }
         public string ReceiverLandMark { get; set; }
+
+        public string ReceiverPostCode { get; set; }   //Newly Added - Yeameen
+
         public string ReceiverAdditionalAddressInfo { get; set; }
 
         public int ItemCategoryId { get; set; }
@@ -76,7 +81,7 @@ namespace BookingSundorbon.Views.DTOs.TransitionCostView
         public bool? IsActive { get; set; }
         public string? Barcode { get; set; }
         public bool IsAgent { get; set; }
-        public int AgentId { get; set; }
+        public string AgentId { get; set; }
         public int BranchId { get; set; }
         public string RecordSerialNo { get; set; }
         public int PaymentTypeMethodId { get; set; }
