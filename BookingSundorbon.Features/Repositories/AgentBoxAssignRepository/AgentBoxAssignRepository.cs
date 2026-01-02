@@ -31,7 +31,7 @@ namespace BookingSundorbon.Features.Repositories.AgentBoxAssignRepository
                   
                     DynamicParameters parameters = new();
                     string boxSerialNo = $"{agentBoxAssign.DimensionId}~{Guid.NewGuid()}";
-                    parameters.Add("@AgentId", agentBoxAssign.AgentId, DbType.Int32);
+                    parameters.Add("@AgentId", agentBoxAssign.AgentId, DbType.String);
                     parameters.Add("@DimensionId", agentBoxAssign.DimensionId, DbType.Int32);
                     parameters.Add("@BoxSerialNo", boxSerialNo, DbType.String);
                     parameters.Add("@BoxQty", agentBoxAssign.BoxQty);
@@ -100,7 +100,7 @@ namespace BookingSundorbon.Features.Repositories.AgentBoxAssignRepository
                 {
                     DynamicParameters parameters = new();
                     parameters.Add("@Id", agentBoxAssign.Id, DbType.Int32);
-                    parameters.Add("@AgentId", agentBoxAssign.AgentId, DbType.Int32);
+                    parameters.Add("@AgentId", agentBoxAssign.AgentId, DbType.String);
                     parameters.Add("@DimensionId", agentBoxAssign.DimensionId, DbType.Int32);
                     parameters.Add("@BoxSerialNo", agentBoxAssign.BoxSerialNo, DbType.String);
                     parameters.Add("@BoxQty", agentBoxAssign.BoxQty);
@@ -159,14 +159,14 @@ namespace BookingSundorbon.Features.Repositories.AgentBoxAssignRepository
             }
         }
 
-        public async Task<IEnumerable<AgentBoxAssignDetailsView>> AgentBoxAssignDetailsByAgentIdAsync(int id)
+        public async Task<IEnumerable<AgentBoxAssignDetailsView>> AgentBoxAssignDetailsByAgentIdAsync(string id)
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@AgentId", id, DbType.Int32);
+                    parameters.Add("@AgentId", id, DbType.String);
 
                     var agentCount = await dbConnection.QueryAsync<AgentBoxAssignDetailsView>(
                         "[dbo].[SP_AgentBoxAssignDetailsByAgentId]", parameters, commandType: CommandType.StoredProcedure);

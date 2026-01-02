@@ -15,7 +15,7 @@ namespace BookingSundorbon.Views.DTOs.ReceiveView
         public DateTime CreationDate { get; set; }
         public string ModifierId { get; set; }
         public DateTime ModificationDate { get; set; }
-        public int ReceivedBy { get; set; }
+        public string ReceivedBy { get; set; }
         public Decimal ReceivedPrice { get; set; }
         public string Remarks { get; set; }
         public int ReceivedQty { get; set; }

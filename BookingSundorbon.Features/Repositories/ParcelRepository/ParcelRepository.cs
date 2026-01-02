@@ -153,14 +153,14 @@ namespace BookingSundorbon.Features.Repositories.ParcelRepository
             }
         }
 
-        public async Task<IEnumerable<ParcelInfoForPaymentView>> GetAgentParcelByAgentIdAsync(int agentId)
+        public async Task<IEnumerable<ParcelInfoForPaymentView>> GetAgentParcelByAgentIdAsync(string agentId)
         {
             try
             {
                 using (IDbConnection dbConnection = new SqlConnection(_connectionString))
                 {
                     DynamicParameters parameters = new();
-                    parameters.Add("@AgentId", agentId, DbType.Int32);
+                    parameters.Add("@AgentId", agentId, DbType.String);
 
                     var parcels = await dbConnection.QueryAsync<ParcelInfoForPaymentView>(
                         "[dbo].[Sp_GetAgentParcelsByAgentId]", parameters, commandType: CommandType.StoredProcedure);

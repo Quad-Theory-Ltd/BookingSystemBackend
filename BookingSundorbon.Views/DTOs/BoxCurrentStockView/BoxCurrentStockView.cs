@@ -11,7 +11,7 @@ namespace BookingSundorbon.Views.DTOs.BoxCurrentStockView
         public int Id { get; set; }
         public int DimensionId { get; set; }
         public string BoxName { get; set; }
-        public int AgentId { get; set; }
+        public string AgentId { get; set; }
         public string AgentName { get; set; }
         public int BranchId { get; set; }
         public string BranchName { get; set; }

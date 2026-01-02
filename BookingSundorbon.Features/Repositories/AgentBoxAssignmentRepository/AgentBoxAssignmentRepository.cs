@@ -31,7 +31,7 @@ namespace BookingSundorbon.Features.Repositories.AgentBoxAssignmentRepository
                     DynamicParameters parameters = new();
                     string boxSerialNo = $"{agentBoxAssignment.DimensionId}~{Guid.NewGuid()}";
 
-                    parameters.Add("@AgentId", agentBoxAssignment.AgentId, DbType.Int32);
+                    parameters.Add("@AgentId", agentBoxAssignment.AgentId, DbType.String);
                     parameters.Add("@DimensionId", agentBoxAssignment.DimensionId, DbType.Int32);
                     parameters.Add("@BoxSerialNo", boxSerialNo, DbType.String);
                     parameters.Add("@BoxQty", agentBoxAssignment.BoxQty, DbType.Int32);

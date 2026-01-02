@@ -35,7 +35,7 @@ namespace BookingSundorbon.Features.Repositories.IssueRepository
                     parameters.Add("@CreatorId", issue.CreatorId, DbType.String);
                     parameters.Add("@RecordSerialNo", issue.RecordSerialNo, DbType.String);
 
-                    parameters.Add("@IssuedBy", issue.IssuedBy, DbType.Int32);
+                    parameters.Add("@IssuedBy", issue.IssuedBy, DbType.String);
                     parameters.Add("@IssuedPrice", issue.IssuedPrice, DbType.Decimal);
                     parameters.Add("@Remarks", issue.Remarks, DbType.String);
                     parameters.Add("@DimensionId", issue.DimensionId, DbType.Int32);
