@@ -52,6 +52,36 @@ namespace BookingSundorbon.Features.Repositories.QuotationRepository
                 };
             }
         }
+
+        public async Task<GetPricingResponseView> GetMangoPricingAsync(MangoPricingView mangoPricingView)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@RouteId", mangoPricingView.RouteId, DbType.Int32);
+                    parameters.Add("@WeightId", mangoPricingView.WeightId , DbType.Int32);
+
+                    var result = await dbConnection.QueryFirstOrDefaultAsync<GetPricingResponseView>(
+                        "sp_GetMangoPricing", parameters, commandType: CommandType.StoredProcedure);
+
+                    return result ?? new GetPricingResponseView
+                    {
+                        IsSuccess = 0,
+                        Message = "No data returned from stored procedure"
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new GetPricingResponseView
+                {
+                    IsSuccess = 0,
+                    Message = $"Error getting mango pricing: {ex.Message}"
+                };
+            }
+        }
     }
 }
 

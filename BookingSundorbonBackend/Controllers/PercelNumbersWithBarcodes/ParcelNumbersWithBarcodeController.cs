@@ -28,6 +28,13 @@ namespace BookingSundorbonBackend.Controllers.PercelNumbersWithBarcodes
             var parcelNumberrsWithBarcodes = await _numbersWithBarcodeRepository.GetAgentParcelNumberrsWithBarcodes(userId);
             return Ok(parcelNumberrsWithBarcodes);
         }
+
+        [HttpGet("PaidParcelNumbers")]
+        public async Task<IActionResult> GetPaidParcelBarcodes()
+        {
+            var paidParcelNumbers = await _numbersWithBarcodeRepository.GetPaidParcelNumbers();
+            return Ok(paidParcelNumbers);
+        }
     }
     
     
