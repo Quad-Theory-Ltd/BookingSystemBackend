@@ -372,9 +372,10 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     parameters.Add("@ItemTypeId", transitionCostView.ItemTypeId, DbType.Int32);
                     parameters.Add("@ItemCategoryId", transitionCostView.ItemCategoryId, DbType.Int32);
                     parameters.Add("@ShipmentArrivalDate", transitionCostView.ShipmentArrivalDate, DbType.DateTime);
+                    parameters.Add("@ProductQty", transitionCostView.ProductQty, DbType.Int32);
 
 
-                   
+
 
 
                     var result = await dbConnection.QueryAsync<GetTransitionCostOutputView>(
