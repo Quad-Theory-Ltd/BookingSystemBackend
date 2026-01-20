@@ -69,7 +69,7 @@ namespace BookingSundorbonBackend.Controllers.AgentBoxAssign
         
 
         [HttpGet("AgentBoxAssignDetailsByAgentId/{id}")]
-        public async Task<IActionResult> AgentBoxAssignDetailsByAgentId(int id)
+        public async Task<IActionResult> AgentBoxAssignDetailsByAgentId(string id)
         {
             var count = await _agentBoxAssignRepository.AgentBoxAssignDetailsByAgentIdAsync(id);
             return Ok(count);

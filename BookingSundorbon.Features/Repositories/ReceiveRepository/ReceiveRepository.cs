@@ -36,7 +36,7 @@ namespace BookingSundorbon.Features.Repositories.ReceiveRepository
                     parameters.Add("@RecordSerialNo", receive.RecordSerialNo, DbType.String);
                  
 
-                    parameters.Add("@ReceivedBy", receive.ReceivedBy, DbType.Int32);
+                    parameters.Add("@ReceivedBy", receive.ReceivedBy, DbType.String);
                     parameters.Add("@ReceivedPrice", receive.ReceivedPrice, DbType.Decimal);
                     parameters.Add("@Remarks", receive.Remarks, DbType.String);
                     parameters.Add("@ReceivedQty", receive.ReceivedQty, DbType.Int32);
