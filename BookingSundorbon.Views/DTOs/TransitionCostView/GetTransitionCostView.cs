@@ -20,6 +20,7 @@ namespace BookingSundorbon.Views.DTOs.GetTransitionCostView
         public int ItemTypeId { get; set; }
         public int ItemCategoryId { get; set; }
         public DateTime ShipmentArrivalDate { get; set; }
+        public int? ProductQty { get; set; }
 
     }
 }

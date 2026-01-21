@@ -313,7 +313,7 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                             {
                                 try
                                 {
-                                    httpClient.BaseAddress = new Uri("https://gotastebkid.azurewebsites.net");
+                                    httpClient.BaseAddress = new Uri("https://www.apibk.ps-env.com");
                                     string jsonData = JsonSerializer.Serialize(user);
                                     StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
                                     HttpResponseMessage response = await httpClient.PostAsync("/api/UserLogin", content);
@@ -372,9 +372,10 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                     parameters.Add("@ItemTypeId", transitionCostView.ItemTypeId, DbType.Int32);
                     parameters.Add("@ItemCategoryId", transitionCostView.ItemCategoryId, DbType.Int32);
                     parameters.Add("@ShipmentArrivalDate", transitionCostView.ShipmentArrivalDate, DbType.DateTime);
+                    parameters.Add("@ProductQty", transitionCostView.ProductQty, DbType.Int32);
 
 
-                   
+
 
 
                     var result = await dbConnection.QueryAsync<GetTransitionCostOutputView>(
