@@ -11,6 +11,6 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
     public interface ITransitionCostRepository
     {
         Task<List<CreateParcelBookingOutputView>> CreateParcelBookingAsync(List<CreateParcelBookingView> createParcelBookingViews);
-        Task<IEnumerable<GetTransitionCostOutputView>> GetTransitionCost(GetTransitionCostView transitionCostView);
+        Task<IEnumerable<GetTransitionCostOutputView>> GetTransitionCost(List<GetTransitionCostView> transitionCostViews);
     }
 }

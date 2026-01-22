@@ -21,23 +21,25 @@ namespace BookingSundorbonBackend.Controllers.GetTransitionCost
         }
 
 
-        [HttpGet]
-        public async Task<ActionResult> GetTotalTransitionCost([FromQuery]GetTransitionCostView getTransitionCost)
+        [HttpPost]
+        [Route("GetTotalTransitionCost")]
+        public async Task<IActionResult> GetTotalTransitionCost([FromBody] List<GetTransitionCostView> getTransitionCost)
         {
             try
             {
-                if (getTransitionCost == null)
-                {
-                    return BadRequest();
-                }
+                if (getTransitionCost == null || !getTransitionCost.Any())
+                    return BadRequest("Request list is empty!");
+
                 var result = await _getTransitionCostRepository.GetTransitionCost(getTransitionCost);
 
                 return Ok(result);
             }
-            catch (Exception ex) {
-                return BadRequest();
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
             }
         }
+
 
         [HttpPost]
         public async Task<IActionResult> CreateParcelBooking([FromBody] List<CreateParcelBookingView> createParcelBookingViews)
