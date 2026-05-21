@@ -397,3 +397,10 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 /BookingSundorbonBackend/.config/dotnet-tools.json
+/BookingSundorbonBackend/Uploads
+/BookingSundorbonBackend/appsettings.json
+/BookingSundorbonBackend/appsettings.Development.json
+/BookingSundorbonBackend/appsettings.Development.json
+/BookingSundorbonBackend/appsettings.json
+/BookingSundorbonBackend/appsettings.Development.json
+/BookingSundorbonBackend/appsettings.json
