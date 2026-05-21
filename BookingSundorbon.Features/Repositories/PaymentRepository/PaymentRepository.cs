@@ -127,6 +127,12 @@ namespace BookingSundorbon.Features.Repositories.PaymentRepository
                     parameters.Add("@PaymentDate", payment.PaymentDate, DbType.DateTime);
                     parameters.Add("@PaymentStatusId", payment.PaymentStatusId, DbType.Int32);
                     parameters.Add("@CurrencyTypeId", payment.CurrencyTypeId, DbType.Int32);
+                    parameters.Add("@StripePaymentIntentId", payment.StripePaymentIntentId, DbType.String);
+                    parameters.Add("@StripeChargeId", payment.StripeChargeId, DbType.String);
+                    parameters.Add("@CardLast4", payment.CardLast4, DbType.String);
+                    parameters.Add("@CardBrand", payment.CardBrand, DbType.String);
+                    parameters.Add("@StripePaymentMethod", payment.StripePaymentMethod, DbType.String);
+
                     await dbConnection.ExecuteAsync(
                         "[dbo].[SP_UpdatePayment]", parameters, commandType: CommandType.StoredProcedure);
                 }
@@ -167,6 +173,27 @@ namespace BookingSundorbon.Features.Repositories.PaymentRepository
 
                     var payment = await dbConnection.QueryFirstOrDefaultAsync<PaymentView>(
                         "[dbo].[SP_GetPaymentByparcelId]", parameters, commandType: CommandType.StoredProcedure);
+
+                    return payment;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<PaymentView> GetPaymentAsyncByIntentIdAsync(string intentId)
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
+                    DynamicParameters parameters = new();
+                    parameters.Add("@IntentId", intentId, DbType.String);
+
+                    var payment = await dbConnection.QueryFirstOrDefaultAsync<PaymentView>(
+                        "[dbo].[SP_GetPaymentByIntentId]", parameters, commandType: CommandType.StoredProcedure);
 
                     return payment;
                 }

@@ -9,7 +9,7 @@ namespace BookingSundorbon.Views.DTOs.PaymentView
     public class PaymentView
     {
         public int Id { get; set; }
-        public DateTime PaymentDate { get; set; }
+        public DateTime? PaymentDate { get; set; } = null;
         public int PaymentMethodId { get; set; }
         public string PaymentMethodName { get; set; }
         public int ParcelOderNo { get; set; }
@@ -28,5 +28,28 @@ namespace BookingSundorbon.Views.DTOs.PaymentView
         public int PaymentStatusId { get; set; }
         public string? StatusName { get; set; }
 
+        public string StripePaymentIntentId { get; set; } = null;
+        public string StripeChargeId { get; set; } = null;
+        public string CardLast4 { get; set; } = null;
+        public string CardBrand { get; set; } = null;
+        public string StripePaymentMethod { get; set; } = null;
+
+    }
+
+    public class StripePaymentDetails
+    {
+        public string StripePaymentIntentId { get; set; }
+        public string StripeChargeId { get; set; }
+        public string CardLast4 { get; set; }
+        public string CardBrand { get; set; }
+        public string StripePaymentMethod { get; set; }
+        public int PaymentStatusId { get; set; }
+
+    }
+
+    public class PaymentIntentView
+    {
+        public int parcelId { get; set; }
+        public string currency { get; set; }
     }
 }

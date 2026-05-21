@@ -71,6 +71,8 @@ using BookingSundorbon.Features.Repositories.ParcelNumbersWithBarcodeRepository;
 using BookingSundorbon.Features.Repositories.AgentBoxAssignmentRepository;
 using BookingSundorbon.Features.Repositories.CurrencyRepository;
 using BookingSundorbon.Features.Repositories.QuotationRepository;
+using BookingSundorbon.Features.Repositories.SettingsRepository;
+using BookingSundorbon.Features.Repositories.InquiryRepository;
 namespace BookingSundorbon.Features
 {
     public static class ServiceCollectionExtensions
@@ -126,6 +128,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IItemTypeRepository, ItemTypeRepository>();
             services.AddScoped<IItemCategoryRepository, ItemCategoryRepository>();
             services.AddScoped<IIssueRepository, IssueRepository>();
+            services.AddScoped<IInquiryRepository, InquiryRepository>();
             #endregion
 
             #region "L"
@@ -168,7 +171,7 @@ namespace BookingSundorbon.Features
             services.AddScoped<IScanningPointRepository, ScanningPointRepository>();
             services.AddScoped<ISenderDetailsRepository, SenderDetailsRepository>();
             services.AddScoped<ISubBranchRepository, SubBranchRepository>();
-            
+            services.AddScoped<ISettingsRepository, SettingsRepository>();
             #endregion
             #region "T"
             services.AddScoped<ITransitionCostRepository, TransitionCostRepository>();
@@ -195,7 +198,7 @@ namespace BookingSundorbon.Features
         }
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IEmailServices, EmailServices>();
             return services;
         }
 
