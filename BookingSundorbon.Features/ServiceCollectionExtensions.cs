@@ -73,6 +73,8 @@ using BookingSundorbon.Features.Repositories.CurrencyRepository;
 using BookingSundorbon.Features.Repositories.QuotationRepository;
 using BookingSundorbon.Features.Repositories.SettingsRepository;
 using BookingSundorbon.Features.Repositories.InquiryRepository;
+using BookingSundorbon.Features.Repositories.NotificationRepository;
+using BookingSundorbon.Features.Repositories.ApplicationUserRepository;
 namespace BookingSundorbon.Features
 {
     public static class ServiceCollectionExtensions
@@ -80,6 +82,7 @@ namespace BookingSundorbon.Features
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             #region "A"
+            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
             services.AddScoped<IAgentBookingRepository, AgentBookingRepository>();
             services.AddScoped<IAdditionalCostRepository, AdditionalCostRepository>();
             services.AddScoped<IAgentRepository, AgentRepository>();
@@ -136,6 +139,7 @@ namespace BookingSundorbon.Features
             #endregion
             #region "M"
             services.AddScoped<IMeasurementUnitRepository, MeasurementUnitRepository>();
+            services.AddScoped<INotificationRepository, NotificationRepository>();
             #endregion
 
             #region "P"

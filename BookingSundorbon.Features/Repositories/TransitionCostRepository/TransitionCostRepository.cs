@@ -63,6 +63,9 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                 headerParams.Add("@SenderLandmark", booking.SenderLandMark, DbType.String);
                 headerParams.Add("@SenderAdditionalAddressInfo", booking.SenderAdditionalAddressInfo, DbType.String);
                 headerParams.Add("@SenderPostCode", booking.SenderPostCode, DbType.String);
+                headerParams.Add("@SenderDoorNo", booking.SenderDoorNo, DbType.String);
+                headerParams.Add("@SenderStreetName", booking.SenderStreetName, DbType.String);
+                headerParams.Add("@SenderRemarks", booking.SenderRemarks, DbType.String);
 
                 headerParams.Add("@ReceiverName", booking.ReceiverName, DbType.String);
                 headerParams.Add("@ReceiverEmail", booking.ReceiverEmail, DbType.String);
@@ -72,6 +75,9 @@ namespace BookingSundorbon.Features.Repositories.GetTransitionCostRepository
                 headerParams.Add("@ReceiverLandmark", booking.ReceiverLandMark, DbType.String);
                 headerParams.Add("@ReceiverAdditionalAddressInfo", booking.ReceiverAdditionalAddressInfo, DbType.String);
                 headerParams.Add("@ReceiverPostCode", booking.ReceiverPostCode, DbType.String);
+                headerParams.Add("@ReceiverDoorNo", booking.ReceiverDoorNo, DbType.String);
+                headerParams.Add("@ReceiverStreetName", booking.ReceiverStreetName, DbType.String);
+                headerParams.Add("@ReceiverRemarks", booking.ReceiverRemarks, DbType.String);
 
                 headerParams.Add("@IsPickup", booking.IsPickup, DbType.Boolean);
                 headerParams.Add("@FromTime", booking.FromTime, DbType.String);

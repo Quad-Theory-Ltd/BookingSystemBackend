@@ -1,5 +1,5 @@
-﻿using BookingSundorbon.Features.Repositories.UserRepository;
-using Microsoft.AspNetCore.Http;
+﻿using BookingSundorbon.Features.Repositories.ApplicationUserRepository;
+using BookingSundorbon.Features.Repositories.UserRepository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookingSundorbonBackend.Controllers.User
@@ -8,12 +8,15 @@ namespace BookingSundorbonBackend.Controllers.User
     [ApiController]
     public class UserController : ControllerBase
     {
-
         private readonly IUserRepository _userRepository;
+        private readonly IApplicationUserRepository _applicationUserRepository;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(
+            IUserRepository userRepository,
+            IApplicationUserRepository applicationUserRepository)
         {
             _userRepository = userRepository;
+            _applicationUserRepository = applicationUserRepository;
         }
 
         [HttpGet("GetAllEmployee")]
@@ -30,7 +33,11 @@ namespace BookingSundorbonBackend.Controllers.User
             return Ok(user);
         }
 
-
-
+        [HttpGet("GetAdminUserDetails")]
+        public async Task<IActionResult> GetAdminUserDetails()
+        {
+            var admins = await _applicationUserRepository.GetAdminUserDetailsAsync();
+            return Ok(admins);
+        }
     }
 }

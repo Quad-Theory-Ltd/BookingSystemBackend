@@ -1,7 +1,12 @@
 ﻿using BookingSundorbon.Features.Repositories.BarcodeScanRepository;
+using BookingSundorbon.Features.Repositories.NotificationRepository;
 using BookingSundorbon.Views.DTOs.BarcodeScanView;
+using BookingSundorbon.Views.DTOs.NotificationView;
+using BookingSundorbonBackend.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 
 namespace BookingSundorbonBackend.Controllers.BarcodeScan
 {
@@ -11,10 +16,17 @@ namespace BookingSundorbonBackend.Controllers.BarcodeScan
     {
 
         private readonly IBarcodeScanRepository _barcodeScanRepository;
+        private readonly INotificationRepository _notificationRepository;
+        private readonly INotificationHubService _notificationHubService;
 
-        public BarcodeScanController(IBarcodeScanRepository barcodeScanRepository)
+        public BarcodeScanController(
+            IBarcodeScanRepository barcodeScanRepository,
+            INotificationRepository notificationRepository,
+            INotificationHubService notificationHubService)
         {
             _barcodeScanRepository = barcodeScanRepository;
+            _notificationRepository = notificationRepository;
+            _notificationHubService = notificationHubService;
         }
 
         [HttpGet]
@@ -33,6 +45,26 @@ namespace BookingSundorbonBackend.Controllers.BarcodeScan
                 return BadRequest("BarcodeScan is Null");
             }
             var barcodeScanId = await _barcodeScanRepository.CreateBarcodeScanAsync(barcodeScan);
+
+            var createdBy = long.TryParse(barcodeScan.CreatorId, out var creatorIdLong) ? creatorIdLong : (long?)null;
+
+            var notification = new CreateNotificationView
+            {
+                Title = "Parcel status update",
+                Message = $"Parcel status updated to \"{barcodeScan.ParcelStatusName}\" · Parcel #{barcodeScan.ParcelNo}",
+                NotificationType = "BarcodeScan",
+                ReferenceId = barcodeScan.ParcelNo,
+                ReferenceType = "Parcel",
+                RedirectUrl = $"/",
+                CreatedBy = createdBy,
+                RecipientUserIds = new List<string> { barcodeScanId.BookedByUserId }
+            };
+
+            await _notificationRepository.CreateNotificationAsync(notification);
+
+            var userId = Regex.Replace(barcodeScanId.BookedByUserId ?? string.Empty, @"\s+", "");
+
+            await _notificationHubService.SendToGroupAsync("CustomerGroup_" + userId, "ParcelStatusUpdate", barcodeScan);
 
             return CreatedAtAction(nameof(GetBarcodeScan), new { id = barcodeScanId }, barcodeScanId);
         }

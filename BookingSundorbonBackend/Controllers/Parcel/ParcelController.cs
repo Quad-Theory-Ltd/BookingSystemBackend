@@ -1,6 +1,7 @@
 ﻿using BookingSundorbon.Features.Repositories.ParcelRepository;
 using BookingSundorbon.Views.DTOs.ExchangeView;
 using BookingSundorbon.Views.DTOs.ParcelView;
+using BookingSundorbonBackend.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -13,10 +14,14 @@ namespace BookingSundorbonBackend.Controllers.Parcel
     {
 
         private readonly IParcelRepository _parcelRepository;
+        private readonly INotificationHubService _notificationHubService;
 
-        public ParcelController(IParcelRepository parcelRepository)
+        public ParcelController(
+            IParcelRepository parcelRepository,
+            INotificationHubService notificationHubService)
         {
             _parcelRepository = parcelRepository;
+            _notificationHubService = notificationHubService;
         }
 
 

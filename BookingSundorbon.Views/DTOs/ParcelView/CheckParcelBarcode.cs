@@ -10,5 +10,7 @@ namespace BookingSundorbon.Views.DTOs.ParcelView
     {
         public int ParcelNo { get; set; }
         public string BarcodeStatus { get; set; }
+
+        public string UserId { get; set; }
     }
 }

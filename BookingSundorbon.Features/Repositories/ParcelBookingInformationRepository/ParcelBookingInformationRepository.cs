@@ -118,6 +118,71 @@ namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationReposit
                 throw;
             }
         }
+        public async Task<IEnumerable<ParcelResponseDto>> GetParcelHistory()
+        {
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+
+                using var multi = await connection.QueryMultipleAsync(
+                    "SP_GetParcelHistory",
+                    commandType: CommandType.StoredProcedure
+                );
+                var headers = (await multi.ReadAsync<ParcelHeaderDto>())
+                    .ToList();
+                var details = await multi.ReadAsync<ParcelDetailDto>();
+                var result = headers
+                    .GroupBy(x => x.ParcelNo)
+                    .Select(g =>
+                    {
+                        var h = g.First();
+
+                        return new ParcelResponseDto
+                        {
+                            ParcelNo = h.ParcelNo,
+
+                            ParcelStatusId = h.ParcelStatusId,
+                            ParcelStatusName = h.ParcelStatusName,
+
+                            SenderName = h.SenderName,
+                            SenderEmail = h.SenderEmail,
+                            SenderPhone = h.SenderPhone,
+                            SenderPostCode = h.SenderPostCode,
+
+                            ReceiverName = h.ReceiverName,
+                            ReceiverEmail = h.ReceiverEmail,
+                            ReceiverPhone = h.ReceiverPhone,
+                            ReceiverPostCode = h.ReceiverPostCode,
+
+                            CardBrand=h.CardBrand,
+                            CardLast4=h.CardLast4,
+                            StripeChargeId=h.StripeChargeId,
+                            StripePaymentIntentId = h.StripePaymentIntentId,
+                            StripePaymentMethod = h.StripePaymentMethod
+
+                        };
+                    })
+                    .ToList();
+
+                // attach details
+                var lookup = result.ToDictionary(x => x.ParcelNo);
+
+                foreach (var d in details)
+                {
+                    if (lookup.TryGetValue(d.ParcelNo, out var parcel))
+                    {
+                        parcel.Details.Add(d);
+                    }
+                }
+
+                return result.OrderByDescending(x=>x.ParcelNo);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
 
         public async Task<IEnumerable<ParcelBookingHistoryView>> GetParcelAgentBookingHistoryByAgentId(string AgentId)
         {
@@ -186,6 +251,24 @@ namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationReposit
                 throw;
             }
         }
+        public async Task<string> GetAnalyticsData()
+        {
+            try
+            {
+                using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+                {
 
+                    var result = await dbConnection.QueryFirstOrDefaultAsync<string>(
+                        "[dbo].[sp_GetBookingSummary]", commandType: CommandType.StoredProcedure);
+
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

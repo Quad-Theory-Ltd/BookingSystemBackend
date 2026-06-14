@@ -20,7 +20,7 @@ namespace BookingSundorbon.Features.Repositories.BarcodeScanRepository
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<int> CreateBarcodeScanAsync(BarcodeScanView barcodeScan)
+        public async Task<BarCodeGetView> CreateBarcodeScanAsync(BarcodeScanView barcodeScan)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace BookingSundorbon.Features.Repositories.BarcodeScanRepository
                     parameters.Add("@ParcelStatusId",barcodeScan.ParcelStatusId, DbType.Int32);
 
 
-                    var newId = await dbConnection.ExecuteScalarAsync<int>(
+                    var newId = await dbConnection.QueryFirstOrDefaultAsync<BarCodeGetView>(
                         "[dbo].[SP_InsertIntoBarcodeScan]", parameters, commandType: CommandType.StoredProcedure);
 
                     return newId;

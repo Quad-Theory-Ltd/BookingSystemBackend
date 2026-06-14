@@ -27,4 +27,10 @@ namespace BookingSundorbon.Views.DTOs.BarcodeScanView
         public string ParcelStatusName { get; set; }
 
     }
+
+    public class BarCodeGetView
+    {
+        public int BarcodeId { get; set; }
+        public string BookedByUserId { get; set; }
+    }
 }

@@ -9,7 +9,7 @@ namespace BookingSundorbon.Features.Repositories.BarcodeScanRepository
 {
     public interface IBarcodeScanRepository
     {
-        Task<int> CreateBarcodeScanAsync(BarcodeScanView barcodeScan);
+        Task<BarCodeGetView> CreateBarcodeScanAsync(BarcodeScanView barcodeScan);
         Task<BarcodeScanView> GetBarcodeScanAsync(int id);
         Task<IEnumerable<BarcodeScanView>> GetAgentBarcodeScanAsync(string userId);
         Task<IEnumerable<BarcodeScanView>> GetAllActiveBarcodeScansAsync();

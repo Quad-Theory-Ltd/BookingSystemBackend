@@ -1,4 +1,6 @@
 using BookingSundorbon.Features;
+using BookingSundorbonBackend.Hubs;
+using BookingSundorbonBackend.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -16,6 +18,8 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddRepositories();
 builder.Services.AddServices();
+builder.Services.AddSignalR();
+builder.Services.AddScoped<INotificationHubService, NotificationHubService>();
 
 StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
 
@@ -25,7 +29,7 @@ builder.Services.AddCors(
         options.AddPolicy(name: "sundorbonBookingCors",
             policy => policy.WithOrigins("http://www.sundarbancargoservicesltd.uk",
             "https://sundarbancargoservicesltd.uk",
-              "https://www.sundarbancargoservicesltd.uk",
+            "https://www.sundarbancargoservicesltd.uk",
             "https://www.sundarbancargoservicesltd.uk",
             "http://www.sundarbancargoservicesltd.uk/",
             "https://www.sundarbancargoservicesltd.uk/",
@@ -38,24 +42,26 @@ builder.Services.AddCors(
             "http://localhost:3000",
             "http://localhost:3001",
             "http://202.126.122.82:33",
-             "http://202.126.122.82:33/",
+            "http://202.126.122.82:33/",
             "http://202.126.122.82:33/api",
-             "https://202.126.122.82:33",
-             "https://202.126.122.82:33/",
+            "https://202.126.122.82:33",
+            "https://202.126.122.82:33/",
             "https://202.126.122.82:33/api",
             "http://202.126.122.82:33/api/",
-            "https://202.126.122.82:33/api/"
-            , "http://sundarbancargo.com", 
-            "http://sundarbancargo.com/api"
-            , "https://sundarbancargo.com", 
+            "https://202.126.122.82:33/api/",
+            "http://sundarbancargo.com", 
+            "http://sundarbancargo.com/api",
+            "https://sundarbancargo.com", 
             "https://sundarbancargo.com/api", 
             "https://sundarbancargo.com/", 
             "https://sundarbancargo.com/api", 
             "https://sundarbancargo.com:500", 
-            "https://sundarbancargo.com:500/api", 
+            "https://sundarbancargo.com:500/api",
+            "https://www.sundarbancargo.com/",
             "https://sundarbancargo.com:500/api/")
             .AllowAnyHeader()
             .AllowAnyMethod()
+            .AllowCredentials()
             );
     }
     );
@@ -107,6 +113,22 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = builder.Configuration["Jwt:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config))
     };
+
+    opt.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
+        {
+            var accessToken = context.Request.Query["access_token"];
+            var path = context.HttpContext.Request.Path;
+
+            if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/hubs"))
+            {
+                context.Token = accessToken;
+            }
+
+            return Task.CompletedTask;
+        }
+    };
 });
 builder.Services.AddAuthorization(options =>
 {
@@ -143,9 +165,10 @@ if (app.Environment.IsDevelopment())
 }
 app.UseCors("sundorbonBookingCors");
 app.UseHttpsRedirection();
-
-//app.UseAuthorization();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<NotificationHub>("/api/hubs/notification");
 
 app.Run();

@@ -21,6 +21,10 @@ namespace BookingSundorbon.Views.DTOs.TransitionCostView
         public string SenderLandMark { get; set; }
         public string SenderPostCode { get; set; }
         public string SenderAdditionalAddressInfo { get; set; }
+        public string SenderDoorNo { get; set; }
+        public string SenderStreetName { get; set; }
+        public string SenderRemarks { get; set; }
+
 
 
         public string ReceiverName { get; set; }
@@ -31,6 +35,9 @@ namespace BookingSundorbon.Views.DTOs.TransitionCostView
         public string ReceiverLandMark { get; set; }
         public string ReceiverPostCode { get; set; }
         public string ReceiverAdditionalAddressInfo { get; set; }
+        public string ReceiverDoorNo { get; set; }
+        public string ReceiverStreetName { get; set; }
+        public string ReceiverRemarks { get; set; }
 
 
         public bool IsPickup { get; set; }

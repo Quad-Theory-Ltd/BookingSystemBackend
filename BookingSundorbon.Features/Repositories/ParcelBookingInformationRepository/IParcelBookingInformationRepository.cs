@@ -16,10 +16,13 @@ namespace BookingSundorbon.Features.Repositories.ParcelBookingInformationReposit
         Task<IEnumerable<ParcelBoxCountView>> GetParcelCountsWithDimensions();
         Task<IEnumerable<ParcelBookingHistoryView>> GetParcelBookingHistory();
         Task<IEnumerable<ParcelBookingHistoryView>> GetParcelAgentBookingHistory();
+        Task<IEnumerable<ParcelResponseDto>> GetParcelHistory();
         Task<IEnumerable<ParcelBookingHistoryView>> GetParcelAgentBookingHistoryByAgentId(string AgentId);
 
         Task<IEnumerable<ParcelBookingHistoryView>> GetParcelBookingHistoryByUserIdAsync(string userId);
 
         Task<IEnumerable<ParcelBookingSummaryCountsView>> GetUserBookingSummery(string userId);
+
+        Task<string> GetAnalyticsData();
     }
 }

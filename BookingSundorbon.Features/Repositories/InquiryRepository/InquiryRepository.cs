@@ -67,7 +67,7 @@ namespace BookingSundorbon.Features.Repositories.InquiryRepository
                     DynamicParameters parameters = new();
                     parameters.Add("@Status", status, DbType.String);
                     parameters.Add("@Page", page, DbType.Int32);
-                    parameters.Add("@PageSize", pageSize, DbType.Int32);
+                    parameters.Add("@page_size", pageSize, DbType.Int32);
 
                     return await dbConnection.QueryAsync<InquiryView>(
                         "[dbo].[sp_GetInquiry]", parameters, commandType: CommandType.StoredProcedure);
